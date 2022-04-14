@@ -1,0 +1,424 @@
+:root{
+    --fondo: #145682;
+    --blanco: #FFFBFB;
+    --contenedor: #E5E5E5;
+    --boton: #37A8B0;
+    --link: #04A5FF;
+    --libre: #32CF00;
+    --ocupado: #CF0000;
+    --fuera: #F0FF00;
+    --limpieza: #008BFF;
+    --total: #3B4F56;
+    --boton-visualizar: #1E397F;
+}
+* {
+    margin: 0rem;
+    padding: 0rem;
+}
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;
+}
+
+*, *:before, *:after {
+    box-sizing: inheit;
+}
+body{
+    font-size: 16px;/* 10px= 1 rem*/
+    font-family: 'Krub', sans-serif;
+    background-color: var(--fondo);
+}
+.contenedor-total{
+     max-width: 100%; 
+     margin:0px auto; 
+}
+h1 {
+    font-size: 4rem;
+}
+h2 {
+    font-size: 3.2rem;
+}
+h3 {
+    font-size: 2.4rem;
+}
+h4 {
+    font-size: 1.7rem;
+}
+a{
+    color:var(--link);
+    text-decoration: none;
+}
+/* .boton{
+    margin: 1.5%;
+    color:var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 400;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: var(--boton);
+    border-radius: 1rem;
+    text-transform: uppercase;
+    border: 1px solid ;
+    text-align: center;
+    width: 14.7rem;
+
+} */
+
+/* input{
+    background-color: var(--contenedor);
+    padding: 2px;
+    font-size: 17px;
+    border: 2px solid #00000000;
+    border-radius: 10px;
+    outline: none;
+} */
+
+/* INICIO CABECERA */
+
+/* BARRA BUSCADORA */
+/* .barra-buscadora {
+    display: flex;
+    margin-bottom: 2rem;
+}
+.search-container {
+    float: left;
+}
+.search-container input{
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: 1px solid;
+    border-radius: 1rem 0rem 0rem 1rem;
+}
+.search-container button {
+    float: right;
+    padding: 7px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    color: white;
+    background: var(--boton-visualizar);
+    font-size: 17px;
+    border: none;
+    border-radius: 0rem 1rem 1rem 0rem;
+    cursor: pointer;
+}  
+.search-container button:hover {
+    background: #192b58;
+} */
+
+/* CONTENIDO PRINCIPAL */
+/* .contenedor {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    border-radius: 2rem;
+    background: rgba(0, 0, 0, 0.123);
+    padding: 2rem;
+    height: 20rem;
+} */
+/* @media (min-width :1370px){
+    .contenedor{
+        width: auto;
+        
+    }
+}
+@media (min-width :1370px){
+    .contenedor{
+        height: 20rem;
+        
+    }
+}
+.cuadros p {
+    margin-top: 0.5rem;
+}
+.cuadros {
+    position: relative;
+    background: var(--contenedor);
+    width: 20rem;
+    height: 5.5rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1.5rem 0rem 0rem 1.5rem;
+}
+.barra-lateral {
+    box-shadow: inset -3.5rem 0 0 var(--boton-visualizar);
+}
+.lateral {
+    display: grid;
+    position: absolute;
+    align-content: space-evenly;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin-right: 0.6rem;
+} */
+/* 
+.tamaño-iconos {
+    width: 22px;
+    height: 22px;
+}
+.contenedor-botones-main {
+    display: flex;
+    grid-template-columns: repeat(3,1fr);
+}
+.contenedor-botones-main .boton{
+    margin-top: 2rem;
+    margin-left: 0rem;
+    margin-right: 3rem;
+    width: 15rem;
+    padding: 1.5rem;
+} */
+/* .contenedor-botones-main a:hover{
+    color: var(--boton);
+    background-color: var(--blanco);
+} */
+/* HEADER */
+
+/* SUPERIOR */
+.cabecera img{   
+    width: 14rem;
+    height: 12rem;
+    border-radius: 2rem;
+}
+.rectangulo-cabecera{
+    background: var(--contenedor);
+    margin: 2rem 2rem;
+    width: 100%;
+    height: 8rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    margin-bottom: 0%;
+}
+.rectangulo-cabecera h2{
+    margin: 0%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-size: 3.2rem;
+}
+
+/* DETALLES */
+.icono{
+    margin-left: 2rem;
+    margin-right: 1rem;
+    margin-top: 2rem;
+}
+.cabecera-detalles{
+    display: flex;
+}
+.titulo-usuario{
+    display: flex;
+}
+.titulo-rol{
+    display: flex;
+}
+.cabecera-detalles .rectangulo-cabecera{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 5rem;   
+}
+.contenedor-botones {
+    display: grid;
+    text-align: right;
+    justify-content: right;
+}
+.contenedor-botones .boton{
+    margin: 0.5rem;
+    width: 13.7rem;
+    font-size: 1.5rem;
+    margin-top: 0rem;
+}
+.contenedor-botones a:hover{
+    color: var(--boton);
+    background-color: var(--blanco);
+}
+/* navegacion */
+.nav-bg {
+    background: var(--contenedor);
+    margin: 2rem 2rem;
+    max-width: 100%;
+    padding: 0.1rem;
+    border-radius: 2rem;
+}
+.navegacion-principal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+.navegacion-principal a {
+    text-decoration: none;
+    font-weight: 700;
+    color:#000000;
+    
+}
+.navegacion-principal a:hover {
+    color: var(--boton);  
+}
+.navegacion-principal a:focus {
+    color: var(--boton); 
+}
+.navegacion-principal p {
+    margin: 1rem;
+    font-weight: 400;
+    font-size: 2rem;
+}
+.botones-nav{
+    margin-top: 1rem;
+}
+
+.boton{
+    margin: 1.5rem;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-top: 3rem;
+    background-color: var(--boton);
+    transition: background-color .5s;
+    border-radius: 10px;
+    text-transform: uppercase;
+    border: 1px solid ;
+    text-align: center;
+    width: 14.7rem;
+}
+/* .modalfondo {
+    background: var(--blanco);
+    border-radius: 2rem;
+    padding: 1rem;
+    width: 80rem;
+    margin-top: 10%;
+} */
+
+ /* FIN CABECERA */
+
+ /* .principal h1 {
+    text-align: center;
+    color: black;
+}
+.exit {
+    position: relative;
+} */
+/* section svg {
+    position: absolute;
+    top: -5.7rem;
+    right: -0.3rem;
+    cursor: pointer;
+} */
+/* .contenedor {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 2rem 0rem 2rem;
+    margin-top: 2rem;
+}
+.contenedor-modal {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 2rem 0rem 2rem;
+    margin-top: 2rem;
+}
+.foto {
+    display: grid;
+    justify-items: center;
+}
+.foto img {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 2rem;
+}
+.contenedor-info {
+    display: grid;
+    grid-template-columns: repeat(1,0.9fr);
+}
+.formulario-inputs {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+}
+.check{
+    margin-left: 1rem;
+    opacity: 0;
+}
+
+.check-show{
+    opacity: 1;
+}
+
+.formulario-inputs p {
+    color: black;
+    font-weight: bold;
+}
+.formulario-inputs input {
+    width: 20rem;
+    height: 2.3rem;
+    border-radius: 0.5rem;
+}
+.formulario-inputs select {
+    width: 20.4rem;
+    height: 2.7rem;
+    border-radius: 0.5rem;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s;
+}
+
+.modal--show{
+    opacity: 1;
+    pointer-events: unset;
+    transition: opacity .6s;
+} */
+
+/* BOTONES */
+/* .contenedor-botones-modal {
+    display: block;
+    padding: 0rem 2rem 2rem 2rem;
+    grid-template-columns: repeat(2,1fr);
+    justify-items: end;
+    margin-left: 50.4rem;
+    margin-top: 7rem;
+}
+.contenedor-botones-modal .boton{
+    margin-top: 2rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    width: 16rem;
+    padding: 1.5rem;
+}
+.contenedor-botones-modal a:hover, .foto .boton:hover, .contenedor-botones .boton:hover{
+    color: var(--boton);
+    background: var(--blanco);
+} */
+
+/* CONTENIDO DEL HOME*/
+.principal {
+    background: var(--contenedor);
+    border-radius: 2rem;
+    padding: 1.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    height: 40rem;
+}
+/* footer */
+/* .footer{
+    text-align: center;
+    color: var(--blanco);
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+
+} */
+
