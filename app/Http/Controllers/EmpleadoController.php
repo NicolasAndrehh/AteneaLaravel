@@ -15,6 +15,8 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
+        $datos['empleados']=Empleado::paginate(8);
+        return view('empleado.index', $datos);
     }
 
     /**
@@ -25,6 +27,7 @@ class EmpleadoController extends Controller
     public function create()
     {
         //
+        return view('empleado.create');
     }
 
     /**
@@ -36,6 +39,28 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombres' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'apellidos' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'num_documento' => 'required|regex:/^[0-9]{6,}$/',
+            'direccion' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
+            'telefono' => 'required|regex:/^[0-9]{10,16}$/',
+            'cargo' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'contrato' => 'required',
+            'foto' => 'required'
+        ]);
+
+        $datosEmpleado = $request->except('_token');
+        
+        if($request->hasFile('contrato')){
+            $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
+        }
+        if($request->hasFile('foto')){
+            $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
+        }
+
+        Empleado::insert($datosEmpleado);
+        return response()->json($datosEmpleado);
     }
 
     /**
@@ -58,6 +83,7 @@ class EmpleadoController extends Controller
     public function edit(Empleado $empleado)
     {
         //
+        return view('empleado.edit');
     }
 
     /**
@@ -78,8 +104,10 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
+    public function destroy($id)
     {
         //
+        Empleado::destroy($id);
+        return redirect('empleado');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpleadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.header');
-});
+// Route::get('/', function () {
+//     return view('empleado.');
+// });
+
+Route::resource('empleado', EmpleadoController::class);
 
 Auth::routes();
 

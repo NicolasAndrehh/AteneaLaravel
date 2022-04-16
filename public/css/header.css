@@ -285,6 +285,11 @@ a{
     text-align: center;
     width: 14.7rem;
 }
+
+.boton:hover{
+    color: var(--boton);
+    background-color: var(--blanco);
+}
 /* .modalfondo {
     background: var(--blanco);
     border-radius: 2rem;
@@ -361,7 +366,7 @@ a{
     height: 2.7rem;
     border-radius: 0.5rem;
 }
-
+*/
 .modal{
     position: fixed;
     top: 0;
@@ -381,7 +386,7 @@ a{
     opacity: 1;
     pointer-events: unset;
     transition: opacity .6s;
-} */
+}
 
 /* BOTONES */
 /* .contenedor-botones-modal {
@@ -414,11 +419,11 @@ a{
     height: 40rem;
 }
 /* footer */
-/* .footer{
+.footer{
     text-align: center;
     color: var(--blanco);
     margin-bottom: 1rem;
     margin-top: 2rem;
 
-} */
+}
 

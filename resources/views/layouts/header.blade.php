@@ -70,5 +70,3 @@
         <main class="principal">
 
 
-</body>
-</html>
