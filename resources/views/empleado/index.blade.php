@@ -1,6 +1,5 @@
 @include('layouts.header')
 
-
 <link rel="stylesheet" href="{{ asset('css/empleados.css') }}">
 <div class="barra-buscadora">
     <div class="search-container">
@@ -28,7 +27,7 @@
                 </div>
                 
                 <div class="tamaño-iconos">
-                    <a href="#" class="abrirModalModificar">
+                    <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="abrirModalModificar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -58,13 +57,10 @@
     
     
     <div class="contenedor-botones-main">
-        <a class="boton abrirModalRegistrar" href="">Registrar empleado</a>
+        <a class="boton " href="{{ url('/empleado/create') }}">Registrar empleado</a>
         <a class="boton" href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/empleados/Reporte empleados/iFrame/ReporteUsuarioRol.html">Generar reporte</a>
     </div>
 </section>
 
-@include('empleado.create')
-@include('empleado.edit')
 <script src="{{ asset('js/main.js') }}"></script>
-
 @include('layouts.footer')

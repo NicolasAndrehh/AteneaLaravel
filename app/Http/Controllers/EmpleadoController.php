@@ -27,7 +27,7 @@ class EmpleadoController extends Controller
     public function create()
     {
         //
-        return view('empleado.create');
+        return view('empleado.create', ['submit'=>'Registrar empleado']);
     }
 
     /**
@@ -60,7 +60,7 @@ class EmpleadoController extends Controller
         }
 
         Empleado::insert($datosEmpleado);
-        return response()->json($datosEmpleado);
+        return redirect('/empleado');
     }
 
     /**
@@ -80,10 +80,12 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleado $empleado)
+    public function edit($id)
     {
         //
-        return view('empleado.edit');
+        $empleado = Empleado::findOrFail($id);
+
+        return view('empleado.edit', compact('empleado'), ['submit'=>'Guardar cambios']);
     }
 
     /**

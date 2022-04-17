@@ -91,3 +91,24 @@
     width: 15rem;
     padding: 1.5rem;
 }
+
+/* .modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s;
+} */
+
+/* .modal--show{
+    opacity: 1;
+    pointer-events: unset;
+    transition: opacity .6s;
+} */
