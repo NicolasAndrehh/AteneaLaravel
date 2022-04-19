@@ -95,9 +95,30 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nombres' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'apellidos' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'num_documento' => 'required|regex:/^[0-9]{6,}$/',
+            'direccion' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
+            'telefono' => 'required|regex:/^[0-9]{10,16}$/',
+            'cargo' => 'required|regex:/^[a-zA-Z\s]+$/'
+        ]);
+
+        $datosEmpleado = $request->except('_token', '_method');
+        
+        Empleado::where('id', '=' ,$id)->update($datosEmpleado);
+
+        $datos['empleados']=Empleado::paginate(8);
+        return view('empleado.index', $datos);
+        // if($request->hasFile('contrato')){
+        //     $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
+        // }
+        // if($request->hasFile('foto')){
+        //     $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
+        // }
     }
 
     /**

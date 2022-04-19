@@ -67,7 +67,11 @@
     </div>
     
     <div class="foto">
-        <img src="{{ asset('img/therock.gif') }}">
+        <p style="display: none">{{ $fotoCreate = asset('img/cristiano-ronaldo-drinking.gif') }}</p>
+        <div id="fotoPreview">
+            
+            <img src="{{ isset($fotoEdit)?$fotoEdit:$fotoCreate }}">
+        </div>
         <label for="foto" class="boton">Cambiar Foto</label>
         <input type="file" name="foto" id="foto">
         {{-- <a class="boton" href="">Cambiar foto</a> --}}

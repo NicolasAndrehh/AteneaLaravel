@@ -11,8 +11,10 @@
                 <section class="modalfondo">
                     <h1>Modificar empleado</h1>
                     
-                    <form action="{{ url('empleado/') }}" method="POST" id="formulario" enctype="multipart/form-data">
+                    <form action="{{ url('/empleado/'.$empleado->id) }}" method="POST" id="formulario" enctype="multipart/form-data">
                     @csrf
+                    {{ method_field('PATCH') }}
+                    <p style="display: none">{{ $fotoEdit = asset('storage').'/'.$empleado->foto }}</p>
 
                         @include('empleado.form')    
 
