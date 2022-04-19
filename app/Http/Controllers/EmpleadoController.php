@@ -70,9 +70,11 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(Empleado $empleado)
+    public function show($id)
     {
         //
+        $empleado = Empleado::findOrFail($id);
+        return view('empleado.show', compact('empleado'));
     }
 
     /**
@@ -123,14 +125,8 @@ class EmpleadoController extends Controller
         
         Empleado::where('id', '=' ,$id)->update($datosEmpleado);
 
-        $datos['empleados']=Empleado::paginate(8);
-        return view('empleado.index', $datos);
-        // if($request->hasFile('contrato')){
-        //     $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
-        // }
-        // if($request->hasFile('foto')){
-        //     $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
-        // }
+        $empleado = Empleado::findOrFail($id);
+        return view('empleado.show', compact('empleado'));
     }
 
     /**
@@ -142,7 +138,11 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         //
-        Empleado::destroy($id);
+        $empleado = Empleado::findOrFail($id);
+        if(Storage::delete('public/'.$empleado->foto) && Storage::delete('public/'.$empleado->contrato)){
+            Empleado::destroy($id);
+        }
+
         return redirect('empleado');
     }
 }
