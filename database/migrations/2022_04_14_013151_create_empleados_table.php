@@ -17,16 +17,16 @@ return new class extends Migration
             $table->id();
 
             $table->string('num_documento');
-            $table->string('tipo_documento');
+            $table->string('tipo_documento')->nullable();
             $table->string('nombres');
             $table->string('apellidos');
-            $table->string('ciudad');
+            $table->string('ciudad')->nullable();
             $table->string('direccion');
             $table->string('telefono');
-            $table->string('correo');
+            $table->string('correo')->nullable();
             $table->string('cargo');
-            $table->string('horario');
-            $table->string('estado');
+            $table->string('horario')->nullable();
+            $table->string('estado')->nullable();
             $table->string('contrato');
             $table->string('foto');
 

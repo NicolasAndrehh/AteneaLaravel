@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EmpleadoController extends Controller
 {
@@ -15,6 +16,8 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
+        $datos['empleados']=Empleado::paginate(8);
+        return view('empleado.index', $datos);
     }
 
     /**
@@ -25,6 +28,7 @@ class EmpleadoController extends Controller
     public function create()
     {
         //
+        return view('empleado.create', ['submit'=>'Registrar empleado']);
     }
 
     /**
@@ -36,6 +40,28 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombres' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'apellidos' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'num_documento' => 'required|regex:/^[0-9]{6,}$/',
+            'direccion' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
+            'telefono' => 'required|regex:/^[0-9]{10,16}$/',
+            'cargo' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'contrato' => 'required',
+            'foto' => 'required'
+        ]);
+
+        $datosEmpleado = $request->except('_token');
+        
+        if($request->hasFile('contrato')){
+            $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
+        }
+        if($request->hasFile('foto')){
+            $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
+        }
+
+        Empleado::insert($datosEmpleado);
+        return redirect('/empleado');
     }
 
     /**
@@ -55,9 +81,12 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleado $empleado)
+    public function edit($id)
     {
         //
+        $empleado = Empleado::findOrFail($id);
+
+        return view('empleado.edit', compact('empleado'), ['submit'=>'Guardar cambios']);
     }
 
     /**
@@ -67,9 +96,41 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nombres' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'apellidos' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'num_documento' => 'required|regex:/^[0-9]{6,}$/',
+            'direccion' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
+            'telefono' => 'required|regex:/^[0-9]{10,16}$/',
+            'cargo' => 'required|regex:/^[a-zA-Z\s]+$/'
+        ]);
+
+        $datosEmpleado = $request->except('_token', '_method');
+
+        if($request->hasFile('contrato')){
+            $empleado = Empleado::findOrFail($id);
+            Storage::delete('public/'.$empleado->contrato);
+            $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
+        }
+        if($request->hasFile('foto')){
+            $empleado = Empleado::findOrFail($id);
+            Storage::delete('public/'.$empleado->foto);
+            $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
+        }
+        
+        Empleado::where('id', '=' ,$id)->update($datosEmpleado);
+
+        $datos['empleados']=Empleado::paginate(8);
+        return view('empleado.index', $datos);
+        // if($request->hasFile('contrato')){
+        //     $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
+        // }
+        // if($request->hasFile('foto')){
+        //     $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
+        // }
     }
 
     /**
@@ -78,8 +139,10 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
+    public function destroy($id)
     {
         //
+        Empleado::destroy($id);
+        return redirect('empleado');
     }
 }

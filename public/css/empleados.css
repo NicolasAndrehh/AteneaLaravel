@@ -1,0 +1,114 @@
+/* BARRA BUSCADORA */
+.barra-buscadora {
+    display: flex;
+    margin-bottom: 2rem;
+}
+.search-container {
+    float: left;
+}
+.search-container input{
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: 1px solid;
+    border-radius: 1rem 0rem 0rem 1rem;
+}
+.search-container button {
+    float: right;
+    padding: 7px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    color: white;
+    background: var(--boton-visualizar);
+    font-size: 17px;
+    border: none;
+    border-radius: 0rem 1rem 1rem 0rem;
+    cursor: pointer;
+}  
+.search-container button:hover {
+    background: #192b58;
+}
+
+/* CONTENIDO PRINCIPAL */
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    border-radius: 2rem;
+    background: rgba(0, 0, 0, 0.123);
+    padding: 2rem;
+    height: 20rem;
+} 
+@media (min-width :1370px){
+    .contenedor{
+        width: auto;
+        
+    }
+}
+@media (min-width :1370px){
+    .contenedor{
+        height: 20rem;
+        
+    }
+}
+.cuadros p {
+    margin-top: 0.5rem;
+}
+.cuadros {
+    position: relative;
+    background: var(--contenedor);
+    width: 20rem;
+    height: 5.5rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1.5rem 0rem 0rem 1.5rem;
+}
+.barra-lateral {
+    box-shadow: inset -3.5rem 0 0 var(--boton-visualizar);
+}
+.lateral {
+    display: grid;
+    position: absolute;
+    align-content: space-evenly;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin-right: 0.6rem;
+}
+.tamaño-iconos {
+    width: 22px;
+    height: 22px;
+}
+.contenedor-botones-main {
+    display: flex;
+    grid-template-columns: repeat(3,1fr);
+}
+.contenedor-botones-main .boton{
+    margin-top: 2rem;
+    margin-left: 0rem;
+    margin-right: 3rem;
+    width: 15rem;
+    padding: 1.5rem;
+}
+
+/* .modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s;
+} */
+
+/* .modal--show{
+    opacity: 1;
+    pointer-events: unset;
+    transition: opacity .6s;
+} */
