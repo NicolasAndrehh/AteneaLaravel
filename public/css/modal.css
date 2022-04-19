@@ -42,7 +42,7 @@
     border-radius: 2rem;
     padding: 1rem;
     width: 80rem;
-    margin-top: 10%;
+    margin: auto auto;
 } 
 
 /** MODAL FORM --------------------------------------------- */
@@ -86,6 +86,7 @@ input{
     display: grid;
     margin-right: 4rem;
     align-content: center;
+    justify-items: center;
 }
 .foto img {
     width: 20rem;

@@ -47,8 +47,8 @@ class EmpleadoController extends Controller
             'direccion' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
             'telefono' => 'required|regex:/^[0-9]{10,16}$/',
             'cargo' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'contrato' => 'required',
-            'foto' => 'required'
+            'contrato' => 'required|mimes:jpeg,png,jpg,gif',
+            'foto' => 'required|mimes:jpeg,png,jpg,gif'
         ]);
 
         $datosEmpleado = $request->except('_token');
@@ -107,7 +107,9 @@ class EmpleadoController extends Controller
             'num_documento' => 'required|regex:/^[0-9]{6,}$/',
             'direccion' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
             'telefono' => 'required|regex:/^[0-9]{10,16}$/',
-            'cargo' => 'required|regex:/^[a-zA-Z\s]+$/'
+            'cargo' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'contrato' => 'mimes:jpeg,png,jpg,gif',
+            'foto' => 'mimes:jpeg,png,jpg,gif'
         ]);
 
         $datosEmpleado = $request->except('_token', '_method');
