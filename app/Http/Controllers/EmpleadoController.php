@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EmpleadoController extends Controller
 {
@@ -108,6 +109,17 @@ class EmpleadoController extends Controller
         ]);
 
         $datosEmpleado = $request->except('_token', '_method');
+
+        if($request->hasFile('contrato')){
+            $empleado = Empleado::findOrFail($id);
+            Storage::delete('public/'.$empleado->contrato);
+            $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
+        }
+        if($request->hasFile('foto')){
+            $empleado = Empleado::findOrFail($id);
+            Storage::delete('public/'.$empleado->foto);
+            $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
+        }
         
         Empleado::where('id', '=' ,$id)->update($datosEmpleado);
 
