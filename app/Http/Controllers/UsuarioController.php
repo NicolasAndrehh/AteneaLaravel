@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empleado;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+        return view('usuario.index');
     }
 
     /**
@@ -37,6 +39,15 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        $datosUsuario = $request->except('_token');
+        $documentoEmpleado = $request->num_documento;
+        $empleadoId = Empleado::where('num_documento','=',$documentoEmpleado)->get('id');
+
+        $datos = $datosUsuario.$empleadoId[0];
+
+        Usuario::insert($datos);
+
+        return view('usuario.index');
     }
 
     /**
@@ -59,6 +70,7 @@ class UsuarioController extends Controller
     public function edit(Usuario $usuario)
     {
         //
+        return view('usuario.edit');
     }
 
     /**

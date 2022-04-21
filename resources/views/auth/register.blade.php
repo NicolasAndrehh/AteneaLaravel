@@ -1,77 +1,73 @@
-@extends('layouts.app')
+@include('layouts.header')
+<link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+<section class="modal Usuario modal--show">
+    <section class="modalfondo">
+        <h1>Registrar usuario</h1>
+        
+        <form action="" id="formulario">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            <div class="contenedor-modal">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                <div class="contenedor-info">
+                    
+                    <div class="formulario-inputs">
+                        <p id="nombresLabel">Usuario: </p>
+                        <input type="text" id="nombresInput" name="nombres" required>
+                        <img src="img/check-mark-svgrepo-com (1).svg" id="nombresCheck" class="check">
+                    </div>
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                    <div class="formulario-inputs">
+                        <p id="documentoLabel">Documento: </p>
+                        <input type="text" id="documentoInput" name="documento" required>
+                        <img src="img/check-mark-svgrepo-com (1).svg" id="documentoCheck" class="check">
+                    </div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <div class="formulario-inputs">
+                        <p id="passwordLabel">Contraseña: </p>
+                        <input type="password" id="passwordInput" name="password" required>
+                        <img src="img/check-mark-svgrepo-com (1).svg" id="passwordCheck" class="check">
+                    </div>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                    <div class="formulario-inputs">
+                        <p id="password2Label">Confirmar: </p>
+                        <input type="password" id="password2Input" name="password2" required>
+                        <img src="img/check-mark-svgrepo-com (1).svg" id="password2Check" class="check">
+                    </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="formulario-inputs">
+                        <p>Rol: </p>
+                        <select name="Rol" id="lista">
+                            <option value="0">Seleccione rol</option>
+                            <option value="1">Recepcionista</option>
+                            <option value="2">Administrador</option>
+                        </select>
+                    </div>
+                
+                </div>
+                
+                <div class="foto">
+                    <div id="fotoPreview">
+                        
+                        <img src="{{ asset('img/cristiano-ronaldo-drinking.gif') }}">
+                    </div>
+                    <label for="foto" class="boton">Cambiar Foto</label>
+                    <input type="file" name="foto" id="foto">
+                    {{-- <a class="boton" href="">Cambiar foto</a> --}}
+                    @error('foto')
+                            <small>*{{ $message }}*</small>
+                    @enderror
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+            <div class="contenedor-botones-modal">
+                <a class="boton cerrarModal" href="" style="margin-left: -0.8rem;">Cancelar</a>
+                <input type="submit" class="boton" value="Registrar usuario">
+                {{-- <a type="submit" class="boton" href=""></a> --}}
+            </div>
+            
+        </form>
+            
+    </section>
+</section>
+<script src="{{ asset('js/main.js') }}"></script>
+@include('layouts.footer')

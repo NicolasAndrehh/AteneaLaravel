@@ -23,7 +23,10 @@ const expresiones = {
     documento: /^[0-9]{6,}$/,
     direccion: /^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/,
     telefono: /^[0-9]{10,16}$/,
-    cargo: /^[a-zA-Z\s]+$/
+    cargo: /^[a-zA-Z\s]+$/,
+
+    // Registrar
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 }
 
 const modal = document.querySelector('.modal');
@@ -97,6 +100,31 @@ const validarFormulario = (e) =>{
                 document.getElementById("cargoCheck").classList.remove("check-show");
                 document.getElementById("cargoInput").classList.add("input-incorrecto");
                 document.getElementById("cargoLabel").classList.add("label-incorrecto");
+            }
+        break;
+
+        // Registrar
+
+        case "password":
+            if(expresiones.password.test(e.target.value)){
+                document.getElementById("passwordInput").classList.remove("input-incorrecto");
+                document.getElementById("passwordLabel").classList.remove("label-incorrecto");
+                document.getElementById("passwordCheck").classList.add("check-show");
+            } else {
+                document.getElementById("passwordCheck").classList.remove("check-show");
+                document.getElementById("passwordInput").classList.add("input-incorrecto");
+                document.getElementById("passwordLabel").classList.add("label-incorrecto");
+            }
+        break;
+        case "password2":
+            if(expresiones.password.test(e.target.value)){
+                document.getElementById("password2Input").classList.remove("input-incorrecto");
+                document.getElementById("password2Label").classList.remove("label-incorrecto");
+                document.getElementById("password2Check").classList.add("check-show");
+            } else {
+                document.getElementById("password2Check").classList.remove("check-show");
+                document.getElementById("password2Input").classList.add("input-incorrecto");
+                document.getElementById("password2Label").classList.add("label-incorrecto");
             }
         break;
         default:
