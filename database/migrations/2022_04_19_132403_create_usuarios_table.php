@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('nombreUsuario');
             $table->string('passwordUsuario');
             $table->bigInteger('empleadoId')->unsigned();
+            $table->integer('rol');
+            $table->string('foto');
             $table->foreign('empleadoId')->references('id')->on('empleados');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

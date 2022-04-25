@@ -5,7 +5,7 @@
     <section class="modalfondo">
         <h1>Registrar usuario</h1>
         
-        <form action="{{ url('usuario') }}" method="POST" id="formulario">
+        <form action="{{ url('usuario') }}" method="POST" id="formulario" enctype="multipart/form-data">
         @csrf
 
             @include('usuario.form')
