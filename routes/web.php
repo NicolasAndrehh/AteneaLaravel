@@ -16,9 +16,7 @@ use App\Http\Controllers\RolController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
 
 Route::resource('empleado', EmpleadoController::class);
 
