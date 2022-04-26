@@ -45,7 +45,7 @@
                     <!-- </nav> -->
                     <p>|</p>
                     <div class="botones-nav">
-                        <a href="#">Usuarios</a>
+                        <a href="{{ url('/usuario') }}">Usuarios</a>
                     </div>
                     <p>|</p>
                     <div class="botones-nav">
@@ -57,7 +57,7 @@
                     </div>
                     <p>|</p>
                     <div class="botones-nav">
-                        <a href="#">Empleados</a>
+                        <a href="{{ url('/empleado') }}">Empleados</a>
                     </div>
                     <p>|</p>
                     <div class="botones-nav">

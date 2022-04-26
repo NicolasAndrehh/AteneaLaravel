@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\RolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +17,19 @@ use App\Http\Controllers\EmpleadoController;
 */
 
 // Route::get('/', function () {
-//     return view('empleado.');
+//     return view('home');
 // });
 
 Route::resource('empleado', EmpleadoController::class);
 
+Route::resource('usuario', UsuarioController::class);
+
+Route::resource('rol', RolController::class);
+
 Auth::routes();
+
+// Route::get('/register', function(){
+//     return view('auth.register');
+// });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -14,22 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('empleados', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
 
-            $table->string('num_documento');
-            $table->string('tipo_documento')->nullable();
-            $table->string('nombres');
-            $table->string('apellidos');
-            $table->string('ciudad')->nullable();
-            $table->string('direccion');
-            $table->string('telefono');
-            $table->string('correo')->nullable();
-            $table->string('cargo');
-            $table->string('horario')->nullable();
-            $table->string('estado')->nullable();
-            $table->string('contrato');
+            $table->string('nombreUsuario');
+            $table->string('passwordUsuario');
+            $table->bigInteger('empleadoId')->unsigned();
+            $table->integer('rol');
             $table->string('foto');
+            $table->foreign('empleadoId')->references('id')->on('empleados');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -43,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empleados');
+        Schema::dropIfExists('usuarios');
     }
 };

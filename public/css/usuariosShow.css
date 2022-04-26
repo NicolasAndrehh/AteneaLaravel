@@ -1,0 +1,42 @@
+.contenedor h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.contenedor-info img {
+    width: 30rem;
+    height: 30rem;
+    border-radius: 2rem;
+}
+.contenedor-info {
+    display: flex;
+}
+.informacion {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 3rem;
+    align-items: center;
+    margin-left: 12rem;
+    margin-right: auto;
+    width: 120rem;
+    justify-items: start;
+    font-size: 2.5rem;
+    font-weight: bold;
+    align-content: space-evenly;
+}
+.informacion span{
+    font-weight: 500;
+}
+
+/* BOTONES */
+.contenedor-botones-main {
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    align-items: center;
+}
+.contenedor-botones-main .boton{
+    margin-top: 2rem;
+    margin-left: 0rem;
+    margin-right: 3rem;
+    width: 16rem;
+    padding: 1.5rem;
+}

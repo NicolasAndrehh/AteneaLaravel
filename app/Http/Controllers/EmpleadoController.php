@@ -16,7 +16,7 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
-        $datos['empleados']=Empleado::paginate(8);
+        $datos['empleados']=Empleado::paginate(10);
         return view('empleado.index', $datos);
     }
 
@@ -47,17 +47,17 @@ class EmpleadoController extends Controller
             'direccion' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
             'telefono' => 'required|regex:/^[0-9]{10,16}$/',
             'cargo' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'contrato' => 'required',
-            'foto' => 'required'
+            'contrato' => 'required|mimes:jpeg,png,jpg,gif',
+            'foto' => 'required|mimes:jpeg,png,jpg,gif'
         ]);
 
         $datosEmpleado = $request->except('_token');
         
         if($request->hasFile('contrato')){
-            $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
+            $datosEmpleado['contrato']=$request->file('contrato')->store('empleados', 'public');
         }
         if($request->hasFile('foto')){
-            $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
+            $datosEmpleado['foto']=$request->file('foto')->store('empleados', 'public');
         }
 
         Empleado::insert($datosEmpleado);
@@ -70,9 +70,11 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(Empleado $empleado)
+    public function show($id)
     {
         //
+        $empleado = Empleado::findOrFail($id);
+        return view('empleado.show', compact('empleado'));
     }
 
     /**
@@ -105,7 +107,9 @@ class EmpleadoController extends Controller
             'num_documento' => 'required|regex:/^[0-9]{6,}$/',
             'direccion' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
             'telefono' => 'required|regex:/^[0-9]{10,16}$/',
-            'cargo' => 'required|regex:/^[a-zA-Z\s]+$/'
+            'cargo' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'contrato' => 'mimes:jpeg,png,jpg,gif',
+            'foto' => 'mimes:jpeg,png,jpg,gif'
         ]);
 
         $datosEmpleado = $request->except('_token', '_method');
@@ -113,24 +117,18 @@ class EmpleadoController extends Controller
         if($request->hasFile('contrato')){
             $empleado = Empleado::findOrFail($id);
             Storage::delete('public/'.$empleado->contrato);
-            $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
+            $datosEmpleado['contrato']=$request->file('contrato')->store('empleados', 'public');
         }
         if($request->hasFile('foto')){
             $empleado = Empleado::findOrFail($id);
             Storage::delete('public/'.$empleado->foto);
-            $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
+            $datosEmpleado['foto']=$request->file('foto')->store('empleados', 'public');
         }
         
         Empleado::where('id', '=' ,$id)->update($datosEmpleado);
 
-        $datos['empleados']=Empleado::paginate(8);
-        return view('empleado.index', $datos);
-        // if($request->hasFile('contrato')){
-        //     $datosEmpleado['contrato']=$request->file('contrato')->store('uploads', 'public');
-        // }
-        // if($request->hasFile('foto')){
-        //     $datosEmpleado['foto']=$request->file('foto')->store('uploads', 'public');
-        // }
+        $empleado = Empleado::findOrFail($id);
+        return view('empleado.show', compact('empleado'));
     }
 
     /**
@@ -142,7 +140,11 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         //
-        Empleado::destroy($id);
+        $empleado = Empleado::findOrFail($id);
+        if(Storage::delete('public/'.$empleado->foto) && Storage::delete('public/'.$empleado->contrato)){
+            Empleado::destroy($id);
+        }
+
         return redirect('empleado');
     }
 }
