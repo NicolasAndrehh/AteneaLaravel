@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\RolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\UsuarioController;
 Route::resource('empleado', EmpleadoController::class);
 
 Route::resource('usuario', UsuarioController::class);
+
+Route::resource('rol', RolController::class);
 
 Auth::routes();
 

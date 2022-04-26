@@ -59,7 +59,7 @@
     <div class="contenedor-botones-main">
         <a class="boton " href="{{ url('/usuario/create') }}">Registrar usuario</a>
         <a class="boton" href="">Generar reporte</a>
-        <a class="boton" href="">Roles</a>
+        <a class="boton" href="{{ url('/rol') }}">Roles</a>
     </div>
 </section>
 
