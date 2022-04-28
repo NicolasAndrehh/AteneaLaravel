@@ -12,8 +12,10 @@
 
         <div class="contenedor">
 
+            @foreach ($roles as $rol)
+                
             <div class="cuadros barra-lateral">
-                <p>Recepcionista</p>
+                <p>{{ $rol->nombreRol }}</p>
                 <div class="lateral">
                     <div class="tamaño-iconos">
                         <a href="{{ url('/rol/'.$rol->id) }}">
@@ -39,7 +41,7 @@
                         <form action="{{ url('/rol/'.$rol->id) }}" method="POST">
                             @csrf
                             {{ method_field('DELETE') }}
-    
+                            
                             <button type="submit" onclick="return confirm('¿Seguro que quieres borrar el rol {{ $rol->nombreRol }}?')" style="background: none; border: none; cursor: pointer;">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-minus" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -51,6 +53,7 @@
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </section>
     
