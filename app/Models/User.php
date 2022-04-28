@@ -19,10 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'num_documento',
         'email',
         'password',
         'empleadoId',
-        'rol',
+        'rolId',
         'foto',
     ];
 
@@ -45,6 +46,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function empleado(){
+        return $this->belongsTo(Empleado::class) ;
+    }
+
+    
 
     
 }
