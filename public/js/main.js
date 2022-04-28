@@ -38,7 +38,7 @@ const inputs = document.querySelectorAll("#formulario input");
 
 const validarFormulario = (e) =>{
     switch(e.target.name){
-        case "nombres":
+        case "name":
             if(expresiones.nombres.test(e.target.value)){
                 document.getElementById("nombresInput").classList.remove("input-incorrecto");
                 document.getElementById("nombresLabel").classList.remove("label-incorrecto");

@@ -3,11 +3,20 @@
     <div class="contenedor-info">
         
         <div class="formulario-inputs">
-            <label for="nombres" id="nombresLabel">Usuario: </label>
-            <input type="text" id="nombresInput" name="nombreUsuario" value="{{ isset($usuario->nombreUsuario)?$usuario->nombreUsuario:old('nombreUsuario') }}">
+            <label for="name" id="nombresLabel">Usuario: </label>
+            <input type="text" id="nombresInput" name="name" value="{{ isset($usuario->name)?$usuario->name:old('name') }}">
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="nombresCheck" class="check">
         </div>
         @error('nombreUsuario')
+                <small>*{{ $message }}*</small>
+        @enderror
+
+        <div class="formulario-inputs">
+            <label for="email" id="emailLabel">Usuario: </label>
+            <input type="text" id="emailInput" name="email" value="{{ isset($usuario->email)?$usuario->email:old('email') }}">
+            <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="emailCheck" class="check">
+        </div>
+        @error('email')
                 <small>*{{ $message }}*</small>
         @enderror
 
