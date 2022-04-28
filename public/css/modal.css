@@ -82,6 +82,31 @@ input{
     padding: 2rem 2rem 0rem 2rem;
     margin-top: 2rem;
 }
+.contenedor-form {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-gap: 3rem;
+    border-radius: 2rem;
+    /* background: var(--contenedor); */
+    padding: 2rem 2rem 2rem 0rem;
+}
+.principal-form {
+    background: var(--blanco);
+    margin: 2rem;
+    border-radius: 2rem;
+    padding: 2rem 2rem 2rem 4rem;
+    margin-top: 10%;
+}
+.titulo h2 {
+    color: black;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+section h3{
+    text-align: center;
+    margin-top: 3rem;
+}
 .foto {
     display: grid;
     margin-right: 4rem;
@@ -139,7 +164,7 @@ small {
     width: 14.7rem;
     height: 1.7rem;
 }
-.contenedor-botones-modal {
+.contenedor-botones-modal, .contenedor-botones-modal-rol, .contenedor-botones-modal-rol-show {
     display: block;
     padding: 0rem 2rem 2rem 2rem;
     grid-template-columns: repeat(2,1fr);
@@ -147,6 +172,13 @@ small {
     margin-left: 48rem;
     margin-top: 3rem;
 }
+.contenedor-botones-modal-rol {
+    margin-left: 78%;
+}
+.contenedor-botones-modal-rol-show {
+    margin-left: 76%;
+}
+
 .contenedor-botones-modal .boton{
     margin-top: 2rem;
     margin-left: 0rem;
@@ -154,7 +186,14 @@ small {
     width: 18rem;
     padding: 1.5rem;
 }
-.contenedor-botones-modal a:hover, .foto .boton:hover, .contenedor-botones .boton:hover{
+.contenedor-botones-modal-rol .boton, .contenedor-botones-modal-rol-show .boton {
+    margin-top: 2rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    width: 10rem;
+    padding: 1.5rem;
+}
+.contenedor-botones-modal a:hover, .foto .boton:hover, .contenedor-botones .boton:hover, .contenedor-botones-modal-rol a:hover{
     color: var(--boton);
     background: var(--blanco);
 }
