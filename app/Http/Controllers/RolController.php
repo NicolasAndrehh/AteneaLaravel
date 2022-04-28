@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\privilegios;
 use App\Models\Rol;
+use App\Models\RolPrivilegio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,12 +44,21 @@ class RolController extends Controller
     {
         //
         // $privilegios = $datosRol->attributes['privilegios'];
-        $datosRol = $request->except('_token');
-        $privilegiosString = implode(', ', $request->privilegios);
-        $datosRol['privilegios'] = $privilegiosString;
+        $datosRol = $request->except(['_token', 'privilegios']);
+        $privilegios = $request->privilegios;
+        // $datosRol['privilegios'] = $privilegiosString;
         // $privilegiosArray = explode(', ', $privilegiosString);
 
         Rol::insert($datosRol);
+        $rolId = Rol::where('nombreRol','=',$request->nombreRol)->get('id');
+        $rolId = $rolId[0]->id;
+        foreach ($privilegios as $privilegio) {
+            RolPrivilegio::create([
+                'rolId' => $rolId,
+                'privilegioId' => $privilegio,
+            ]);
+        }
+        // return response()->json($privilegios);
         return redirect('/rol');
     }
 
@@ -108,6 +119,7 @@ class RolController extends Controller
     {
         //
         Rol::destroy($id);
+        RolPrivilegio::destroy($id);
         
         return redirect('rol');
     }

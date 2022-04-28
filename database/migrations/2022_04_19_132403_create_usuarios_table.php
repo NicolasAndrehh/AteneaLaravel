@@ -1,4 +1,4 @@
-<?php
+->onDelete('cascade')->onUpdate('cascade')<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->bigInteger('empleadoId')->unsigned();
             $table->integer('rol');
             $table->string('foto');
-            $table->foreign('empleadoId')->references('id')->on('empleados');
+            $table->foreign('empleadoId')->references('id')->on('empleados')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

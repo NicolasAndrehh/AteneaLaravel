@@ -1,6 +1,6 @@
 
         <div class="color">
-            <p>Nombre del rol: <input type="text" nombreRol"></p>
+            <p>Nombre del rol: <input type="text" name="nombreRol"></p>
         </div>
         
         <section class="section">

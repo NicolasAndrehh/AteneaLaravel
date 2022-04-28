@@ -20,8 +20,8 @@ return new class extends Migration
             $table->bigInteger('rolId')->unsigned();
             $table->bigInteger('privilegioId')->unsigned();
             
-            $table->foreign('rolId')->references('id')->on('rols');
-            $table->foreign('privilegioId')->references('id')->on('privilegios');
+            $table->foreign('rolId')->references('id')->on('rols')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('privilegioId')->references('id')->on('privilegios')->onDelete('cascade')->onUpdate('cascade');
             
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

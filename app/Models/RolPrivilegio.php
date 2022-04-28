@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class RolPrivilegio extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'rolId',
+        'privilegioId',
+    ];
 }
