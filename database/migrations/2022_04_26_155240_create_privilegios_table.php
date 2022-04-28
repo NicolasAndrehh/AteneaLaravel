@@ -1,9 +1,9 @@
-->onDelete('cascade')->onUpdate('cascade')<?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -14,15 +14,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('privilegios', function (Blueprint $table) {
             $table->id();
 
-            $table->string('nombreUsuario');
-            $table->string('passwordUsuario');
-            $table->bigInteger('empleadoId')->unsigned();
-            $table->integer('rol');
-            $table->string('foto');
-            $table->foreign('empleadoId')->references('id')->on('empleados')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nombrePrivilegio');
+            $table->string('descripcion');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('privilegios');
     }
 };

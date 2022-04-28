@@ -5,11 +5,12 @@
     <div class="principal-form">
 
         <div class="titulo">
-            <h2>Crear rol</h2>
+            <h2>Modificar rol</h2>
         </div>
 
-        <form action="{{ url('rol') }}" method="POST" id="formulario" enctype="multipart/form-data">
+        <form action="{{ url('/rol/'.$rol->id) }}" method="POST" id="formulario" enctype="multipart/form-data">
         @csrf
+        {{ method_field('PATCH') }}
     
             @include('rol.form')
                 
