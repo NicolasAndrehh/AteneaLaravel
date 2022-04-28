@@ -4,7 +4,7 @@
         
         <div class="formulario-inputs">
             <label for="nombres" id="nombresLabel">Usuario: </label>
-            <input type="text" id="nombresInput" name="nombreUsuario" value="{{ isset($usuario->nombreUsuario)?$usuario->nombreUsuario:old('nombreUsuario') }}">
+            <input type="text" id="nombresInput" name="name" value="{{ isset($User->name)?$User->name:old('name') }}">
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="nombresCheck" class="check">
         </div>
         @error('nombreUsuario')
