@@ -28,13 +28,12 @@ return new class extends Migration
             $table->bigInteger('rolId');
             $table->string('foto');
             $table->rememberToken();
+
             $table->foreign('empleadoId')->references('id')->on('empleados')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('rolId')->references('id')->on('rols')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            
-            
-             
             
         });
     }

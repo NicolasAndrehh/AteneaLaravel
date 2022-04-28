@@ -12,7 +12,7 @@
         @enderror
 
         <div class="formulario-inputs">
-            <label for="email" id="emailLabel">Usuario: </label>
+            <label for="email" id="emailLabel">Correo: </label>
             <input type="text" id="emailInput" name="email" value="{{ isset($usuario->email)?$usuario->email:old('email') }}">
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="emailCheck" class="check">
         </div>

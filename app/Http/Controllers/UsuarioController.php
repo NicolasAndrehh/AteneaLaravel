@@ -18,7 +18,7 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-        $datos['usuarios'] = Usuario::paginate(10);
+        $datos['usuarios'] = User::paginate(10);
         return view('usuario.index', $datos);
     }
 
@@ -67,16 +67,17 @@ class UsuarioController extends Controller
         
         //? Insercion de usuario en base de datos *------------------------*
 
-        Usuario::create([
-            'nombreUsuario' => $datosUsuario['nombreUsuario'],
-            'passwordUsuario' => $datosUsuario['password'],
-            'empleadoId' => $datosUsuario['0'],
-            'rol' => $datosUsuario['rol'],
-            'foto' => $datosUsuario['foto'],
-        ]);
+        // User::create([
+        //     'name' => $datosUsuario['nombreUsuario'],
+        //     'email' => $datosUsuario['email'],
+        //     'passwordUsuario' => $datosUsuario['password'],
+        //     'empleadoId' => $datosUsuario['0'],
+        //     'rol' => $datosUsuario['rol'],
+        //     'foto' => $datosUsuario['foto'],
+        // ]);
 
 
-        // return response()->json($datosUsuario);
+        return response()->json($datosUsuario);
         return redirect('/usuario');
     }
 
