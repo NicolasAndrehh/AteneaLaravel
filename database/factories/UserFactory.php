@@ -26,7 +26,7 @@ class UserFactory extends Factory
             
             // 'empleadoId' => 1,
             'rol'=> 'recepcionista',
-            'foto'=> 'esta',
+            'foto'=> 'foto',
             'remember_token' => Str::random(10),
         ];
     }

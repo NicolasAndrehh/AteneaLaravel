@@ -17,7 +17,7 @@
                     <h1>Hotel Mi Viejo Molino</h1>
                 </div>
             </header>
-            <div class="card-header">{{ __('Login') }}</div>
+            <!-- <div class="card-header">{{ __('Login') }}</div> -->
             <main class="principal">
                 <div class="contenido-main">
                     <div class="ingreso">
