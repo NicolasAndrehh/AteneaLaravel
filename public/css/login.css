@@ -1,0 +1,135 @@
+:root{
+    --fondo: #145682;
+    --blanco: #FFFBFB;
+    --contenedor: #E5E5E5;
+    --boton: #37A8B0;
+    --link: #04A5FF;
+}
+html {
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+html {
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 16px;/* 10px= 1 rem*/
+    font-family: 'Krub', sans-serif;
+    
+    
+}
+
+.contenedor{
+     max-width: 120rem; 
+     margin:0px auto; 
+
+}
+body{
+    background-color: var(--fondo);
+}
+a{
+    color:var(--link) ;
+}
+/* header */
+.cabecera{
+    display: flex;
+
+}
+.cabecera img{
+    
+    width: 16.4rem;
+    height: 11.6rem;
+    border-radius: 2rem;
+}
+.titulo{
+    margin-left: 5rem;
+    text-align: center;
+    font-weight: 700;
+    width: 101.2rem;
+    height: 11.6rem;
+    padding: 2rem;
+    background-color: var(--blanco);
+    border-radius: 2rem;
+
+}
+.titulo h1{
+    margin: 0%;
+    padding: 1rem;
+    font-size: 4.8rem;
+}
+/* main */
+
+.contenido-main{
+    background-color: var(--blanco);
+    margin-top: 3rem;
+    padding: 7.9rem 23.2rem;
+    width: 120.8rem;
+    height: 51.2rem;
+    border-radius: 2rem;
+
+    
+}
+.ingreso{
+    background-color: var(--contenedor);
+    width: 74.4rem;
+    height: 35.4rem;
+    margin: auto;
+    padding-top:2.1rem;
+    border-radius: 2rem;
+    
+
+    text-align: center;
+  
+}
+.ingreso h2{
+    margin: 0%;
+    font-size: 4rem;
+    font-weight: 400;
+}
+.formulario{
+    width: min(60rem,100%);/*el min toma el valor menor entre los que se poner*/
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+.campo{
+    margin: auto;
+    margin-bottom: 2rem;
+    
+}
+.input-text{
+    background-color: var(--blanco);
+    width:24rem ;
+    border-radius: .5rem;
+    padding: 1.5rem;
+    border:none;
+}
+.boton{
+    margin: 1.5rem;
+    color:var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 400;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: var(--boton);
+    border-radius: 10px;
+    text-transform: uppercase;
+    border:none;
+    text-align: center;
+    width: 14.7rem;
+    margin: 1rem;
+}
+.boton-f{
+    margin: 2rem;
+}
+
+
+
+
