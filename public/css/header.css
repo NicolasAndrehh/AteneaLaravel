@@ -241,6 +241,7 @@ a{
     max-width: 100%;
     padding: 0.1rem;
     border-radius: 2rem;
+    margin-top:1rem;
 }
 .navegacion-principal {
     display: flex;
@@ -416,7 +417,7 @@ a{
     padding: 1.5rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    height: 40rem;
+    height: auto;
 }
 /* footer */
 .footer{

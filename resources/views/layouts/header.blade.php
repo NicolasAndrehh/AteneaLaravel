@@ -11,27 +11,7 @@
 </head>
 <body>
     <div class="contenedor-total">
-        <header class="cabecera">
-
-            <div class="cabecera-detalles">
-                <div class="icono">
-                    <img src="{{ asset('img/qZlYb2O__400x400.jpg') }}">
-                </div>
-                
-                <div class="rectangulo-cabecera">
-                    <div class="titulo-usuario">
-                        <h2>Cesar clavijo</h2>
-                    </div>
-                    <div class="titulo-rol">
-                        <h2>Administrador</h2>
-                    </div>
-                    <div class="contenedor-botones">
-                        <a class="boton" href="">Ver perfil</a>
-                        <a class="boton" href="">Cerrar sesion</a>
-                    </div>         
-                </div>            
-            </div>
-        </header>
+        
 
             <div class="nav-bg">
                 <nav class="navegacion-principal">

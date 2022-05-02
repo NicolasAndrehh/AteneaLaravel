@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Atenea</title>
+    <title>{{ config('app.name', 'Atenea') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,16 +21,14 @@
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&display=swap" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    atenea
+                    {{ config('app.name', 'Atenea') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -95,39 +93,7 @@
     <div class="contenedor-total">
         
 
-        <div class="nav-bg">
-            <nav class="navegacion-principal">
-                <!-- <nav class="botones-nav"> -->
-                    <a href="../../../generales/Home/Marco/Home.html"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#145682" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <polyline points="5 12 3 12 12 3 21 12 19 12" />
-                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                    </svg></a>
-                <!-- </nav> -->
-                <p>|</p>
-                <div class="botones-nav">
-                    <a href="{{ url('/usuario') }}">Usuarios</a>
-                </div>
-                <p>|</p>
-                <div class="botones-nav">
-                    <a href="#">Habitaciones</a>
-                </div>
-                <p>|</p>
-                <div class="botones-nav">
-                    <a href="#">Clientes</a>
-                </div>
-                <p>|</p>
-                <div class="botones-nav">
-                    <a href="{{ url('/empleado') }}">Empleados</a>
-                </div>
-                <p>|</p>
-                <div class="botones-nav">
-                    <a href="#">Servicios</a>
-                </div>
-
-            </nav>
-        </div> 
+        
         <div class="principal">
             @yield('content')
 </div>       
