@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/empleadosShow.css') }}">
-@include('layouts.header')
+@extends('layouts.app')
+@section('content')
 
 <section class="contenedor">
     <h1>{{ $empleado->nombres.' '.$empleado->apellidos }}</h1>
@@ -24,4 +25,4 @@
 
 </section>
 
-@include('layouts.footer')
+@endsection

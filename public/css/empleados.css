@@ -52,17 +52,15 @@
     }
 }
 .cuadros p {
-    margin-top: 0.5rem;
+    margin-top: 4.3%;
 }
 .cuadros {
     position: relative;
     background: var(--contenedor);
     width: 25rem;
-    height: 7rem;
+    height: 8rem;
     margin-bottom: 2rem;
     padding-left: 1rem;
-    margin-left: auto;
-    margin-right: auto;
     border-radius: 1.5rem 0rem 0rem 1.5rem;
 }
 .barra-lateral {
@@ -76,6 +74,7 @@
     bottom: 0;
     right: 0;
     margin-right: 0.6rem;
+    margin-bottom: 0.3rem;
 }
 .tamaño-iconos {
     width: 22px;
