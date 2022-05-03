@@ -23,10 +23,11 @@ const expresiones = {
     documento: /^[0-9]{6,}$/,
     direccion: /^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/,
     telefono: /^[0-9]{10,16}$/,
-    cargo: /^[a-zA-Z\s]+$/,
+    cargo: /^[a-zA-Z\s]+$/, 
 
     // Registrar usuario
     nombreUsuario: /^[0-9a-zA-ZÀ-ÿ\s\_\-]{4,}$/,
+    email: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/
 
 } 
@@ -106,7 +107,7 @@ const validarFormulario = (e) =>{
         break;
 
         // Registrar usuario
-        case "nombreUsuario":
+        case "name":
             if(expresiones.nombreUsuario.test(e.target.value)){
                 document.getElementById("nombresInput").classList.remove("input-incorrecto");
                 document.getElementById("nombresLabel").classList.remove("label-incorrecto");
@@ -117,7 +118,17 @@ const validarFormulario = (e) =>{
                 document.getElementById("nombresLabel").classList.add("label-incorrecto");
             }
         break;
-
+        case "email":
+            if(expresiones.email.test(e.target.value)){
+                document.getElementById("emailInput").classList.remove("input-incorrecto");
+                document.getElementById("emailLabel").classList.remove("label-incorrecto");
+                document.getElementById("emailCheck").classList.add("check-show");
+            } else {
+                document.getElementById("emailCheck").classList.remove("check-show");
+                document.getElementById("emailInput").classList.add("input-incorrecto");
+                document.getElementById("emailLabel").classList.add("label-incorrecto");
+            }
+        break;
         case "password":
             if(expresiones.password.test(e.target.value)){
                 document.getElementById("passwordInput").classList.remove("input-incorrecto");

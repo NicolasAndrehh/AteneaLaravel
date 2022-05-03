@@ -169,16 +169,9 @@ small {
     padding: 0rem 2rem 2rem 2rem;
     grid-template-columns: repeat(2,1fr);
     justify-items: end;
-    margin-left: 48rem;
+    float: right;
     margin-top: 3rem;
 }
-.contenedor-botones-modal-rol {
-    margin-left: 78%;
-}
-.contenedor-botones-modal-rol-show {
-    margin-left: 76%;
-}
-
 .contenedor-botones-modal .boton{
     margin-top: 2rem;
     margin-left: 0rem;
