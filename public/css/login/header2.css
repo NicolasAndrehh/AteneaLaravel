@@ -2,6 +2,7 @@
     --fondo: #145682;
     --blanco: #FFFBFB;
     --contenedor: #E5E5E5;
+    --prueba: #dedcdc;
     --boton: #37A8B0;
     --link: #04A5FF;
     --libre: #32CF00;
@@ -16,7 +17,7 @@
     padding: 0rem;
 }
 html {
-    font-size: 62.5%;
+    font-size: 100%;
     box-sizing: border-box;
     scroll-snap-type: y mandatory;
 }
@@ -27,7 +28,7 @@ html {
 body{
     font-size: 16px;/* 10px= 1 rem*/
     font-family: 'Krub', sans-serif;
-    background-color: var(--fondo);
+    background-color: var(--prueba);
 }
 .contenedor-total{
      max-width: 100%; 
@@ -412,12 +413,14 @@ a{
 
 /* CONTENIDO DEL HOME*/
 .principal {
-    background: var(--contenedor);
+    /* background: var(--contenedor); */
+    background: none;
     border-radius: 2rem;
     padding: 1.5rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    height: auto;
+    margin-top: 2rem;
+    height: 35rem;
 }
 /* footer */
 .footer{
