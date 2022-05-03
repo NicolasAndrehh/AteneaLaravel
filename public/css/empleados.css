@@ -36,7 +36,8 @@
     border-radius: 2rem;
     background: rgba(0, 0, 0, 0.123);
     padding: 2rem;
-    height: 20rem;
+    height: auto;
+    min-height: 35rem;
 } 
 @media (min-width :1370px){
     .contenedor{

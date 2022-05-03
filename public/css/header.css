@@ -10,6 +10,7 @@
     --limpieza: #008BFF;
     --total: #3B4F56;
     --boton-visualizar: #1E397F;
+    --prueba: #dedcdc;
 }
 * {
     margin: 0rem;
@@ -27,7 +28,7 @@ html {
 body{
     font-size: 16px;/* 10px= 1 rem*/
     font-family: 'Krub', sans-serif;
-    background-color: var(--fondo);
+    background-color: var(--prueba);
 }
 .contenedor-total{
      max-width: 100%; 
@@ -236,13 +237,25 @@ a{
 }
 /* navegacion */
 .nav-bg {
-    background: var(--contenedor);
-    margin: 2rem 2rem;
+    /* background: var(--contenedor); */
+    /* margin: 2rem 2rem; */
     max-width: 100%;
     padding: 0.1rem;
-    border-radius: 2rem;
-    margin-top:1rem;
+    /* border-radius: 2rem; */
+    /* margin-top:1rem; */
+    margin-bottom: 2rem;
+    
 }
+/* .navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 100%;
+  } */
 .navegacion-principal {
     display: flex;
     flex-direction: row;
@@ -252,7 +265,7 @@ a{
 .navegacion-principal a {
     text-decoration: none;
     font-weight: 700;
-    color:#000000;
+    color:white;
     
 }
 .navegacion-principal a:hover {
@@ -412,11 +425,13 @@ a{
 
 /* CONTENIDO DEL HOME*/
 .principal {
-    background: var(--contenedor);
+    /* background: var(--contenedor); */
+    background: none;
     border-radius: 2rem;
     padding: 1.5rem;
     margin-left: 2rem;
     margin-right: 2rem;
+    min-height: 50rem;
     height: auto;
 }
 /* footer */
@@ -427,4 +442,5 @@ a{
     margin-top: 2rem;
 
 }
+
 

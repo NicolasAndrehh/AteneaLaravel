@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light .bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Atenea
@@ -95,7 +95,7 @@
     <div class="contenedor-total">
         
 
-        <div class="nav-bg">
+        <div class=" nav-bg   bg-dark   shadow-sm">
             <nav class="navegacion-principal">
                 <!-- <nav class="botones-nav"> -->
                     <a href="../../../generales/Home/Marco/Home.html"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#145682" fill="none" stroke-linecap="round" stroke-linejoin="round">
