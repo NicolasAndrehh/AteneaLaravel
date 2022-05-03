@@ -21,11 +21,10 @@ return new class extends Migration
             $table->string('name')->unique();
             
             $table->string('email')->unique();
-            $table->string('num_documento')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigInteger('empleadoId');
-            $table->bigInteger('rolId');
+            $table->bigInteger('empleadoId')->unsigned();
+            $table->bigInteger('rolId')->unsigned();
             $table->string('foto');
             $table->rememberToken();
 

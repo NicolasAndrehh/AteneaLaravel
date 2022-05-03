@@ -2,14 +2,14 @@
 @include('layouts.header')
 
 <section class="contenedor">
-    <h1>{{ $usuario->nombreUsuario }}</h1>
+    <h1>{{ $usuario->name }}</h1>
 
     <div class="contenedor-info">
         <img src="{{ asset('storage').'/'.$usuario->foto }}">
 
         <div class="informacion">
             <p>Cargo: <span>{{ $empleado->cargo }}</span></p>
-            <p>Rol: <span>{{ $usuario->rol }}</span></p>
+            <p>Rol: <span>{{ $usuario->rolId }}</span></p>
             <p>Documento: <span>{{ $empleado->num_documento }}</span></p>
             <p>Estado: <span>Activo</span></p>
             <p>Fecha de creacion: <span>{{ $usuario->created_at }}</span></p>
