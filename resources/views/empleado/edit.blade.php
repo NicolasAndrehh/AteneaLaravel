@@ -1,4 +1,5 @@
-@include('layouts.header')
+@extends('layouts.app')
+@section('content')
 
 <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
@@ -24,4 +25,4 @@
                 
             </section>
             <script src="{{ asset('js/main.js') }}"></script>
-@include('layouts.footer')
+@endsection
