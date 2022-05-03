@@ -4032,6 +4032,7 @@ textarea.form-control-lg {
   justify-content: space-between;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -11294,5 +11295,8 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.footer{
+  color:black;
 }
 
