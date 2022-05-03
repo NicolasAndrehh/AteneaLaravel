@@ -77,8 +77,8 @@ class UsuarioController extends Controller
         ]);
 
 
-        return response()->json($datosUsuario);
-        // return redirect('/usuario');
+        // return response()->json($datosUsuario);
+        return redirect('/usuario');
     }
 
     /**
@@ -129,7 +129,7 @@ class UsuarioController extends Controller
             'foto' => 'required|mimes:jpeg,png,jpg,gif',
         ]);
 
-        $datosUsuario = $request->except(['_token','password2', 'num_documento']);
+        $datosUsuario = $request->except(['_token','_method','password2','num_documento']);
         $documentoEmpleado = $request->num_documento;
         $empleadoId = Empleado::where('num_documento','=',$documentoEmpleado)->get('id');
         $empleadoId = $empleadoId[0]->id;
@@ -154,7 +154,11 @@ class UsuarioController extends Controller
             'rolId' => $datosUsuario['rol'],
             'foto' => $datosUsuario['foto'],
         ]);
+        
+        // return response()->json($datosUsuario);
+
      
+
         $usuario = User::findOrFail($id);
         $empleado = Empleado::findOrFail($usuario->empleadoId);
         return view('usuario.show', compact('usuario', 'empleado'));

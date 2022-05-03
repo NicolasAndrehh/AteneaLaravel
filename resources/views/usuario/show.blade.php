@@ -10,6 +10,7 @@
         <div class="informacion">
             <p>Cargo: <span>{{ $empleado->cargo }}</span></p>
             <p>Rol: <span>{{ $usuario->rolId }}</span></p>
+            <p>Correo: <span>{{ $usuario->email }}</span></p>
             <p>Documento: <span>{{ $empleado->num_documento }}</span></p>
             <p>Estado: <span>Activo</span></p>
             <p>Fecha de creacion: <span>{{ $usuario->created_at }}</span></p>
@@ -17,7 +18,7 @@
         </div>
 
         <div class="contenedor-botones-main">
-            <a class="boton" href="{{ url('/usuario/'.$usuario->id.'/edit') }}">Modificar empleado</a>
+            <a class="boton" href="{{ url('/usuario/'.$usuario->id.'/edit') }}">Modificar usuario</a>
             <a class="boton" href="{{ url('/usuario') }}">Volver</a>
         </div>
     </div>

@@ -12,10 +12,13 @@
             <h3>Privilegios</h3>
 
             <div class="contenedor-form">
-                <p>{{ $rol->privilegios }}</p>
+                
+                @foreach ($privilegios as $privilegio)
+                    <p>-{{ $privilegio->nombrePrivilegio }}</p>
+                @endforeach
+                
             </div>
-            
-        </section>
+            </section>
 
         <div class="contenedor-botones-modal-rol-show">
             <a class="boton cerrarModalVisualizar" href="{{ url('/rol') }}">Cerrar</a>

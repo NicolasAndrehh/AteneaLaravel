@@ -71,8 +71,18 @@ class RolController extends Controller
     public function show($id)
     {
         //
+
+        $rolPrivilegio = RolPrivilegio::where('rolId','=',$id)->get('privilegioId');
+        $privilegios = [];
+        for ($i=0; $i < count($rolPrivilegio); $i++){ 
+            $priv = Privilegios::findOrFail($rolPrivilegio[$i]->privilegioId);
+            $priv = $priv;
+            array_push($privilegios, $priv);
+        }
+    
+        // return response()->json($privilegios);
         $rol = Rol::findOrFail($id);
-        return view('rol.show', compact('rol'));
+        return view('rol.show', compact('rol','privilegios'));
     }
 
     /**
@@ -98,15 +108,22 @@ class RolController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $datosRol = $request->except(['_token','_method']);
-        $privilegiosString = implode(', ', $request->privilegios);
-        $datosRol['privilegios'] = $privilegiosString;
+        $datosRol = $request->except(['_token','_method','privilegios']);
+        $privilegios = $request->privilegios;
 
-        Rol::findOrFail($id);
         Rol::where('id', '=' ,$id)->update($datosRol);
-
-        $rol = Rol::findOrFail($id);
-        return view('rol.show', compact('rol'));
+        $rolId = Rol::where('nombreRol','=',$request->nombreRol)->get('id');
+        $rolId = $rolId[0]->id;
+        
+        RolPrivilegio::where('rolId','=',$id)->delete();
+        foreach ($privilegios as $privilegio){
+            RolPrivilegio::create([
+                'rolId' => $rolId,
+                'privilegioId' => $privilegio,
+            ]);
+        }
+        
+        return redirect('rol/'.$id);;
     }
 
     /**
