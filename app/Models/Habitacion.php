@@ -9,6 +9,12 @@ class Habitacion extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'num_habitacion',
+        'descripcion',
+        'estado',
+        'inventario',
+        'num_personas',
+        'foto',
         
     ];
         

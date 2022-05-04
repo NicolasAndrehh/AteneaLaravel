@@ -121,13 +121,15 @@ a{
 }
 
 /* NAVEGACION */
-.nav-bg {
+/* .nav-bg {
     background: var(--contenedor);
     margin: 2rem 2rem;
     max-width: 100%;
     padding: 0.1rem;
     border-radius: 2rem;
-}
+} */
+
+
 .navegacion-principal {
     display: flex;
     flex-direction: row;
@@ -137,7 +139,7 @@ a{
 .navegacion-principal a {
     text-decoration: none;
     font-weight: 700;
-    color:#000000;
+    color:white;
     
 }
 .navegacion-principal a:hover {

@@ -24,6 +24,8 @@ Route::resource('usuario', UsuarioController::class);
 
 Route::resource('rol', RolController::class);
 
+Route::resource('habitacion', RolController::class);
+
 Auth::routes();
 
 // Route::get('/register', function(){

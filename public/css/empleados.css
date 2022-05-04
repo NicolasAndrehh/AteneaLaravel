@@ -45,6 +45,13 @@
         
     }
 }
+
+@media (min-width :1670px){
+    .contenedor{
+        min-height: 58rem;
+        
+    }
+}
 @media (min-width :1370px){
     .contenedor{
         height: 20rem;
