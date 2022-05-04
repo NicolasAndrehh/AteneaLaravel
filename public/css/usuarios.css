@@ -32,11 +32,12 @@
 /* CONTENIDO PRINCIPAL */
 .contenedor {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(4,1fr);
     border-radius: 2rem;
     background: rgba(0, 0, 0, 0.123);
     padding: 2rem;
-    height: 20rem;
+    height: auto;
+    min-height: 35rem;
 } 
 @media (min-width :1370px){
     .contenedor{
