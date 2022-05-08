@@ -2,6 +2,7 @@
     --fondo: #145682;
     --blanco: #FFFBFB;
     --contenedor: #E5E5E5;
+    --prueba: #dedcdc;
     --boton: #37A8B0;
     --link: #04A5FF;
     --libre: #32CF00;
@@ -10,14 +11,13 @@
     --limpieza: #008BFF;
     --total: #3B4F56;
     --boton-visualizar: #1E397F;
-    --prueba: #dedcdc;
 }
 * {
     margin: 0rem;
     padding: 0rem;
 }
 html {
-    font-size: 62.5%;
+    font-size: 100%;
     box-sizing: border-box;
     scroll-snap-type: y mandatory;
 }
@@ -237,25 +237,13 @@ a{
 }
 /* navegacion */
 .nav-bg {
-    /* background: var(--contenedor); */
-    /* margin: 2rem 2rem; */
+    background: var(--contenedor);
+    margin: 2rem 2rem;
     max-width: 100%;
     padding: 0.1rem;
-    /* border-radius: 2rem; */
-    /* margin-top:1rem; */
-    margin-bottom: 2rem;
-    
+    border-radius: 2rem;
+    margin-top:1rem;
 }
-/* .navbar {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-size: 100%;
-  } */
 .navegacion-principal {
     display: flex;
     flex-direction: row;
@@ -265,38 +253,22 @@ a{
 .navegacion-principal a {
     text-decoration: none;
     font-weight: 700;
-    color:white;
-    padding-top: 1.2rem;
-    padding-bottom: 2rem;
-    padding-left: 7.53vmax;
-    padding-right: 7.53vmax;
-    transition: all .4s;
+    color:#000000;
+    
 }
-@media (min-width :1920px){
-    .navegacion-principal a{
-        padding-left: 8vmax;
-        padding-right: 8vmax;
-    }
-}
-
 .navegacion-principal a:hover {
-    color: black;  
-    background-color: var(--boton);
-    transition: all .4s;
+    color: var(--boton);  
 }
 .navegacion-principal a:focus {
     color: var(--boton); 
 }
 .navegacion-principal p {
-    margin: 1rem 0;
+    margin: 1rem;
     font-weight: 400;
     font-size: 2rem;
-    color: var(--blanco);
-    opacity: 0;
 }
 .botones-nav{
     margin-top: 1rem;
-    margin-bottom: 1.7rem;
 }
 
 .boton{
@@ -447,20 +419,15 @@ a{
     padding: 1.5rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    min-height: 50rem;
-    height: auto;
+    margin-top: 2rem;
+    height: 35rem;
 }
 /* footer */
 .footer{
-    background-color: black;
     text-align: center;
     color: var(--blanco);
-    padding: 2rem;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    /* margin-top: 2rem; */
-}
+    margin-bottom: 1rem;
+    margin-top: 2rem;
 
+}
 

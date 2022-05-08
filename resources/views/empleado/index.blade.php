@@ -1,4 +1,5 @@
-@include('layouts.header')
+@extends('layouts.app')
+@section('content')
 
 <link rel="stylesheet" href="{{ asset('css/empleados.css') }}">
 <div class="barra-buscadora">
@@ -63,4 +64,4 @@
 </section>
 
 <script src="{{ asset('js/main.js') }}"></script>
-@include('layouts.footer')
+@endsection

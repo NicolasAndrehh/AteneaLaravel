@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/usuariosShow.css') }}">
-@include('layouts.header')
+@extends('layouts.app')
+@section('content')
 
 <section class="contenedor">
     <h1>{{ $usuario->name }}</h1>
@@ -25,4 +26,4 @@
 
 </section>
 
-@include('layouts.footer')
+@endsection

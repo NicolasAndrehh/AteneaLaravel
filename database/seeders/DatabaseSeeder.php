@@ -47,11 +47,11 @@ class DatabaseSeeder extends Seeder
             'foto'=> 'foto',
         ]);
 
-        // \App\Models\Rol::create([
-        //     'id'=>'1',
+        \App\Models\Rol::create([
+            'id'=>'1',
 
-        //     'nombreRol'=>'administrador'
-        // ]);
+            'nombreRol'=>'administrador'
+        ]);
 
 
 

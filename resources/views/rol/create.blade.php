@@ -1,4 +1,5 @@
-@include('layouts.header')
+@extends('layouts.app')
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 
 <div class="modal modal--show">
@@ -18,4 +19,4 @@
     </div>
 </div>
 
-@include('layouts.footer')
+@endsection
