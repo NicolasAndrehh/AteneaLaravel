@@ -104,7 +104,7 @@
                 </div>
                 <p>|</p>
                 <div class="botones-nav">
-                    <a href="#">Habitaciones</a>
+                    <a href="{{ url('/habitacion') }}">Habitaciones</a>
                 </div>
                 <p>|</p>
                 <div class="botones-nav">

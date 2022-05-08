@@ -13,8 +13,10 @@ class HabitacionesController extends Controller
      */
     public function index()
     {
-        $datos['habitaciones']=Habitacion::paginate(10);
-        return view('habitaciones.index', $datos);
+        // $datos['habitaciones']=Habitacion::paginate(12);
+        // return view('habitaciones.index', $datos);
+
+        return view('habitaciones.index');
     }
 
     /**
