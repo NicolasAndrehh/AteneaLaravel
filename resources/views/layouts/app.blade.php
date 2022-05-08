@@ -48,13 +48,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Iniciar sesion</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
                                 </li>
                             @endif
                         @else
@@ -94,7 +94,7 @@
     <main>
     <div class="contenedor-total">
         
-
+        <hr>
         <div class=" nav-bg   bg-dark   shadow-sm">
             <nav class="navegacion-principal">
                 <!-- <nav class="botones-nav"> -->
@@ -102,19 +102,19 @@
                 <div class="botones-nav">
                     <a href="{{ url('/usuario') }}">Usuarios</a>
                 </div>
-                <p>|</p>
+                
                 <div class="botones-nav">
                     <a href="#">Habitaciones</a>
                 </div>
-                <p>|</p>
+                
                 <div class="botones-nav">
                     <a href="#">Clientes</a>
                 </div>
-                <p>|</p>
+                
                 <div class="botones-nav">
                     <a href="{{ url('/empleado') }}">Empleados</a>
                 </div>
-                <p>|</p>
+                
                 <div class="botones-nav">
                     <a href="#">Servicios</a>
                 </div>

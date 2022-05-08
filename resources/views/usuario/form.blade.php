@@ -75,6 +75,6 @@
 
 <div class="contenedor-botones-modal">
     <a class="boton" href="{{ url('/usuario') }}" style="margin-left: -0.8rem;">Cancelar</a>
-    <input type="submit" class="boton" value="{{ $submit }}">
+    <input type="submit" class="boton" value="{{ isset($submit)?$submit:'Registrar usuario' }}">
     {{-- <a type="submit" class="boton" href=""></a> --}}
 </div>
