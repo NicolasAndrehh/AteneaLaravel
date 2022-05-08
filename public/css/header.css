@@ -266,21 +266,37 @@ a{
     text-decoration: none;
     font-weight: 700;
     color:white;
-    
+    padding-top: 1.2rem;
+    padding-bottom: 2rem;
+    padding-left: 7.53vmax;
+    padding-right: 7.53vmax;
+    transition: all .4s;
 }
+@media (min-width :1920px){
+    .navegacion-principal a{
+        padding-left: 8vmax;
+        padding-right: 8vmax;
+    }
+}
+
 .navegacion-principal a:hover {
-    color: var(--boton);  
+    color: black;  
+    background-color: var(--boton);
+    transition: all .4s;
 }
 .navegacion-principal a:focus {
     color: var(--boton); 
 }
 .navegacion-principal p {
-    margin: 1rem;
+    margin: 1rem 0;
     font-weight: 400;
     font-size: 2rem;
+    color: var(--blanco);
+    opacity: 0;
 }
 .botones-nav{
     margin-top: 1rem;
+    margin-bottom: 1.7rem;
 }
 
 .boton{
@@ -436,11 +452,15 @@ a{
 }
 /* footer */
 .footer{
+    background-color: black;
     text-align: center;
     color: var(--blanco);
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-
+    padding: 2rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /* margin-top: 2rem; */
 }
 
 
