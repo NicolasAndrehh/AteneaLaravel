@@ -29,6 +29,8 @@
 
 
                 <div class="contenedor-habitaciones">
+
+                    
                         <div class="iframeprincipal">
                             <!-- inicio habitaciones -->
                            <div class="cuadros estado-libre">
@@ -48,6 +50,7 @@
                    
                            </div>
                         </div>
+                    
                 </div>
                 <div class="contenedor-botones-bajos">
                     <a class="boton" href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/habitaciones/resumenes/resumen/contenido/marco/hab-resumen.html">Resumen</a>

@@ -11,6 +11,7 @@
     --total: #3B4F56;
     --boton-visualizar: #1E397F;
     --prueba: #dedcdc;
+    --bs-gray-dark: #343a40;
 }
 * {
     margin: 0rem;
@@ -452,11 +453,13 @@ a{
 }
 /* footer */
 .footer{
+    /* background-color: var(--bs-gray-dark); */
     background-color: black;
     text-align: center;
     color: var(--blanco);
-    padding: 2rem;
-    position: fixed;
+    padding: 1rem;
+    
+    /* position: fixed; */
     left: 0;
     bottom: 0;
     width: 100%;

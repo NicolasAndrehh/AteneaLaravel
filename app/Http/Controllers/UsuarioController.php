@@ -70,7 +70,7 @@ class UsuarioController extends Controller
         User::create([
             'name' => $datosUsuario['name'],
             'email' => $datosUsuario['email'],
-            'password' => $datosUsuario['password'],
+            'password' => bcrypt($datosUsuario['password']),
             'empleadoId' => $datosUsuario['0'],
             'rolId' => $datosUsuario['rol'],
             'foto' => $datosUsuario['foto'],

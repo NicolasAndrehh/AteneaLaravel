@@ -20,7 +20,7 @@ class empleadoFactory extends Factory
             
             'num_habitacion' =>Str::random(3),
             'descripcion' => $this->faker->text(50),
-            'estado' => 'Activo',
+            'estado' => 'libre',
             'inventario' => 'inventario',
             'num_personas'=>'3',
             'foto' =>'foto',
