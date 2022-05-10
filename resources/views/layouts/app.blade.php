@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Atenea
@@ -95,7 +95,7 @@
     <div class="contenedor-total">
         
         <hr>
-        <div class=" nav-bg   bg-dark   shadow-sm">
+        <div class=" nav-bg   bg-black   shadow-sm">
             <nav class="navegacion-principal">
                 <!-- <nav class="botones-nav"> -->
                   
@@ -104,7 +104,7 @@
                 </div>
                 
                 <div class="botones-nav">
-                    <a href="#">Habitaciones</a>
+                    <a href="{{ url('/habitacion') }}">Habitaciones</a>
                 </div>
                 
                 <div class="botones-nav">

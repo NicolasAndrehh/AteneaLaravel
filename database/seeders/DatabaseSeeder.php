@@ -16,14 +16,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        // \App\Models\User::create([
-        //     'name'=>'Juan Alvarado',
-        //     'email'=>'jaalvarado342@misena.edu.co',
-        //     'empleadoId'=>'1',
-        //     'rolId'=>'1',
-        //     'foto'=>'foto',
-        //     'password'=>bcrypt('123456')
+        
+
+
+
+        // \App\Models\Habitacion::create([
+        //     'num_habitacion' =>'1',
+        //     'descripcion'=>'una habitacion muy bonita',
+        //     'estado'=> 'libre',
+        //     'inventario'=> 'muchas cosas',
+        //     'num_personas'=>'3',
+        //     'foto'=>'una foto muy bonita',
         // ]);
+
+
+
 
         \App\Models\Empleado::create([
             'num_documento' =>'1003519243',
@@ -52,11 +59,24 @@ class DatabaseSeeder extends Seeder
 
             'nombreRol'=>'administrador'
         ]);
+        
+        \App\Models\User::create([
+            'name'=>'Juan Alvarado',
+            'email'=>'jaalvarado342@misena.edu.co',
+            'empleadoId'=>'1',
+            'rolId'=>'1',
+            'foto'=>'foto',
+            'password'=>bcrypt('123456')
+        ]);
 
 
 
         \App\Models\User::factory(10)->create();
+        
+        
         Privilegios::factory(20)->create();
+
+
         
         
 

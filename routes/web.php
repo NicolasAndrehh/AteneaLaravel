@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\HabitacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::resource('usuario', UsuarioController::class);
 
 Route::resource('rol', RolController::class);
 
-Route::resource('habitacion', RolController::class);
+Route::resource('habitacion', HabitacionesController::class);
 
 Auth::routes();
 
@@ -32,4 +33,4 @@ Auth::routes();
 //     return view('auth.register');
 // });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
