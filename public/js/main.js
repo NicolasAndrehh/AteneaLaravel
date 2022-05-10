@@ -28,7 +28,15 @@ const expresiones = {
     // Registrar usuario
     nombreUsuario: /^[0-9a-zA-ZÀ-ÿ\s\_\-]{4,}$/,
     email: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
-    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
+
+
+    // registrar habitacion 
+
+    num_habitacion: /^\d+$/,
+    num_personas:  /^\d+$/,
+    descripcion: /^[A-Za-z0-9\s]+$/g
+
 
 } 
 
@@ -149,6 +157,43 @@ const validarFormulario = (e) =>{
                 document.getElementById("password2Check").classList.remove("check-show");
                 document.getElementById("password2Input").classList.add("input-incorrecto");
                 document.getElementById("password2Label").classList.add("label-incorrecto");
+            }
+        break;
+
+            // crear habitacion
+        case "num_habitacion":
+            if(expresiones.num_habitacion.test(e.target.value)){
+                document.getElementById("numInput").classList.remove("input-incorrecto");
+                document.getElementById("numLabel").classList.remove("label-incorrecto");
+                document.getElementById("num_habitacion_check").classList.add("check-show");
+            } else {
+                document.getElementById("num_habitacion_check").classList.remove("check-show");
+                document.getElementById("numInput").classList.add("input-incorrecto");
+                document.getElementById("numLabel").classList.add("label-incorrecto");
+            }
+        break;
+
+        case "num_personas":
+            if(expresiones.num_personas.test(e.target.value)){
+                document.getElementById("personasHab").classList.remove("input-incorrecto");
+                document.getElementById("perLabel").classList.remove("label-incorrecto");
+                document.getElementById("personasCheck").classList.add("check-show");
+            } else {
+                document.getElementById("personasCheck").classList.remove("check-show");
+                document.getElementById("personasHab").classList.add("input-incorrecto");
+                document.getElementById("perLabel").classList.add("label-incorrecto");
+            }
+        break;
+
+        case "descripcion":
+            if(expresiones.descripcion.test(e.target.value)){
+                document.getElementById("descripHab").classList.remove("input-incorrecto");
+                document.getElementById("desLabel").classList.remove("label-incorrecto");
+                document.getElementById("desCheck").classList.add("check-show");
+            } else {
+                document.getElementById("desCheck").classList.remove("check-show");
+                document.getElementById("descripHab").classList.add("input-incorrecto");
+                document.getElementById("desLabel").classList.add("label-incorrecto");
             }
         break;
         default:
