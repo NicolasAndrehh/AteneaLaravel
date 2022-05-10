@@ -159,24 +159,31 @@ input[type=text] {
 
 /* contenedor habitaciones */
 
-.contenedor-habitaciones{
-    height: 44rem;
-    /* width: 120rem; */
-    background-color: var(--sombra);
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
     border-radius: 2rem;
-    margin-left: 2rem;
-    padding: 1rem;
-    
-}
+    background: rgba(0, 0, 0, 0.123);
+    padding: 2rem;
+    height: auto;
+    min-height: 35rem;
+} 
 @media (min-width :1370px){
-    .contenedor-habitaciones{
+    .contenedor{
         width: auto;
         
     }
 }
+
+@media (min-width :1670px){
+    .contenedor{
+        min-height: 58rem;
+        
+    }
+}
 @media (min-width :1370px){
-    .contenedor-habitaciones{
-        height: auto;
+    .contenedor{
+        height: 20rem;
         
     }
 }

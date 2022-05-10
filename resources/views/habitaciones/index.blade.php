@@ -28,7 +28,7 @@
                 </div>
 
 
-                <div class="contenedor-habitaciones">
+                <div class="contenedor">
 
                     
                         <div class="iframeprincipal">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="contenedor-botones-bajos">
                     <a class="boton" href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/habitaciones/resumenes/resumen/contenido/marco/hab-resumen.html">Resumen</a>
-                    <a class="boton" href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/habitaciones/Crear habitacion/iFrame/crear-habitacion.html">Crear Habitacion</a>
+                    <a class="boton" href="{{ url('/habitacion/create') }}">Crear Habitacion</a>
                     <a class="boton" href="../../Reporte habitaciones/html/marco-reporte-habitacion.html">Generar reporte</a>
                 </div>
 
