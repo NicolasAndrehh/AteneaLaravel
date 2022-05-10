@@ -123,6 +123,14 @@ section h3{
     display: grid;
     grid-template-columns: repeat(1,0.9fr);
 }
+.contenedor-info-cliente {
+    display: grid;
+    grid-template-columns: repeat(2,0.9fr);
+}
+.label {
+    display: inline-block;
+    width: 12rem;
+}
 .formulario-inputs {
     display: grid;
     grid-template-columns: repeat(3,1fr);

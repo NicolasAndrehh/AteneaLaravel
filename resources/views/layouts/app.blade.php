@@ -108,7 +108,7 @@
                 </div>
                 
                 <div class="botones-nav">
-                    <a href="#">Clientes</a>
+                    <a href="{{ url('/cliente') }}">Clientes</a>
                 </div>
                 
                 <div class="botones-nav">

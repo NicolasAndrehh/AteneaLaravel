@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\HabitacionesController;
 
@@ -22,6 +23,8 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index'])->na
 Route::resource('empleado', EmpleadoController::class);
 
 Route::resource('usuario', UsuarioController::class);
+
+Route::resource('cliente', ClienteController::class);
 
 Route::resource('rol', RolController::class);
 
