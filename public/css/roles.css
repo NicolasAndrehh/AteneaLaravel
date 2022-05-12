@@ -24,7 +24,7 @@
     border: none;
     border-radius: 0rem 1rem 1rem 0rem;
     cursor: pointer;
-}  
+}
 .search-container button:hover {
     background: #192b58;
 }
@@ -37,20 +37,20 @@
     padding: 2rem;
     background: rgba(0, 0, 0, 0.123);
     height: auto;
-    min-height: 35rem;
-} 
-@media (min-width :1370px){
+    min-height: 52vh;
+}
+/* @media (min-width :1370px){
     .contenedor{
         width: auto;
-        
+
     }
 }
 @media (min-width :1370px){
     .contenedor{
         height: 20rem;
-        
+
     }
-}
+} */
 .cuadros p {
     margin-top: 10%;
     font-weight: 700;
@@ -62,8 +62,6 @@
     height: 8rem;
     margin-bottom: 2rem;
     padding-left: 1rem;
-    margin-left: auto;
-    margin-right: auto;
     border-radius: 1.5rem 0rem 0rem 1.5rem;
 }
 .barra-lateral {

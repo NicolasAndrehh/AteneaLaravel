@@ -15,7 +15,8 @@ class ClienteController extends Controller
     public function index()
     {
         //
-        return view('clientes.index');
+        $datos['clientes'] = Cliente::paginate(10);
+        return view('clientes.index', $datos);
     }
 
     /**
@@ -26,7 +27,7 @@ class ClienteController extends Controller
     public function create()
     {
         //
-        return view('clientes.create');
+        return view('clientes.create',['submit' => 'Registrar cliente']);
     }
 
     /**
@@ -38,6 +39,19 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombres' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'apellidos' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'num_documento' => 'required|regex:/^[0-9]{6,}$/',
+            'procedencia' => 'required|regex:/^[a-zA-Z\s\-]{2,35}$/',
+            'telefono' => 'required|regex:/^[0-9]{10,16}$/',
+            'email' => ['required','regex:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/']
+        ]);
+        $datosCliente = $request->except('_token');
+
+        Cliente::insert($datosCliente);
+        // return response()->json($datosCliente);
+        return redirect('/cliente');
     }
 
     /**
@@ -49,6 +63,7 @@ class ClienteController extends Controller
     public function show(Cliente $cliente)
     {
         //
+        return redirect('');
     }
 
     /**
@@ -57,10 +72,11 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
         //
-        return view('clientes.edit');
+        $cliente = Cliente::findOrFail($id);
+        return view('clientes.edit',compact('cliente'),['submit' => 'Guardar cambios']);
     }
 
     /**
@@ -70,9 +86,22 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nombres' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'apellidos' => 'required|regex:/^[a-zA-ZÀ-ÿ\s]{4,}$/',
+            'num_documento' => 'required|regex:/^[0-9]{6,}$/',
+            'procedencia' => 'required|regex:/^[a-zA-Z\s\-]{2,35}$/',
+            'telefono' => 'required|regex:/^[0-9]{10,16}$/',
+            'email' => ['required','regex:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/']
+        ]);
+        $datosCliente = $request->except('_token','_method');
+
+        Cliente::where('id','=',$id)->update($datosCliente);
+        // return response()->json($datosCliente);
+        return redirect('/cliente');
     }
 
     /**
@@ -81,8 +110,12 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
         //
+        $cliente = Cliente::findOrFail($id);
+
+        Cliente::destroy($id);
+        return redirect('/cliente');
     }
 }

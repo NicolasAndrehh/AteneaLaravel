@@ -32,8 +32,8 @@ body{
     background-color: var(--prueba);
 }
 .contenedor-total{
-     max-width: 100%; 
-     margin:0px auto; 
+     max-width: 100%;
+     margin:0px auto;
 }
 h1 {
     font-size: 4rem;
@@ -105,7 +105,7 @@ a{
     border: none;
     border-radius: 0rem 1rem 1rem 0rem;
     cursor: pointer;
-}  
+}
 .search-container button:hover {
     background: #192b58;
 } */
@@ -122,13 +122,13 @@ a{
 /* @media (min-width :1370px){
     .contenedor{
         width: auto;
-        
+
     }
 }
 @media (min-width :1370px){
     .contenedor{
         height: 20rem;
-        
+
     }
 }
 .cuadros p {
@@ -157,7 +157,7 @@ a{
     right: 0;
     margin-right: 0.6rem;
 } */
-/* 
+/*
 .tamaño-iconos {
     width: 22px;
     height: 22px;
@@ -180,7 +180,7 @@ a{
 /* HEADER */
 
 /* SUPERIOR */
-.cabecera img{   
+.cabecera img{
     width: 14rem;
     height: 12rem;
     border-radius: 2rem;
@@ -219,7 +219,7 @@ a{
 .cabecera-detalles .rectangulo-cabecera{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    column-gap: 5rem;   
+    column-gap: 5rem;
 }
 .contenedor-botones {
     display: grid;
@@ -245,7 +245,7 @@ a{
     /* border-radius: 2rem; */
     /* margin-top:1rem; */
     margin-bottom: 2rem;
-    
+
 }
 /* .navbar {
     position: relative;
@@ -261,7 +261,7 @@ a{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    
+
 }
 .navegacion-principal a {
     text-decoration: none;
@@ -281,13 +281,13 @@ a{
 }
 
 .navegacion-principal a:hover {
-    color: black;  
+    color: black;
     background-color: var(--boton);
     transition: all .4s;
 }
-.navegacion-principal a:focus {
-    color: var(--boton); 
-}
+/* .navegacion-principal a:focus {
+    color: var(--boton);
+} */
 .navegacion-principal p {
     margin: 1rem 0;
     font-weight: 400;
@@ -448,7 +448,7 @@ a{
     padding: 1.5rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    min-height: 50rem;
+    min-height: 77.9vh;
     height: auto;
 }
 /* footer */
@@ -458,11 +458,11 @@ a{
     text-align: center;
     color: var(--blanco);
     padding: 1rem;
-    
+
     /* position: fixed; */
     left: 0;
     bottom: 0;
-    width: 98.94%;
+    width: 98vw;
     /* margin-top: 2rem; */
 }
 

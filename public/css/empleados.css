@@ -24,7 +24,7 @@
     border: none;
     border-radius: 0rem 1rem 1rem 0rem;
     cursor: pointer;
-}  
+}
 .search-container button:hover {
     background: #192b58;
 }
@@ -37,27 +37,27 @@
     background: rgba(0, 0, 0, 0.123);
     padding: 2rem;
     height: auto;
-    min-height: 35rem;
-} 
-@media (min-width :1370px){
+    min-height: 52vh;
+}
+/* @media (min-width :1370px){
     .contenedor{
         width: auto;
-        
+
     }
 }
 
 @media (min-width :1670px){
     .contenedor{
         min-height: 58rem;
-        
+
     }
 }
 @media (min-width :1370px){
     .contenedor{
         height: 20rem;
-        
+
     }
-}
+} */
 .cuadros p {
     margin-top: 4.3%;
 }
