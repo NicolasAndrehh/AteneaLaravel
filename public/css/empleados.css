@@ -32,6 +32,7 @@
 /* CONTENIDO PRINCIPAL */
 .contenedor {
     display: grid;
+    align-items: center;
     grid-template-columns: repeat(4,1fr);
     border-radius: 2rem;
     background: rgba(0, 0, 0, 0.123);
@@ -68,6 +69,8 @@
     height: 8rem;
     margin-bottom: 2rem;
     padding-left: 1rem;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 1.5rem 0rem 0rem 1.5rem;
 }
 .barra-lateral {
