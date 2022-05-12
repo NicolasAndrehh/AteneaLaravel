@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Habitacion;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HabitacionesController extends Controller
 {
@@ -26,7 +28,7 @@ class HabitacionesController extends Controller
      */
     public function create()
     {
-        return view('habitaciones.create');
+        return view('habitaciones.create', ['submit'=>'Crear habitacion']);
     }
 
     /**
@@ -37,7 +39,27 @@ class HabitacionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'num_habitacion' => 'required|regex:/^\d+$/',
+            'num_personas' => 'required|regex:/^\d+$/',
+            'descripcion' => 'required|regex:/^[A-Za-z0-9\s]+$/',
+            'estado' => 'required',
+            'inventario' => 'required|mimes:jpeg,png,jpg,gif',
+            'foto' => 'required|mimes:jpeg,png,jpg,gif'
+            
+        ]);
+
+        $datoshabitacion = $request->except('_token');
+
+        if($request->hasFile('inventario')){
+            $datoshabitacion['inventario']=$request->file('inventario')->store('habitaciones', 'public');
+        }
+        if($request->hasFile('foto')){
+            $datoshabitacion['foto']=$request->file('foto')->store('habitaciones', 'public');
+        }
+
+        Habitacion::insert($datoshabitacion);
+        return redirect('/habitacion');
     }
 
     /**

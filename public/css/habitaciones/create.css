@@ -73,6 +73,9 @@ input{
 .foto input[type="file"]{
     display: none;
 }
+input[type="file"]{
+    display: none;
+}
 .principal h1 {
     text-align: center;
     color: black;
@@ -97,6 +100,7 @@ input{
 .foto {
     display: grid;
     margin-right: 4rem;
+    margin-left: 4rem;
     align-content: center;
     justify-items: center;
 }
@@ -114,7 +118,7 @@ input{
     grid-template-columns: repeat(3,1fr);
     align-items: center;
     
-    /* margin-top: 4rem; */
+    margin-top: 4rem;
     margin-bottom: 2rem;
 }
 .check{
@@ -134,6 +138,7 @@ input{
     height: 2.3rem;
     border-radius: 0.5rem;
     text-align: center;
+    background-color: white;
 }
 .formulario-inputs select {
     width: 20.4rem;
@@ -153,13 +158,22 @@ small {
 .cuadros {
     position: relative;
     background: var(--contenedor);
-    width: 22rem;
-    height: 6rem;
+    width: 15rem;
+    height: 4rem;
     margin-bottom: 2rem;
     padding-left: 1rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
+}
+
+@media (min-width :1670px){
+    .cuadros{
+        width: 22rem;
+        height: 6rem;
+        
+    }
+   
 }
 
 .estado-libre {
@@ -181,12 +195,49 @@ small {
 .estados-contenedor{
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    margin-top:4rem;
+    margin-top:5rem;
     background-color: var(--blanco);
     border-radius: 10px;
-    width: 55rem;
-    margin-left: 12rem;
+    width: 45rem;
+    margin-left: 6rem;
 
+
+}
+
+.estados-contenedor button{
+    border:none;
+    background: var(--contenedor);
+    width: 14rem;
+}
+
+ input{
+    border:none;
+    background: var(--contenedor);
+    width: 14rem;
+}
+/* .content-input input,
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+ 
+.content-input input{
+	visibility: hidden;
+	position: absolute;
+	right: 0;
+    height: 4rem;
+}
+.content-input{
+    width: 14rem;
+} */
+@media (min-width :1670px){
+    .estados-contenedor{
+        width: 55rem;
+        margin-left: 12rem;
+        
+    }
+   
 }
 
 textarea{
@@ -201,28 +252,44 @@ textarea{
     margin-bottom: 2rem;
     background-color: rgb(212, 211, 211);
     border-radius: 10px;
-    width: 85rem;
+    width: 57rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    margin-right: 5rem;
 }
 .parte2{
     margin-bottom: 2rem;
     background-color: rgb(212, 211, 211);
     border-radius: 10px;
-    width: 85rem;
+    width: 57rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    
+}
+
+
+@media (min-width :1670px){
+    .parte1{
+        width: 85rem;
+        
+    }
+    .parte2{
+        width: 85rem;
+    }
+    h2{
+        margin-left:12rem;
+    }
 }
 h2{
-    margin-left:12rem;
+    margin-left:6rem;
 }
 
 .contenedor-botones-create{
     display: grid;
     grid-template-columns: repeat(2,1fr);
     width: 30rem;
-    margin-left: 25rem;
-    margin-top: 10rem;
+    margin-left: 12rem;
+    margin-top: 5rem;
     
 }
 
@@ -236,4 +303,12 @@ h2{
 
 .input-incorrecto {
     border: 2px solid #bb2929;
+}
+.boton{
+    color: white;
+    border-color: white;
+}
+.inventario{
+    margin-top: 2rem;
+    margin-left: 19rem;
 }

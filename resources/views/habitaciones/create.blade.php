@@ -9,7 +9,7 @@
     <div class="contenedor-formulario">
 
 
-        <form class="formulario" id="formulario" action="">
+        <form class="formulario" id="formulario" action="{{route('habitacion.store')}}" method="POST"  enctype="multipart/form-data">
             
             <div class="parte1">
                 <div class="formulario-inputs">
@@ -40,7 +40,7 @@
 
                 <div class="formulario-inputs">
                         <label for="descriHab" id="desLabel"> Descripcion </label>
-                        <textarea name="descripcion" id="descripHab" cols="20" rows="6  "></textarea>
+                        <textarea name="descripcion" id="descripHab" cols="28" rows="5" class=""></textarea>
                         <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="desCheck" class="check">
                 </div>
                     @error('descripcion')
@@ -51,25 +51,29 @@
                     <h2>Estado</h2>
                     <div class="estados-contenedor">
                         <div class="cuadros estado-libre">
-                            <a href="">
-                                <p>Libre</p>
-                            </a>
+                            <label for="" class="content-input">
+                                <input type="radio" name="estado" value="libre">Libre
+                                <i></i>
+                            </label>
                         </div>
 
-                        <div class="cuadros estado-ocupado">
-                            <a href="">
-                                <p>Ocupado</p>
-                            </a>
+                        <div class="cuadros estado-ocupado" name="estado">
+                        <label for="" class="content-input">
+                                <input type="radio" name="estado" value="ocupado">Ocupado
+                                <i></i>
+                            </label>
                         </div>
-                        <div class="cuadros estado-limpieza">
-                            <a href="">
-                                <p>Limpieza</p>
-                            </a>
+                        <div class="cuadros estado-limpieza" name="estado">
+                        <label for="" class="content-input">
+                                <input type="radio" name="estado" value="limpieza">Limpieza
+                                <i></i>
+                            </label>
                         </div>
-                        <div class="cuadros estado-fuera">
-                            <a href="">
-                                <p>Fuera de servicio</p>
-                            </a>
+                        <div class="cuadros estado-fuera" name="estado">
+                        <label for="" class="content-input">
+                                <input type="radio" name="estado" value="fuera">fuera de servicio
+                                <i></i>
+                            </label>
                         </div>
                 </div>
                 
@@ -93,10 +97,19 @@
                 @enderror
                 </div>
 
+                <div class="inventario">
+                    <label for="contrato" class="boton">Inventario</label>
+                    <input type="file" name="inventario" id="inventario">
+                    {{-- <a class="boton" href="">Inventario</a> --}}
+                </div>
+                @error('contrato')
+                <small>*{{ $message }}*</small>
+                @enderror
+
 
                 <div class="contenedor-botones-create">
                     <a class="boton" href="{{ url('/habitacion') }}" style="margin-left: -0.8rem;">Cancelar</a>
-                    <input type="submit" class="boton" id="submit" value="">
+                    <input type="submit" class="boton" id="submit" value="{{ $submit }}">
                 </div>
 
                 

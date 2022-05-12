@@ -29,6 +29,15 @@ class DatabaseSeeder extends Seeder
         //     'foto'=>'una foto muy bonita',
         // ]);
 
+        \App\Models\Habitacion::create([
+            'num_habitacion' =>'001',
+            'descripcion'=>'la habitacion del bicho siuuu',
+            'estado'=>'libre',
+            'inventario'=>'inventario',
+            'num_personas'=>'4',
+            'foto'=>'la foto'
+        ]);
+
 
 
 

@@ -35,7 +35,7 @@ const expresiones = {
 
     num_habitacion: /^\d+$/,
     num_personas:  /^\d+$/,
-    descripcion: /^[A-Za-z0-9\s]+$/g
+    descripcion: /^[A-Za-z0-9\s]+$/
 
 
 } 
