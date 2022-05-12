@@ -51,8 +51,8 @@
             <label for="lista">Rol: </label>
             <select name="rol" id="lista">
                 <option>Seleccione rol</option>
-                <option value="1" {{ old('pais') == 1 ? 'selected' : '' }}>Recepcionista</option>
-                <option value="2" {{ old('pais') == 2 ? 'selected' : '' }}>Administrador</option>
+                <option value="1" {{ old('rol') == 1 ? 'selected' : '' }}>Recepcionista</option>
+                <option value="2" {{ old('rol') == 2 ? 'selected' : '' }}>Administrador</option>
             </select>
         </div>
     
@@ -75,6 +75,6 @@
 
 <div class="contenedor-botones-modal">
     <a class="boton" href="{{ url('/usuario') }}" style="margin-left: -0.8rem;">Cancelar</a>
-    <input type="submit" class="boton" value="{{ $submit }}">
+    <input type="submit" class="boton" value="{{ isset($submit)?$submit:'Registrar usuario' }}">
     {{-- <a type="submit" class="boton" href=""></a> --}}
 </div>

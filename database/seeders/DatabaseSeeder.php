@@ -16,14 +16,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        // \App\Models\User::create([
-        //     'name'=>'Juan Alvarado',
-        //     'email'=>'jaalvarado342@misena.edu.co',
-        //     'empleadoId'=>'1',
-        //     'rolId'=>'1',
-        //     'foto'=>'foto',
-        //     'password'=>bcrypt('123456')
-        // ]);
+        
+
+
+
+       
+
+        
+
+
 
         \App\Models\Empleado::create([
             'num_documento' =>'1003519243',
@@ -47,16 +48,39 @@ class DatabaseSeeder extends Seeder
             'foto'=> 'foto',
         ]);
 
-        // \App\Models\Rol::create([
-        //     'id'=>'1',
+        \App\Models\Rol::create([
+            'id'=>'1',
 
-        //     'nombreRol'=>'administrador'
-        // ]);
+            'nombreRol'=>'administrador'
+        ]);
+        
+        \App\Models\User::create([
+            'name'=>'Juan Alvarado',
+            'email'=>'jaalvarado342@misena.edu.co',
+            'empleadoId'=>'1',
+            'rolId'=>'1',
+            'foto'=>'foto',
+            'password'=>bcrypt('123456')
+        ]);
+
+        \App\Models\Habitacion::create([
+            'num_habitacion' =>'001',
+            'descripcion'=>'la habitacion del bicho siuuu',
+            'estado'=>'libre',
+            'inventario'=>'inventario',
+            'num_personas'=>'4',
+            'foto'=>'la foto'
+        ]);
+
 
 
 
         \App\Models\User::factory(10)->create();
+        
+        
         Privilegios::factory(20)->create();
+
+
         
         
 

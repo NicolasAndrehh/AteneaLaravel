@@ -8,10 +8,19 @@ use Illuminate\Support\Facades\Storage;
 
 class EmpleadoController extends Controller
 {
+
+
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     *
      */
     public function index()
     {
@@ -52,7 +61,7 @@ class EmpleadoController extends Controller
         ]);
 
         $datosEmpleado = $request->except('_token');
-        
+
         if($request->hasFile('contrato')){
             $datosEmpleado['contrato']=$request->file('contrato')->store('empleados', 'public');
         }
@@ -124,7 +133,7 @@ class EmpleadoController extends Controller
             Storage::delete('public/'.$empleado->foto);
             $datosEmpleado['foto']=$request->file('foto')->store('empleados', 'public');
         }
-        
+
         Empleado::where('id', '=' ,$id)->update($datosEmpleado);
 
         $empleado = Empleado::findOrFail($id);

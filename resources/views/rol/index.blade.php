@@ -1,4 +1,5 @@
-@include('layouts.header')
+@extends('layouts.app')
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/roles.css') }}">
 
     <div class="barra-buscadora">
@@ -62,4 +63,4 @@
         <a class="boton" href="{{ url('/usuario') }}">Volver</a>
     </div>
 
-@include('layouts.footer')
+@endsection

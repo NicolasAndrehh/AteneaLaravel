@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Atenea') }}</title>
+    <title>Atenea</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,13 +18,19 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Atenea
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,18 +47,18 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <li class="nav-item header">
+                                    <a class="nav-link" href="{{ route('login') }}">Iniciar sesion</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li class="nav-item header">
+                                    <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item header dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -74,10 +80,54 @@
                 </div>
             </div>
         </nav>
+        
 
-        <main class="py-4">
+
+
+
+
+
+
+
+
+
+    <main>
+    <div class="contenedor-total">
+        
+        <hr>
+        <div class=" nav-bg   bg-black   shadow-sm">
+            <nav class="navegacion-principal">
+                <!-- <nav class="botones-nav"> -->
+                  
+                <div class="botones-nav">
+                    <a href="{{ url('/usuario') }}">Usuarios</a>
+                </div>
+                
+                <div class="botones-nav">
+                    <a href="{{ url('/habitacion') }}">Habitaciones</a>
+                </div>
+                
+                <div class="botones-nav">
+                    <a href="{{ url('/cliente') }}">Clientes</a>
+                </div>
+                
+                <div class="botones-nav">
+                    <a href="{{ url('/empleado') }}">Empleados</a>
+                </div>
+                
+                <div class="botones-nav">
+                    <a href="#">Servicios</a>
+                </div>
+
+            </nav>
+        </div> 
+        <div class="principal">
             @yield('content')
-        </main>
-    </div>
+</div>       
+    </main>
+    </div> 
+    <footer class="footer">
+        <p>Atenea Software ©</p>
+    </footer>
 </body>
 </html>
