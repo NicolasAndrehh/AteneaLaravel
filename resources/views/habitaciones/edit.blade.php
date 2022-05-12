@@ -5,17 +5,20 @@
 
 
 <div class="contenedor">
-    <h1 class="titulo">Crear habitacion</h1>
+    <h1 class="titulo">Editar Habitacion</h1>
     <div class="contenedor-formulario">
 
 
-        <form class="formulario" id="formulario" action="{{route('habitacion.store')}}" method="POST"  enctype="multipart/form-data">
+        <form class="formulario" id="formulario" action="{{ url('/habitacion/'.$habitacion->id) }}" method="POST"  enctype="multipart/form-data">
+
+        {{ method_field('PATCH') }}
+            <p style="display: none">{{ $fotoEdit = asset('storage').'/'.$habitacion->foto }}</p>
         @csrf
             
             <div class="parte1">
                 <div class="formulario-inputs">
                         <label for="numInput" id="numLabel"> Habitacion </label>
-                        <input type="number" id="numInput" name="num_habitacion" value="{{ old('num_habitacion') }}">
+                        <input type="number" id="numInput" name="num_habitacion" value="{{ isset($habitacion->num_habitacion)?$habitacion->num_habitacion:Old('num_habitacion') }}">
                         <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="num_habitacion_check" class="check">
                 </div>
                     @error('num_habitacion')
@@ -30,7 +33,7 @@
 
                 <div class="formulario-inputs">
                         <label for="num_personas" id="perLabel"> Personas</label>
-                        <input type="number" id="personasHab" name="num_personas" value="{{ old('num_personas') }}">
+                        <input type="number" id="personasHab" name="num_personas" value="{{ isset($habitacion->num_personas)?$habitacion->num_personas:Old('num_personas') }}">
                         
                         <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="personasCheck" class="check">
                 </div>
@@ -41,7 +44,7 @@
 
                 <div class="formulario-inputs">
                         <label for="descriHab" id="desLabel"> Descripcion </label>
-                        <textarea name="descripcion" id="descripHab" cols="28" rows="5" class="" value=" {{ old('descripcion') }}"></textarea>
+                        <textarea name="descripcion" id="descripHab" cols="28" rows="5" class="" value="{{ isset($habitacion->descripcion)?$habitacion->descripcion:Old('descripcion') }}"></textarea>
                         <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="desCheck" class="check">
                 </div>
                     @error('descripcion')

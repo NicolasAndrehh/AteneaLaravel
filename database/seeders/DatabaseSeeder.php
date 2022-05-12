@@ -20,15 +20,9 @@ class DatabaseSeeder extends Seeder
 
 
 
-        // \App\Models\Habitacion::create([
-        //     'num_habitacion' =>'1',
-        //     'descripcion'=>'una habitacion muy bonita',
-        //     'estado'=> 'libre',
-        //     'inventario'=> 'muchas cosas',
-        //     'num_personas'=>'3',
-        //     'foto'=>'una foto muy bonita',
-        // ]);
+       
 
+        
 
 
 
@@ -68,6 +62,16 @@ class DatabaseSeeder extends Seeder
             'foto'=>'foto',
             'password'=>bcrypt('123456')
         ]);
+
+        \App\Models\Habitacion::create([
+            'num_habitacion' =>'001',
+            'descripcion'=>'la habitacion del bicho siuuu',
+            'estado'=>'libre',
+            'inventario'=>'inventario',
+            'num_personas'=>'4',
+            'foto'=>'la foto'
+        ]);
+
 
 
 

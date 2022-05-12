@@ -14,12 +14,16 @@
     --sombra:rgba(0, 0, 0, 0.123);
 }
 
+a{
+    color: black;
+    text-decoration: none;
+}
+
 
 
 
 .contenedor {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
+    
     border-radius: 2rem;
     background: rgba(0, 0, 0, 0.123);
     padding: 2rem;
@@ -41,7 +45,284 @@
 }
 @media (min-width :1370px){
     .contenedor{
-        height: 20rem;
+        height: auto;
+        
+    }
+}
+
+/* formulario */
+
+
+.formulario{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top:5rem;
+}
+input{
+    background-color: white;
+    padding: 2px;
+    font-size: 17px;
+    border: 2px solid #00000000;
+    border-radius: 10px;
+    outline: none;
+}
+.formulario-inputs input[type="file"], .foto input[type="file"]{
+    width: 17.4rem;
+    height: 3.3rem;
+}
+.foto input[type="file"]{
+    display: none;
+}
+input[type="file"]{
+    display: none;
+}
+.principal h1 {
+    text-align: center;
+    color: black;
+}
+
+
+.principal-form {
+    background: var(--blanco);
+    margin: 2rem;
+    border-radius: 2rem;
+    padding: 2rem 2rem 2rem 4rem;
+    margin-top: 10%;
+}
+.titulo h2, h1 {
+    color: black;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.foto {
+    display: grid;
+    margin-right: 4rem;
+    margin-left: 4rem;
+    align-content: center;
+    justify-items: center;
+}
+.foto img {
+    width: 40rem;
+    height: 30rem;
+    border-radius: 10px;
+}
+.contenedor-info {
+    display: grid;
+    grid-template-columns: repeat(1,0.9fr);
+}
+.formulario-inputs {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+.check{
+    margin-left: 1rem;
+    opacity: 0;
+}
+.check-show{
+    opacity: 1;
+}
+.formulario-inputs label {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+.formulario-inputs input {
+    width: 20rem;
+    height: 2.3rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    background-color: white;
+}
+.formulario-inputs select {
+    width: 20.4rem;
+    height: 2.7rem;
+    border-radius: 0.5rem;
+}
+input[type="file"]{
+    overflow: hidden;
+}
+small {
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+
+.cuadros {
+    position: relative;
+    background: var(--contenedor);
+    width: 15rem;
+    height: 4rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+}
+
+@media (min-width :1670px){
+    .cuadros{
+        width: 22rem;
+        height: 6rem;
+        
+    }
+   
+}
+
+.estado-libre {
+    border-bottom: 1rem solid var(--libre);
+}
+.estado-ocupado {
+    border-bottom: 1rem solid #CF0000;
+}
+.estado-fuera {
+    border-bottom: 1rem solid var(--fuera);
+}
+.estado-limpieza {
+    border-bottom: 1rem solid var(--limpieza);
+}
+.estado-total {
+    border-bottom: 1rem solid var(--total);
+}
+
+
+.estados-contenedor{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top:5rem;
+    background-color: var(--blanco);
+    border-radius: 10px;
+    width: 45rem;
+    margin-left: 6rem;
+
+
+}
+
+.estados-contenedor button{
+    border:none;
+    background: var(--contenedor);
+    width: 14rem;
+}
+
+ input{
+    border:none;
+    background: var(--contenedor);
+    width: 14rem;
+}
+/* .content-input input,
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+/* } */
+ 
+.content-input input{
+	
+	right: 0;
+    width: 2rem;
+    
+ } 
+.content-input{
+    width: 15rem;
+} 
+@media (min-width :1670px){
+    .estados-contenedor{
+        width: 55rem;
+        margin-left: 12rem;
+        
+    }
+   
+}
+
+textarea{
+    border:none;
+    border-radius: 10px;
+
+}
+
+/* partes */
+
+.parte1{
+    margin-bottom: 2rem;
+    background-color: rgb(212, 211, 211);
+    border-radius: 10px;
+    width: 57rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-right: 5rem;
+}
+.parte2{
+    margin-bottom: 2rem;
+    background-color: rgb(212, 211, 211);
+    border-radius: 10px;
+    width: 57rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    
+}
+
+
+@media (min-width :1670px){
+    .parte1{
+        width: 85rem;
+        
+    }
+    .parte2{
+        width: 85rem;
+    }
+    h2{
+        margin-left:12rem;
+    }
+}
+h2{
+    margin-left:6rem;
+}
+
+.contenedor-botones-create{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: 30rem;
+    margin-left: 12rem;
+    margin-top: 5rem;
+    
+}
+@media (min-width :1670px){
+    .contenedor-botones-create{
+        margin-left: 26rem;
+        
+    }
+}
+
+
+
+/** VALIDACION */
+
+#formulario .label-incorrecto{
+    color: #bb2929;
+}
+
+.input-incorrecto {
+    border: 2px solid #bb2929;
+}
+.boton{
+    color: white;
+    border-color: white;
+}
+.inventario{
+    margin-top: 2rem;
+    margin-left: 19rem;
+}
+
+@media (min-width :1670px){
+    .inventario{
+        margin-left: 33rem;
         
     }
 }
