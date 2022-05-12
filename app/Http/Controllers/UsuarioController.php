@@ -149,7 +149,7 @@ class UsuarioController extends Controller
         User::where('id','=',$id)->update([
             'name' => $datosUsuario['name'],
             'email' => $datosUsuario['email'],
-            'password' => $datosUsuario['password'],
+            'password' =>bcrypt( $datosUsuario['password']),
             'empleadoId' => $datosUsuario['0'],
             'rolId' => $datosUsuario['rol'],
             'foto' => $datosUsuario['foto'],

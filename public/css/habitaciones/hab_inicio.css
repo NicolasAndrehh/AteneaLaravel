@@ -11,6 +11,8 @@
     --total: #3B4F56;
     --boton-visualizar: #1E397F;
     --sombra:rgba(0, 0, 0, 0.123);
+    --peligro: #990000;
+    --black: #000000;
 }
 * {
     margin: 0rem;
@@ -161,6 +163,7 @@ input[type=text] {
 
 .contenedor {
     display: grid;
+    align-items: center;
     grid-template-columns: repeat(4,1fr);
     border-radius: 2rem;
     background: rgba(0, 0, 0, 0.123);
@@ -197,37 +200,35 @@ input[type=text] {
 
 /*  eee*/
 
-.iframeprincipal {
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    margin-top: 4rem;
-    height: auto;
-   
-}
+
 /* habitaciones */
 .cuadros {
     position: relative;
     background: var(--contenedor);
     width: 22rem;
     height: 8rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     padding-left: 1rem;
     margin-left: auto;
     margin-right: auto;
 }
 
 .lateral {
+    display: grid;
     position: absolute;
+    align-content: space-evenly;
     top: 0;
     bottom: 0;
     right: 0;
-    margin-right: 0rem;
+    margin-right: 0.6rem;
+    margin-bottom: 0.3rem;
 }
+
 /* COLOR SEGUN ESTADO*/
 .estado-libre {
     border-bottom: 1rem solid var(--libre);
 }
-.estado-ocupada {
+.estado-ocupado  {
     border-bottom: 1rem solid var(--ocupado);
 }
 .estado-fuera {
