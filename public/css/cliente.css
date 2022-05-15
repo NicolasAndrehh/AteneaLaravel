@@ -69,9 +69,17 @@
     width: 15rem;
     padding: 1.5rem;
 }
-.accioness {
-    /* display: grid; */
+.acciones {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
+}
+.acciones-show {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.cuadrosServicios {
+    display: grid;
+    justify-items: center;
 }
 /* .modal{
     position: fixed;

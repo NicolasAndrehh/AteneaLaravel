@@ -26,6 +26,7 @@ class ServicioClienteController extends Controller
     public function create()
     {
         //
+        return view('servicioCliente.create');
     }
 
     /**

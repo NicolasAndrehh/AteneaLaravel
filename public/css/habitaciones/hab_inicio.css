@@ -68,7 +68,11 @@ a{
 }
 .contenedor-botones .boton{
     margin-top: .2rem;
-    
+}
+
+.boton{
+    color: white;
+    border: 1px solid white;
 }
 /* .principal {
     background: var(--contenedor);
