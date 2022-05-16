@@ -29,23 +29,29 @@
                 <small>*{{ $message }}*</small>
         @enderror
 
-        <div class="formulario-inputs">
-            <label for="password" id="passwordLabel">Contraseña: </label>
-            <input type="password" id="passwordInput" name="password" value="{{ old('password') }}">
-            <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="passwordCheck" class="check">
-        </div>
-        @error('password')
-                <small>*{{ $message }}*</small>
-        @enderror
+        @if (isset($usuario))
+            
+        @else
+        
+            <div class="formulario-inputs">
+                <label for="password" id="passwordLabel">Contraseña: </label>
+                <input type="password" id="passwordInput" name="password" value="{{ old('password') }}">
+                <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="passwordCheck" class="check">
+            </div>
+            @error('password')
+                    <small>*{{ $message }}*</small>
+            @enderror
 
-        <div class="formulario-inputs">
-            <label for="password2" id="password2Label">Confirmar: </label>
-            <input type="password" id="password2Input" name="password2" value="{{ old('password2') }}">
-            <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="password2Check" class="check">
-        </div>
-        @error('password2')
-                <small>*{{ $message }}*</small>
-        @enderror
+            <div class="formulario-inputs">
+                <label for="password2" id="password2Label">Confirmar: </label>
+                <input type="password" id="password2Input" name="password2" value="{{ old('password2') }}">
+                <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="password2Check" class="check">
+            </div>
+            @error('password2')
+                    <small>*{{ $message }}*</small>
+            @enderror
+
+        @endif
 
         <div class="formulario-inputs">
             <label for="lista">Rol: </label>
