@@ -21,6 +21,28 @@ class HabitacionesController extends Controller
         // return view('habitaciones.index');
     }
 
+    public function libres()
+    {
+        $datos['habitaciones']=Habitacion::paginate(12);
+        $habitaciones = Habitacion::all();
+        $libres = [];
+
+        foreach($habitaciones as $habitacion){
+            if($habitacion->estado == 'libre'){
+                array_push($libres, $habitacion);
+            }
+        }
+
+
+        return view('habitaciones.resumen_libre', $datos);
+
+        // return view('habitaciones.index');
+    }
+
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -71,11 +93,18 @@ class HabitacionesController extends Controller
      */
     public function show($id)
     {
-        // $habitacion = Habitacion::findOrFail($id);
+        $habitacion = Habitacion::findOrFail($id);
 
-        // return view('habitacion.show', compact('habitacion'));
+        if($habitacion->estado == 'libre'){
+            return view('habitaciones.libre_show', compact('habitacion'));
 
-        return view('habitaciones.libre_show');
+        }elseif($habitacion->estado== 'ocupado'){
+            return view('habitaciones.ocupada_show', compact('habitacion'));
+        }
+
+        
+
+        //  return view('habitaciones.ocupada_show');
     }
 
     /**
@@ -101,12 +130,12 @@ class HabitacionesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'num_habitacion' => 'required|regex:/^\d+$/',
-            'num_personas' => 'required|regex:/^\d+$/',
-            'descripcion' => 'required|regex:/^[A-Za-z0-9\s]+$/',
-            'estado' => 'required',
-            'inventario' => 'required|mimes:jpeg,png,jpg,gif',
-            'foto' => 'required|mimes:jpeg,png,jpg,gif'
+            'num_habitacion' => 'regex:/^\d+$/',
+            'num_personas' => 'regex:/^\d+$/',
+            'descripcion' => 'regex:/^[A-Za-z0-9\s]+$/',
+            'estado' => '',
+            'inventario' => 'mimes:jpeg,png,jpg,gif',
+            'foto' => 'mimes:jpeg,png,jpg,gif'
             
         ]);
 

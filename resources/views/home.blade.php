@@ -31,115 +31,89 @@
             <section class="section">
                 <h3>Habitaciones</h3>
 
+                @foreach( $habitaciones as $habitacion )
+            
+        
+                
+
+                    
+                    @if( $habitacion->estado == 'libre')
+                        {{ $libre =  $libre + 1 }}
+
+
+                    @endif
+                    @if( $habitacion->estado == 'ocupado')
+                       {{$ocupado = $ocupado + 1}}
+
+
+                    @endif
+                    @if( $habitacion->estado == 'limpieza')
+                        {{$limpieza = $limpieza + 1}}
+
+
+                    @endif
+                    @if( $habitacion->estado == 'fuera')
+                        {{$fuera = $fuera + 1}}
+
+
+                    @endif
+
+                    {{ $total = $total + 1 }}
+
+                    @endforeach
+
+                
+                
+                
+
+                    
+                    
+
+
+                
+
                 <div class="contenedor">
                     <div class="cuadros estado-libre">
-                        <p>15</p>
+                        <p>{{ $libre }}</p>
                         <p>Estado: <span>Libre</span></p>
                     </div>
 
                     <div class="cuadros estado-ocupada">
-                        <p>5</p>
+                        <p>{{ $ocupado }}</p>
                         <p>Estado: <span>Ocupada</span></p> 
                     </div>
 
                     <div class="cuadros estado-fuera">
-                        <p>3</p>
+                        <p>{{$fuera}}</p>
                         <p>Estado: <span>Fuera de servicio</span></p> 
                     </div>
 
                     <div class="cuadros estado-limpieza">
-                        <p>1</p>
+                        <p>{{$limpieza}}</p>
                         <p>Estado: <span>Limpieza</span></p> 
                     </div>
 
                     <div class="cuadros estado-total">
-                        <p>24</p>
+                        <p>{{$total}}</p>
                         <p>Habitaciones totales</p> 
-                    </div>    
+                    </div>  
+
                 </div>
+                
+                
                 
             </section>
 
-            <section class="section">
-                <h3>Huespedes</h3>
-
-                <div class="contenedor">
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Habitacion 302</p>   
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>   
-                    </div>
-                    
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Habitacion 302</p>    
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>     
-                    </div>
-
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Habitacion 302</p>  
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Habitacion 302</p>  
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Habitacion 302</p>    
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Habitacion 302</p>    
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>    
-                </div>
-                
-            </section>
-
+            
             <section class="section">
                 <h3>Clientes</h3>
 
                 <div class="contenedor">
+
+                @foreach($clientes as $cliente)
                     <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Pasadia</p>
+                        <p>{{$cliente->nombres.' '.$cliente->apellidos}}</p>
+                        <p>hospedaje</p>
                         <div class="lateral">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -148,60 +122,9 @@
                         </div>
                     </div>
 
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Restaurante</p>
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>
+                @endforeach
 
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Salon de eventos</p>
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Pasadia</p>
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Restaurante</p>
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="cuadros visualizar">
-                        <p>Raul Alvarez</p>
-                        <p>Pasadia</p>
-                        <div class="lateral">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="35" height="60" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <polyline points="9 6 15 12 9 18" />
-                            </svg>
-                        </div>
-                    </div>    
+                      
                 </div>
                 
             </section>
