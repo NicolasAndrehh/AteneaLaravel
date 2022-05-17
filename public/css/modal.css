@@ -125,7 +125,9 @@ section h3{
 }
 .contenedor-info-cliente {
     display: grid;
-    grid-template-columns: repeat(2,0.9fr);
+    grid-template-columns: repeat(2,1fr);
+    width: 72vw;
+    justify-items: center;
 }
 .label {
     display: inline-block;

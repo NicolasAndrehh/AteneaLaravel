@@ -69,6 +69,8 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ url('/miperfil') }}">Mi perfil</a>
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -80,7 +82,7 @@
                 </div>
             </div>
         </nav>
-        
+
 
 
 
@@ -93,39 +95,39 @@
 
     <main>
     <div class="contenedor-total">
-        
+
         <hr>
         <div class=" nav-bg   bg-black   shadow-sm">
             <nav class="navegacion-principal">
                 <!-- <nav class="botones-nav"> -->
-                  
+
                 <div class="botones-nav">
                     <a href="{{ url('/usuario') }}">Usuarios</a>
                 </div>
-                
+
                 <div class="botones-nav">
                     <a href="{{ url('/habitacion') }}">Habitaciones</a>
                 </div>
-                
+
                 <div class="botones-nav">
                     <a href="{{ url('/cliente') }}">Clientes</a>
                 </div>
-                
+
                 <div class="botones-nav">
                     <a href="{{ url('/empleado') }}">Empleados</a>
                 </div>
-                
+
                 <div class="botones-nav">
                     <a href="#">Servicios</a>
                 </div>
 
             </nav>
-        </div> 
+        </div>
         <div class="principal">
             @yield('content')
-</div>       
+</div>
     </main>
-    </div> 
+    </div>
     <footer class="footer">
         <p>Atenea Software ©</p>
     </footer>

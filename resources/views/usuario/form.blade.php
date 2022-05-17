@@ -1,7 +1,7 @@
 <div class="contenedor-modal">
 
     <div class="contenedor-info">
-        
+
         <div class="formulario-inputs">
             <label for="name" id="nombresLabel">Usuario: </label>
             <input type="text" id="nombresInput" name="name" value="{{ isset($usuario->name)?$usuario->name:old('name') }}">
@@ -29,23 +29,29 @@
                 <small>*{{ $message }}*</small>
         @enderror
 
-        <div class="formulario-inputs">
-            <label for="password" id="passwordLabel">Contraseña: </label>
-            <input type="password" id="passwordInput" name="password" value="{{ old('password') }}">
-            <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="passwordCheck" class="check">
-        </div>
-        @error('password')
-                <small>*{{ $message }}*</small>
-        @enderror
+        @if (isset($usuario))
+            
+        @else
+        
+            <div class="formulario-inputs">
+                <label for="password" id="passwordLabel">Contraseña: </label>
+                <input type="password" id="passwordInput" name="password" value="{{ old('password') }}">
+                <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="passwordCheck" class="check">
+            </div>
+            @error('password')
+                    <small>*{{ $message }}*</small>
+            @enderror
 
-        <div class="formulario-inputs">
-            <label for="password2" id="password2Label">Confirmar: </label>
-            <input type="password" id="password2Input" name="password2" value="{{ old('password2') }}">
-            <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="password2Check" class="check">
-        </div>
-        @error('password2')
-                <small>*{{ $message }}*</small>
-        @enderror
+            <div class="formulario-inputs">
+                <label for="password2" id="password2Label">Confirmar: </label>
+                <input type="password" id="password2Input" name="password2" value="{{ old('password2') }}">
+                <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="password2Check" class="check">
+            </div>
+            @error('password2')
+                    <small>*{{ $message }}*</small>
+            @enderror
+
+        @endif
 
         <div class="formulario-inputs">
             <label for="lista">Rol: </label>
@@ -55,13 +61,13 @@
                 <option value="2" {{ old('rol') == 2 ? 'selected' : '' }}>Administrador</option>
             </select>
         </div>
-    
+
     </div>
-    
+
     <div class="foto">
         <p style="display: none">{{ $fotoCreate = asset('img/cristiano-ronaldo-drinking.gif') }}</p>
         <div id="fotoPreview">
-            
+
             <img src="{{ isset($fotoEdit)?$fotoEdit:$fotoCreate }}">
         </div>
         <label for="foto" class="boton">Cambiar Foto</label>
@@ -74,7 +80,7 @@
 </div>
 
 <div class="contenedor-botones-modal">
-    <a class="boton" href="{{ url('/usuario') }}" style="margin-left: -0.8rem;">Cancelar</a>
+    <a class="boton" href="{{ url('/usuario')  }}" style="margin-left: -0.8rem;">Cancelar</a>
     <input type="submit" class="boton" value="{{ isset($submit)?$submit:'Registrar usuario' }}">
     {{-- <a type="submit" class="boton" href=""></a> --}}
 </div>

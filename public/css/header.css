@@ -235,6 +235,7 @@ a{
 .contenedor-botones a:hover{
     color: var(--boton);
     background-color: var(--blanco);
+    border: 1px solid var(--boton);
 }
 /* navegacion */
 .nav-bg {
@@ -320,6 +321,7 @@ a{
 .boton:hover{
     color: var(--boton);
     background-color: var(--blanco);
+    border: 1px solid var(--boton);
 }
 /* .modalfondo {
     background: var(--blanco);

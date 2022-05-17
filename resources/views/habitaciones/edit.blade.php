@@ -77,11 +77,13 @@
                         <label for="" class="content-input">
                                 <input type="radio" name="estado" value="fuera">fuera de servicio
                                 <i></i>
+                                
                             </label>
                         </div>
                 </div>
                 
             </div>
+            
 
             <div class="parte2">
 
