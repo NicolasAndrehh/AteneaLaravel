@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Empleado;
 use App\Models\User;
+// use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class MiperfilController extends Controller
 {
@@ -25,14 +29,21 @@ class MiperfilController extends Controller
      */
     public function index()
     {
-        // return view('home');
+        // $este_usuario = Auth::User;
 
 
 
 
+        $empleado = Empleado::findOrFail( Auth::user()->empleadoId);
 
 
 
-        return view('home')->with(compact('habitaciones','clientes','libre','ocupado','fuera','limpieza','total'));
+
+        // return view('miperfil')->with(compact('este_usuario'));
+
+        return view('miperfil',compact('empleado'));
     }
+
+
+
 }

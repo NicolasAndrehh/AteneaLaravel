@@ -30,11 +30,11 @@
 
                 <div class="contenedor">
 
-                    
+
                         @foreach( $habitaciones as $habitacion )
                             <!-- inicio habitaciones -->
-                            
-                            
+
+
                             @if($habitacion->estado == 'libre')
                             <div class="cuadros estado-libre">
                             @endif
@@ -48,14 +48,14 @@
                             <div class="cuadros estado-ocupado">
                             @endif
 
-                        
-                           
+
+
                                <a href="{{ url('/habitacion/'.$habitacion->id) }}">
-                                   <p>{{ $habitacion->num_habitacion }}</p>
+                                   <p>N° habitacion {{ $habitacion->num_habitacion }}</p>
                                    <p>Estado:<span>{{ $habitacion->estado }}</span></p>
                                </a>
                                <div class="lateral">
-                   
+
                                     <div class="tamaño-iconos">
                                             <a href="{{ url('/habitacion/'.$habitacion->id.'/edit') }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -64,7 +64,7 @@
                                                     <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
                                                     </svg>
                                             </a>
-                                        
+
                                     </div>
 
                                     <div class="tamaño-iconos ">
@@ -77,17 +77,17 @@
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                                     <circle cx="12" cy="12" r="9" />
                                                     <line x1="9" y1="12" x2="15" y2="12" />
-                                                </svg>    
+                                                </svg>
                                             </button>
                                         </form>
                                     </div>
                                 </div>
-                            
+
                            </div>
 
                         @endforeach
-                        
-                    
+
+
                 </div>
                 <div class="contenedor-botones-bajos">
                     <a class="boton" href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/habitaciones/resumenes/resumen/contenido/marco/hab-resumen.html">Resumen</a>

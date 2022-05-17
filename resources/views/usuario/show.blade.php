@@ -20,7 +20,7 @@
 
         <div class="contenedor-botones-main">
             <a class="boton" href="{{ url('/usuario/'.$usuario->id.'/edit') }}">Modificar usuario</a>
-            <a class="boton" href="{{ url('/usuario') }}">Volver</a>
+            <a class="boton" href="{{ url('/usuario')}}">Volver</a>
         </div>
     </div>
 
