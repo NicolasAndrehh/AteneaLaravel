@@ -39,6 +39,30 @@
 .contenedor {
     min-height: 67vh;
 }
+.contenedor h1 {
+    text-align: center;
+}
+
+.informacion {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 3rem;
+    width: 100%;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.informacion span{
+    font-weight: 500;
+}
+hr {
+    border: 2px solid black;
+}
+.table {
+    margin-top: 2rem;
+}
 /* @media (min-width :1370px){
     .contenedor{
         width: auto;

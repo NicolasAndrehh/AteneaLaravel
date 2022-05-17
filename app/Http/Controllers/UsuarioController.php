@@ -123,13 +123,11 @@ class UsuarioController extends Controller
             'name' => 'required|regex:/^[0-9a-zA-ZÀ-ÿ\s\_\-]{4,}$/',
             'email' => ['required','regex:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/'],
             'num_documento' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
-            'password' => "required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/",
-            'password2' => 'required|same:password',
             'rol' => 'required|in:1,2',
             'foto' => 'required|mimes:jpeg,png,jpg,gif',
         ]);
 
-        $datosUsuario = $request->except(['_token','_method','password2','num_documento']);
+        $datosUsuario = $request->except(['_token','_method','num_documento']);
         $documentoEmpleado = $request->num_documento;
         $empleadoId = Empleado::where('num_documento','=',$documentoEmpleado)->get('id');
         $empleadoId = $empleadoId[0]->id;
@@ -149,7 +147,6 @@ class UsuarioController extends Controller
         User::where('id','=',$id)->update([
             'name' => $datosUsuario['name'],
             'email' => $datosUsuario['email'],
-            'password' =>bcrypt( $datosUsuario['password']),
             'empleadoId' => $datosUsuario['0'],
             'rolId' => $datosUsuario['rol'],
             'foto' => $datosUsuario['foto'],
