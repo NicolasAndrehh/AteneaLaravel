@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\PDF as PDF;
 
 class UsuarioController extends Controller
 {
@@ -64,7 +65,7 @@ class UsuarioController extends Controller
         if($request->hasFile('foto')){
             $datosUsuario['foto']=$request->file('foto')->store('usuarios', 'public');
         };
-        
+
         //? Insercion de usuario en base de datos *------------------------*
 
         User::create([
@@ -143,7 +144,7 @@ class UsuarioController extends Controller
             Storage::delete('public/'.$usuario->foto);
             $datosUsuario['foto']=$request->file('foto')->store('usuarios', 'public');
         };
-        
+
         //? Insercion de usuario en base de datos *------------------------*
 
         User::where('id','=',$id)->update([
@@ -154,10 +155,10 @@ class UsuarioController extends Controller
             'rolId' => $datosUsuario['rol'],
             'foto' => $datosUsuario['foto'],
         ]);
-        
+
         // return response()->json($datosUsuario);
 
-     
+
 
         $usuario = User::findOrFail($id);
         $empleado = Empleado::findOrFail($usuario->empleadoId);
@@ -179,5 +180,14 @@ class UsuarioController extends Controller
         }
 
         return redirect('usuario');
+    }
+
+    public function pdf()
+    {
+        $usuarios = User::all();
+        $usuarios = compact('usuarios');
+
+        $pdf = PDF::loadView('usuario.pdf', $usuarios);
+        return $pdf->setPaper('a3', 'landscape')->stream('Reporte usuarios');
     }
 }

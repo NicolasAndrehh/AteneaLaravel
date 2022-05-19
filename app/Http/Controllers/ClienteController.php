@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF as PDF;
 
 class ClienteController extends Controller
 {
@@ -117,5 +118,14 @@ class ClienteController extends Controller
 
         Cliente::destroy($id);
         return redirect('/cliente');
+    }
+
+    public function pdf()
+    {
+        $clientes = Cliente::all();
+        $clientes = compact('clientes');
+
+        $pdf = PDF::loadView('clientes.pdf', $clientes);
+        return $pdf->setPaper('a3', 'landscape')->stream('Reporte clientes');
     }
 }

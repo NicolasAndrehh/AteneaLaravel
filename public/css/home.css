@@ -22,11 +22,11 @@ html {
   }
 body{
     font-size: 16px;/* 10px= 1 rem*/
-    font-family: 'Krub', sans-serif; 
+    font-family: 'Krub', sans-serif;
 }
 .contenedor-total{
-    max-width: 100%; 
-    margin:0px auto; 
+    max-width: 100%;
+    margin:0px auto;
 }
 h1 {
     font-size: 4rem;
@@ -64,7 +64,7 @@ a{
 /* HEADER */
 
 /* SUPERIOR */
-.cabecera img{   
+.cabecera img{
     width: 14rem;
     height: 14rem;
     border-radius: 2rem;
@@ -101,12 +101,12 @@ a{
 }
 .titulo-rol{
     display: flex;
-    
+
 }
 .cabecera-detalles .rectangulo-cabecera{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    column-gap: 5rem;   
+    column-gap: 5rem;
 }
 .contenedor-botones {
     display: grid;
@@ -134,25 +134,20 @@ a{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    
+
 }
 .navegacion-principal a {
     text-decoration: none;
     font-weight: 700;
     color:white;
-    
+
 }
 .navegacion-principal a:hover {
-    
-    color: var(--boton);
-    
+    color: black;
+    background-color: var(--boton);
+    transition: all .4s;
 }
-.navegacion-principal a:focus {
-    
-    color: var(--boton);
-    
-    
-}
+
 .navegacion-principal p {
     margin: 1rem;
     font-weight: 400;
