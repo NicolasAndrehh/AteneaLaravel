@@ -6,19 +6,21 @@
 
 <section class="section">
     <div class="contenedor">
+        <h1>{{ $cliente->id.'. '.$cliente->nombres.' '.$cliente->apellidos }}</h1>
+        <hr>
+        <div class="informacion">
+            <p>Numero de documento: <span>{{ $cliente->num_documento }}</span></p>
+            <p>Lugar de procedencia: <span>{{ $cliente->procedencia }}</span></p>
+            <p>Telefono: <span>{{ $cliente->telefono }}</span></p>
+            <p>Correo: <span>{{ $cliente->email }}</span></p>
+            <p>Estado: <span>Activo</span></p>
+            <p>Fecha de registro: <span>{{ $cliente->created_at }}</span></p>
+
+        </div>
+        <hr>      
+        
         <table class="table">
             <thead class="thead-dark">
-                <th colspan="6">
-                    {{
-                        $cliente->id.' - '.
-                        $cliente->nombres.' '.$cliente->apellidos.' - '.
-                        $cliente->num_documento.' - '.
-                        $cliente->procedencia.' - '.
-                        $cliente->telefono.' - '.
-                        $cliente->email
-                    }}
-                    <hr>
-                </th>
               <tr>
                 <th scope="col">Servicio tomado</th>
                 <th scope="col">Hora de llegada</th>

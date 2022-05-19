@@ -1,5 +1,5 @@
 <?php
-
+// use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\UsuarioController;
@@ -7,8 +7,12 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\HabitacionesController;
 use App\Http\Controllers\ServicioClienteController;
+<<<<<<< HEAD
 use App\Http\Controllers\ServicioController;
 
+=======
+use App\Http\Controllers\MiperfilController;
+>>>>>>> ac54e46ea833c7196be72401254ddb83ed73244c
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +44,8 @@ Route::resource('servicioCliente', ServicioClienteController::class);
 Route::resource('rol', RolController::class);
 
 Route::resource('habitacion', HabitacionesController::class);
+
+Route::resource('miperfil', MiperfilController::class);
 
 Auth::routes();
 
