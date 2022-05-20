@@ -9,6 +9,7 @@ class Servicio extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
     'name',
     'horario',
@@ -18,4 +19,5 @@ class Servicio extends Model
         
     ];
     
+
 }

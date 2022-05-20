@@ -12,7 +12,7 @@
 <section class="section">
     <div class="contenedor">
         @foreach ($empleados as $empleado)
-        
+
         <div class="cuadros barra-lateral">
             <p>{{ $empleado->nombres.' '.$empleado->apellidos }}</p>
             <p>{{ $empleado->cargo }}</p>
@@ -26,7 +26,7 @@
                         </svg>
                     </a>
                 </div>
-                
+
                 <div class="tamaño-iconos">
                     <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="abrirModalModificar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -34,9 +34,9 @@
                             <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
                             <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
                         </svg>
-                    </a>    
+                    </a>
                 </div>
-                
+
                 <div class="tamaño-iconos">
                     <form action="{{ url('/empleado/'.$empleado->id) }}" method="POST">
                         @csrf
@@ -47,19 +47,19 @@
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                 <circle cx="12" cy="12" r="9" />
                                 <line x1="9" y1="12" x2="15" y2="12" />
-                            </svg>    
+                            </svg>
                         </button>
                     </form>
                 </div>
             </div>
-        </div>       
+        </div>
         @endforeach
-    </div>    
-    
-    
+    </div>
+
+
     <div class="contenedor-botones-main">
         <a class="boton " href="{{ url('/empleado/create') }}">Registrar empleado</a>
-        <a class="boton" href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/empleados/Reporte empleados/iFrame/ReporteUsuarioRol.html">Generar reporte</a>
+        <a class="boton" href="{{ url('/empleado/pdf') }}">Generar reporte</a>
     </div>
 </section>
 

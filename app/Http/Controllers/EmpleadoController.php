@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\PDF as PDF;
 
 class EmpleadoController extends Controller
 {
@@ -155,5 +157,14 @@ class EmpleadoController extends Controller
         }
 
         return redirect('empleado');
+    }
+
+    public function pdf()
+    {
+        $empleados = Empleado::all();
+        $empleados = compact('empleados');
+
+        $pdf = PDF::loadView('empleado.pdf', $empleados);
+        return $pdf->setPaper('a3', 'landscape')->stream('Reporte Empleados');
     }
 }

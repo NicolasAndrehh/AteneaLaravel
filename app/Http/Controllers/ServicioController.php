@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servicio;
+
 use App\Http\Requests\StoreServicioRequest;
 use App\Http\Requests\UpdateServicioRequest;
+
+use Illuminate\Http\Request;
+
 
 class ServicioController extends Controller
 {
@@ -15,10 +19,12 @@ class ServicioController extends Controller
      */
     public function index()
     {
+
         $datos['servicios']=Servicio::paginate(12);
         return view('servicios.index', $datos);
 
         // return view('servicios.index');
+
     }
 
     /**
@@ -34,10 +40,12 @@ class ServicioController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+
      * @param  \App\Http\Requests\StoreServicioRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreServicioRequest $request)
+
     {
         //
     }
@@ -67,11 +75,14 @@ class ServicioController extends Controller
     /**
      * Update the specified resource in storage.
      *
+
      * @param  \App\Http\Requests\UpdateServicioRequest  $request
      * @param  \App\Models\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateServicioRequest $request, Servicio $servicio)
+
+
     {
         //
     }
