@@ -8,6 +8,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\HabitacionesController;
 use App\Http\Controllers\ServicioClienteController;
 use App\Http\Controllers\MiperfilController;
+use App\Http\Controllers\ServicioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,8 @@ Route::resource('rol', RolController::class);
 Route::resource('habitacion', HabitacionesController::class);
 
 Route::resource('miperfil', MiperfilController::class);
+
+Route::resource('servicio', ServicioController::class);
 
 Auth::routes();
 

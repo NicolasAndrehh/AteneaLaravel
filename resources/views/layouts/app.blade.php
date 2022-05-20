@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="botones-nav">
-                    <a href="#">Servicios</a>
+                    <a href="{{ url('/servicio') }}">Servicios</a>
                 </div>
 
             </nav>

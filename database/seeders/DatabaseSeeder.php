@@ -73,9 +73,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        \App\Models\Servicio::create([
+            'name' =>'hospedaje',
+            'horario' =>'archivo adjunto',
+            'estado' => 'activo',
+            'foto'=> ' una foto',
+            'aforo'=>4,
+        ]);
 
 
-        \App\Models\User::factory(10)->create();
+
+
+        // \App\Models\User::factory(10)->create();
         
         
         Privilegios::factory(20)->create();
