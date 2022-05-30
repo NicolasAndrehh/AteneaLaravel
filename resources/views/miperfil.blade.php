@@ -24,7 +24,7 @@
         <div class="contenedor-botones-main">
             <a class="boton" href="{{ url('/usuario/'.Auth::user()->id.'/edit') }}">Modificar usuario</a>
 
-            <a class="boton" href="{{ url('/miperfil') }}">Volver</a>
+            <a class="boton" href="{{ url('/home') }}">Volver</a>
         </div>
     </div>
 

@@ -90,6 +90,14 @@ input{
     /* background: var(--contenedor); */
     padding: 2rem 2rem 2rem 0rem;
 }
+.contenedor-form-hospedaje {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 3rem;
+    border-radius: 2rem;
+    /* background: var(--contenedor); */
+    padding: 2rem 2rem 2rem 0rem;
+}
 .principal-form {
     background: var(--blanco);
     margin: 2rem;
@@ -128,6 +136,9 @@ section h3{
     grid-template-columns: repeat(2,1fr);
     width: 72vw;
     justify-items: center;
+}
+.gap {
+    gap: 10rem;
 }
 .label {
     display: inline-block;

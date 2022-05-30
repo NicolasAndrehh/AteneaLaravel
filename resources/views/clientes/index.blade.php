@@ -72,7 +72,7 @@
                             <form action="{{ url('/cliente/'.$cliente->id) }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
-    
+
                                 <button type="submit" onclick="return confirm('¿Seguro que quieres borrar al usuario {{ $cliente->nombres.' '.$cliente->apellidos }}?')" style="background: none; border: none; cursor: pointer;">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-minus" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.8" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -93,7 +93,7 @@
     </div>
     <div class="contenedor-botones-main">
         <a class="boton " href="{{ url('/cliente/create') }}">Registrar cliente</a>
-        <a class="boton" href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/empleados/Reporte empleados/iFrame/ReporteUsuarioRol.html">Generar reporte</a>
+        <a class="boton" href="{{ url('/cliente/pdf') }}">Generar reporte</a>
     </div>
 </section>
 

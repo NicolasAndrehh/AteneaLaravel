@@ -1,7 +1,7 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
 
-<link rel="stylesheet" href="{{ asset('css/empleados.css') }}">
+<link rel="stylesheet" href="{{ asset('css/usuarios.css') }}">
 <div class="barra-buscadora">
     <div class="search-container">
         <input type="text" placeholder="Search.." name="search">
@@ -11,14 +11,14 @@
 
 <section class="section">
     <div class="contenedor">
-        @foreach ($empleados as $empleado)
+        @foreach ($usuarios as $usuario)
 
         <div class="cuadros barra-lateral">
-            <p>{{ $empleado->nombres.' '.$empleado->apellidos }}</p>
-            <p>{{ $empleado->cargo }}</p>
+            <p>{{ $usuario->name }}</p>
+            <p>{{ $usuario->rolId }}</p>
             <div class="lateral">
                 <div class="tamaño-iconos">
-                    <a href="{{ url('/empleado/'.$empleado->id) }}">
+                    <a href="{{ url('/usuario/'.$usuario->id) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <circle cx="10" cy="10" r="7" />
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="tamaño-iconos">
-                    <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="abrirModalModificar">
+                    <a href="{{ url('/usuario/'.$usuario->id.'/edit') }}" class="abrirModalModificar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -38,11 +38,11 @@
                 </div>
 
                 <div class="tamaño-iconos">
-                    <form action="{{ url('/empleado/'.$empleado->id) }}" method="POST">
+                    <form action="{{ url('/usuario/'.$usuario->id) }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
 
-                        <button type="submit" onclick="return confirm('¿Seguro que quieres borrar al empleado {{ $empleado->nombres.' '.$empleado->apellidos }}?')" style="background: none; border: none; cursor: pointer;">
+                        <button type="submit" onclick="return confirm('¿Seguro que quieres borrar al usuario {{ $usuario->name }}?')" style="background: none; border: none; cursor: pointer;">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-minus" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                 <circle cx="12" cy="12" r="9" />
@@ -58,10 +58,11 @@
 
 
     <div class="contenedor-botones-main">
-        <a class="boton " href="{{ url('/empleado/create') }}">Registrar empleado</a>
-        <a class="boton" href="{{ url('/empleado/pdf') }}">Generar reporte</a>
+        <a class="boton " href="{{ url('/usuario/create') }}">Registrar usuario</a>
+        <a class="boton" href="{{ url('/usuario/pdf') }}">Generar reporte</a>
+        <a class="boton" href="{{ url('/rol') }}">Roles</a>
     </div>
 </section>
 
 <script src="{{ asset('js/main.js') }}"></script>
-@endsection
+@endsection --}}

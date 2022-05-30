@@ -6,8 +6,14 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\HabitacionesController;
+use App\Http\Controllers\HospedajeController;
 use App\Http\Controllers\ServicioClienteController;
+
+use App\Http\Controllers\ServicioController;
+
+
 use App\Http\Controllers\MiperfilController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,11 +27,20 @@ use App\Http\Controllers\MiperfilController;
 
 Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
 
+Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
+Route::get('usuario/pdf', [App\Http\Controllers\UsuarioController::class, 'PDF'])->name('usuarios.pdf');
+Route::get('cliente/pdf', [App\Http\Controllers\ClienteController::class, 'PDF'])->name('clientes.pdf');
+// Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
+
 Route::resource('empleado', EmpleadoController::class);
 
 Route::resource('usuario', UsuarioController::class);
 
 Route::resource('cliente', ClienteController::class);
+
+Route::resource('servicio', ServicioController::class);
+
+Route::resource('hospedaje', HospedajeController::class);
 
 Route::resource('servicioCliente', ServicioClienteController::class);
 
@@ -34,6 +49,8 @@ Route::resource('rol', RolController::class);
 Route::resource('habitacion', HabitacionesController::class);
 
 Route::resource('miperfil', MiperfilController::class);
+
+Route::resource('servicio', ServicioController::class);
 
 Auth::routes();
 

@@ -7,7 +7,7 @@
 <section class="section">
     <div class="contenedor">
         <h1>{{ $cliente->id.'. '.$cliente->nombres.' '.$cliente->apellidos }}</h1>
-        <hr>
+        <hr class="hr">
         <div class="informacion">
             <p>Numero de documento: <span>{{ $cliente->num_documento }}</span></p>
             <p>Lugar de procedencia: <span>{{ $cliente->procedencia }}</span></p>
@@ -17,50 +17,55 @@
             <p>Fecha de registro: <span>{{ $cliente->created_at }}</span></p>
 
         </div>
-        <hr>      
+        <hr class="hr">      
         
         <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Servicio tomado</th>
-                <th scope="col">Hora de llegada</th>
                 <th scope="col">Fecha de entrada</th>
                 <th scope="col">Fecha de salida</th>
-                <th scope="col">Atendido por</th>
+                <th scope="col">Habitacion</th>
+                <th scope="col">Numero de personas</th>
+                <th scope="col">Costo de hospedaje</th>
+                <th scope="col">Pago recibido</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
 
             <tbody>
-                {{-- @foreach ($clientes as $cliente) --}}
+                @if (isset($hospedajes))
+                    
+                @foreach ($hospedajes as $hospedaje)
                 <tr>
-                    <td>{{ $cliente->email }}</td>
-                    <td>{{ $cliente->email }}</td>
-                    <td>{{ $cliente->email }}</td>
-                    <td>{{ $cliente->email }}</td>
-                    <td>{{ $cliente->email }}</td>
+                    <td>Hospedaje</td>
+                    <td>{{ $hospedaje->fechaInicio }}</td>
+                    <td>{{ $hospedaje->fechaFin }}</td>
+                    <td>{{ $hospedaje->habitacionId }}</td>
+                    <td>{{ $hospedaje->numPersonas }}</td>
+                    <td>{{ $hospedaje->valorTotal }}</td>
+                    <td>{{ $hospedaje->pagosRecibidos }}</td>
                     <td>
                         <div class="acciones-show">
-                            <a href="{{ url('/cliente/'.$cliente->id.'/edit') }}">
+                            <a href="{{ url('/hospedaje/'.$hospedaje->id) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="22" height="22" viewBox="0 0 24 24" stroke-width="3.2" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <circle cx="10" cy="10" r="7" />
+                                    <line x1="21" y1="21" x2="15" y2="15" />
+                                </svg>
+                            </a>
+                            <a href="{{ url('/hospedaje/'.$hospedaje->id.'/edit') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.7" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
                                     <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
                                 </svg>
                             </a>
-                            <a href="">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-plus" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <rect x="4" y="4" width="16" height="16" rx="2" />
-                                    <line x1="9" y1="12" x2="15" y2="12" />
-                                    <line x1="12" y1="9" x2="12" y2="15" />
-                                </svg>
-                            </a>
-                            <form action="{{ url('/cliente/'.$cliente->id) }}" method="POST">
+                            <form action="{{ url('/hospedaje/'.$hospedaje->id) }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
-    
-                                <button type="submit" onclick="return confirm('¿Seguro que quieres borrar al usuario {{ $cliente->nombres.' '.$cliente->apellidos }}?')" style="background: none; border: none; cursor: pointer;">
+                                
+                                <button type="submit" onclick="return confirm('¿Seguro que quieres borrar el hospedaje {{ $hospedaje->id }}?')" style="background: none; border: none; cursor: pointer;">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-minus" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.8" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <circle cx="12" cy="12" r="9" />
@@ -71,11 +76,16 @@
                         </div>
                     </td>
                 </tr>
-                {{-- @endforeach --}}
+                @endforeach
+                @else
+                    <tr>
+                        <td colspan="8">Este cliente no ha tomado ningun servicio</td>
+                    </tr>
+                @endif
             </tbody>
-
+            
         </table>
-
+        
     </div>
     <div class="contenedor-botones-main">
         <a class="boton " href="{{ url('/cliente') }}">Volver</a>

@@ -1,23 +1,27 @@
 <div class="contenedor-modal">
 
-    <div class="contenedor-info-cliente">
+    <div class="contenedor-info-cliente gap">
 
-        <div class="cuadrosServicios">
-            <img src="{{ asset('img/el bicho.jfif') }}" width="100px" height="100px">
-            <a class="boton" href="{{ url('servicio.create') }}">Hospedaje</a>
-        </div>
-        <div class="cuadrosServicios">
-            <img src="{{ asset('img/el bicho.jfif') }}" width="100px" height="100px">
-            <a class="boton" href="{{ url('servicio.create') }}">Piscina</a>
-        </div>
-        <div class="cuadrosServicios">
-            <img src="{{ asset('img/el bicho.jfif') }}" width="100px" height="100px">
-            <a class="boton" href="{{ url('servicio.create') }}">Restaurante</a>
-        </div>
-        <div class="cuadrosServicios">
-            <img src="{{ asset('img/el bicho.jfif') }}" width="100px" height="100px">
-            <a class="boton" href="{{ url('servicio.create') }}">Salon de eventos</a>
-        </div>
+        <a href="{{ url('/hospedaje/create') }}" class="servicio">
+            <div class="cuadros">
+                <p>Hospedaje</p>
+            </div>
+        </a>
+        <a href="{{ url('') }}" class="servicio">
+            <div class="cuadros">
+                <p>Piscina</p>
+            </div>
+        </a>
+        <a href="{{ url('') }}" class="servicio">
+            <div class="cuadros">
+                <p>Restaurante</p>
+            </div>
+        </a>
+        <a href="{{ url('') }}" class="servicio">
+            <div class="cuadros">
+                <p>Salon de eventos</p>
+            </div>
+        </a>
 
     </div>
 </div>
