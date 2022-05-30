@@ -46,7 +46,11 @@ h4 {
 }
 a{
     color:var(--link);
-    text-decoration: none;
+    text-decoration: none; 
+}
+.servicio {
+    width: 25rem;
+    height: 8rem;
 }
 /* .boton{
     margin: 1.5rem;
@@ -66,7 +70,6 @@ a{
 
 
 .principal {
-    background: var(--contenedor);
     border-radius: 2rem;
     padding: 0rem 1rem 1rem 1rem;
 }
@@ -133,29 +136,44 @@ input[type=text] {
     }
 }
 .cuadros p {
-    margin-top: 0.5rem;
+    margin-top: 4.3%;
 }
 .cuadros {
+    display: grid;
     position: relative;
     background: var(--contenedor);
-    width: 22rem;
+    width: 25rem;
     height: 8rem;
     margin-bottom: 2rem;
+    font-size: 3rem;
     padding-left: 1rem;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 1.5rem;
+    justify-items: center;
+    align-items: center;
+    border: 1px solid var(--boton-visualizar);
+    color: var(--boton-visualizar);
+    font-weight: bold;
+    transition: all .5s;
 }
-
+.cuadros:hover {
+    background-color: var(--boton-visualizar);
+    color: white;
+    transition: all .5s;
+}
 .barra-lateral {
-    box-shadow: inset (-3.5rem 0 0 );
+    box-shadow: inset -3.5rem 0 0 var(--boton-visualizar);
 }
 .lateral {
     display: grid;
     position: absolute;
     align-content: space-evenly;
     top: 0;
+    bottom: 0;
     right: 0;
-    margin-right: 0;
+    margin-right: 0.6rem;
+    margin-bottom: 0.3rem;
 }
 /* .tamaño-iconos {
     width: 22px;

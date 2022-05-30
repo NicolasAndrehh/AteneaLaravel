@@ -6,6 +6,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\HabitacionesController;
+use App\Http\Controllers\HospedajeController;
 use App\Http\Controllers\ServicioClienteController;
 
 use App\Http\Controllers\ServicioController;
@@ -38,6 +39,8 @@ Route::resource('usuario', UsuarioController::class);
 Route::resource('cliente', ClienteController::class);
 
 Route::resource('servicio', ServicioController::class);
+
+Route::resource('hospedaje', HospedajeController::class);
 
 Route::resource('servicioCliente', ServicioClienteController::class);
 
