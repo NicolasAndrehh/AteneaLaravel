@@ -161,7 +161,7 @@ a{
 
 /* CONTENIDO DEL HOME*/
 .principal {
-    background: var(--contenedor);
+    /* background: var(--contenedor); */
     margin: 2rem;
     border-radius: 2rem;
     padding: 1.5rem;

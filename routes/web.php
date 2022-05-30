@@ -26,9 +26,9 @@ use App\Http\Controllers\MiperfilController;
 
 Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
 
-Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
-Route::get('usuario/pdf', [App\Http\Controllers\UsuarioController::class, 'PDF'])->name('usuarios.pdf');
-Route::get('cliente/pdf', [App\Http\Controllers\ClienteController::class, 'PDF'])->name('clientes.pdf');
+// Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
+// Route::get('usuario/pdf', [App\Http\Controllers\UsuarioController::class, 'PDF'])->name('usuarios.pdf');
+// Route::get('cliente/pdf', [App\Http\Controllers\ClienteController::class, 'PDF'])->name('clientes.pdf');
 // Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
 
 Route::resource('empleado', EmpleadoController::class);

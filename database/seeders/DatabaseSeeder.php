@@ -18,14 +18,6 @@ class DatabaseSeeder extends Seeder
 
         
 
-
-
-       
-
-        
-
-
-
         \App\Models\Empleado::create([
             'num_documento' =>'1003519243',
             'tipo_documento' => 'C.C',
@@ -38,13 +30,7 @@ class DatabaseSeeder extends Seeder
             'cargo'=>'admin',
             'horario'=>'estado',
             'estado'=>'horario',
-            'contrato'=>'algo',
-            
-
-
-
-
-            
+            'contrato'=>'algo', 
             'foto'=> 'foto',
         ]);
 
