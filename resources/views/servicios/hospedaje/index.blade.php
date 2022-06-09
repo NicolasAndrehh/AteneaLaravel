@@ -1,14 +1,12 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
 
 <link rel="stylesheet" href="{{ asset('css/usuarios.css') }}">
 <div class="barra-buscadora">
-<form class="searchForm" action="{{ url('/usuario') }}">
     <div class="search-container">
-        <input type="text" placeholder="Search.." id="searchBar" name="search">
+        <input type="text" placeholder="Search.." name="search">
         <button type="submit"><i class="fa fa-search"></i></button>
     </div>
-</form>
 </div>
 
 <section class="section">
@@ -60,18 +58,11 @@
 
 
     <div class="contenedor-botones-main">
-        @if( $isUserAdmin || $canViewUsers )
         <a class="boton " href="{{ url('/usuario/create') }}">Registrar usuario</a>
-        @endif
-        @if( $isUserAdmin || $canViewUsers )
         <a class="boton" href="{{ url('/usuario/pdf') }}">Generar reporte</a>
-        @endif
-        @if( $isUserAdmin || $isRolAdmin || $canViewRoles )
         <a class="boton" href="{{ url('/rol') }}">Roles</a>
-        @endif
-        
     </div>
 </section>
 
 <script src="{{ asset('js/main.js') }}"></script>
-@endsection
+@endsection --}}

@@ -19,7 +19,7 @@ class privilegiosFactory extends Factory
         return [
             //
             'nombrePrivilegio' => $this->faker->name(),
-            'descripcion' => $this->faker->unique()->safeEmail(),
+            
         ];
     }
 }

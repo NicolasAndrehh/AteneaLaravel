@@ -224,12 +224,12 @@ a{
 .contenedor-botones {
     display: grid;
     text-align: right;
-    justify-content: right;
+    /* justify-content: right; */
 }
 .contenedor-botones .boton{
     margin: 0.5rem;
     width: 13.7rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-top: 0rem;
 }
 .contenedor-botones a:hover{
@@ -444,7 +444,6 @@ a{
 
 /* CONTENIDO DEL HOME*/
 .principal {
-    /* background: var(--contenedor); */
     background: none;
     border-radius: 2rem;
     padding: 1.5rem;

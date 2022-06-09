@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Privilegios;
+use App\Models\Rol;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -39,6 +40,52 @@ class DatabaseSeeder extends Seeder
 
             'nombreRol'=>'administrador'
         ]);
+
+        \App\Models\Rol::create([
+            'id'=>'2',
+
+            'nombreRol'=>'recepcionista'
+        ]);
+
+        // /////////////////////////////////////////////////////////
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Consultar usuarios'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Administrar usuarios'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Consultar roles'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Administrar roles'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Administrar habitaciones'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'visualizar habitaciones'
+        ]);
+
+
+
+
+        //Asignar todos los privilegios al rol 1
+        $privilegios = Privilegios::all();
+        $rol = Rol::find(1);
+        foreach ($privilegios as $privilegio) {
+            \App\Models\RolPrivilegio::create([
+                'rolId' => $rol->id,
+                'privilegioId' => $privilegio->id,
+            ]);
+        }
+
         
         \App\Models\User::create([
             'name'=>'Juan Alvarado',
@@ -73,7 +120,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         
         
-        Privilegios::factory(20)->create();
+        // Privilegios::factory(20)->create();
 
 
         

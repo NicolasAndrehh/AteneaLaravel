@@ -6,10 +6,12 @@
 
                 <div class="busqueda-hab">
                     <div class="barra-buscadora">
+                    <form class="searchForm" action="{{ url('/habitacion') }}">
                         <div class="search-container">
-                            <input type="text" placeholder="Search.." name="search">
+                            <input type="text" placeholder="Search.." id="searchBar" name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </div>
+                        </form>
                     </div>
                     <div class="contenedor-botones-estado">
                         <div class="botones-estado libre">

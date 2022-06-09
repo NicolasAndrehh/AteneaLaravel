@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\PDF as PDF;
 
 class UsuarioController extends Controller
@@ -16,11 +17,68 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        
+    }
+    public function index(Request $request)
     {
         //
-        $datos['usuarios'] = User::paginate(12);
-        return view('usuario.index', $datos);
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+    $isUserAdmin = false;
+    $isRolAdmin = false;
+    $canViewUsers = false;
+    $canViewRoles = false;
+
+    if($privilegios->contains('nombrePrivilegio', 'Administrar usuarios')){
+        $isUserAdmin = true;
+    }
+
+    if($privilegios->contains('nombrePrivilegio', 'Consultar usuarios')){
+        $canViewUsers = true;
+    }
+
+    if($privilegios->contains('nombrePrivilegio', 'Administrar roles')){
+        $isRolAdmin = true;
+    }
+
+    if($privilegios->contains('nombrePrivilegio', 'Consultar roles')){
+        $canViewRoles = true;
+    }
+
+    // $datos['usuarios'] = User::paginate(12);
+    
+    if($isUserAdmin || $canViewUsers){
+        if($request->has('search')){
+            $usuarios = User::where('name', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('email', 'LIKE', '%'.$request->search.'%')
+            ->paginate(12);
+        }else{
+            $usuarios = User::All();
+        }
+        return view('usuario.index', compact('usuarios', 'isUserAdmin', 'canViewUsers', 'isRolAdmin', 'canViewRoles'));
+    }else{
+        $usuarios = User::where('id', auth()->user()->id)->get();
+        return view('usuario.index', compact('usuarios', 'isUserAdmin', 'canViewUsers', 'isRolAdmin', 'canViewRoles'));
+    }
+
+
+
+
+
+        
+        // return view('usuario.index', $datos);
     }
 
     /**
@@ -30,8 +88,30 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
-        return view('usuario.create', ['submit' => 'Registrar usuario']);
+        $rol = auth()->User()->rolId;
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $isUserAdmin = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'Administrar usuarios')){
+            $isUserAdmin = true;
+        }
+
+        if($isUserAdmin){
+            // $roles = DB::select('SELECT * FROM rols;');
+            return view('usuario.create', ['submit' => 'Registrar usuario'] );
+        }else{
+            return redirect()->back();
+        }
+
+
+        
+        // return view('usuario.create', ['submit' => 'Registrar usuario']);
     }
 
     /**
@@ -93,7 +173,44 @@ class UsuarioController extends Controller
         //
         $usuario = User::findOrFail($id);
         $empleado = Empleado::findOrFail($usuario->empleadoId);
-        return view('usuario.show', compact('usuario', 'empleado'));
+
+        $userId = auth()->user()->id;
+
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $isUserAdmin = false;
+        $canViewUsers = false;
+        $isMe = false;
+
+        if($userId == $id){
+            $isMe = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'Administrar usuarios')){
+            $isUserAdmin = true;
+        }
+    
+        if($privilegios->contains('nombrePrivilegio', 'Consultar usuarios')){
+            $canViewUsers = true;
+        }
+
+        if($isUserAdmin || $canViewUsers || $isMe){
+            
+            
+            return view('usuario.show', compact('usuario','empleado', 'isUserAdmin', 'canViewUsers','privilegios', 'isMe'));
+        }else{
+            return redirect()->back();
+        }
+
+
+        // return view('usuario.show', compact('usuario', 'empleado'));
     }
 
     /**
@@ -105,9 +222,41 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
+        $userId = auth()->User()->id;
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $isUserAdmin = false;
+        $isMe = false;
+
+
+        if($userId == $id){
+            $isMe = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'Administrar usuarios')){
+            $isUserAdmin = true;
+        }
+
         $usuario = User::findOrFail($id);
         $empleado = Empleado::findOrFail($usuario->empleadoId);
-        return view('usuario.edit', compact('usuario', 'empleado'), ['submit' => 'Guardar cambios']);
+
+        if($isUserAdmin || $isMe){
+            
+            
+            return view('usuario.edit', compact('usuario','empleado',  'isUserAdmin', 'isMe', 'privilegios'),['submit' => 'Guardar cambios']);
+        }else{
+            return redirect()->back();
+        }
+
+        
+        // return view('usuario.edit', compact('usuario', 'empleado'), ['submit' => 'Guardar cambios']);
     }
 
     /**
@@ -171,12 +320,37 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
-        $usuario = User::findOrFail($id);
+
+
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $isUserAdmin = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'Administrar usuarios')){
+            $isUserAdmin = true;
+        }
+
+        if($isUserAdmin ){
+            
+            
+            $usuario = User::findOrFail($id);
         if(Storage::delete('public/'.$usuario->foto) && Storage::delete('public/'.$usuario->foto)){
             User::destroy($id);
         }
 
         return redirect('usuario');
+        }else{
+            return redirect()->back();
+        }
+
+        
     }
 
     public function pdf()

@@ -14,8 +14,14 @@
         <section class="section">
             <div class="contenedor">
 
-            @foreach($servicios as $servicio)
+                <a href="{{ url('/hospedaje/create') }}" class="servicio">
+                    <div class="cuadros">
+                        <p>Hospedaje</p>
+                    </div>
+                </a>
+                
 
+            @foreach($servicios as $servicio)
 
                             @if($servicio->estado == 'activo')
                             <div class="cuadros estado-activo barra-lateral">
