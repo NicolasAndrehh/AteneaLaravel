@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Habitacion;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +17,7 @@ class HabitacionesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
+
     }
     public function index(Request $request)
     {
@@ -92,7 +92,7 @@ class HabitacionesController extends Controller
         }
 
         if($habAdmin ){
-            return view('habitaciones.create', compact('habitaciones', 'habAdmin', 'habConsultar', 'privilegios', 'rol'), ['submit'=>'Crear habitacion']);
+            return view('habitaciones.create', compact( 'habAdmin', 'privilegios', 'rol'), ['submit'=>'Crear habitacion']);
         // return view('habitaciones.create', ['submit'=>'Crear habitacion']);
     }else{
         return redirect()->back();
@@ -114,7 +114,7 @@ class HabitacionesController extends Controller
             'estado' => 'required',
             'inventario' => 'required|mimes:jpeg,png,jpg,gif',
             'foto' => 'required|mimes:jpeg,png,jpg,gif'
-            
+
         ]);
 
         $datoshabitacion = $request->except('_token');
@@ -152,7 +152,7 @@ class HabitacionesController extends Controller
 
         $habConsultar = false;
 
-        
+
         if($privilegios->contains('nombrePrivilegio', 'Administrar habitaciones')){
             $habAdmin = true;
         }
@@ -177,7 +177,7 @@ class HabitacionesController extends Controller
         return redirect()->back();
     }
 
-        
+
 
         //  return view('habitaciones.ocupada_show');
     }
@@ -201,11 +201,11 @@ class HabitacionesController extends Controller
         if($privilegios->contains('nombrePrivilegio', 'Administrar habitaciones')){
             $habAdmin = true;
         }
-    
+
         $habitacion = Habitacion::findOrFail($id);
 
         if($habAdmin ){
-            return view('habitaciones.edit', compact('habitacion', 'habAdmin', 'habConsultar', 'privilegios', 'rol'), ['submit'=>'Actualizar habitacion']);
+            return view('habitaciones.edit', compact('habitacion', 'habAdmin',  'privilegios', 'rol'), ['submit'=>'Actualizar habitacion']);
 
         }else{
             return redirect()->back();
@@ -228,7 +228,7 @@ class HabitacionesController extends Controller
             'estado' => '',
             'inventario' => 'mimes:jpeg,png,jpg,gif',
             'foto' => 'mimes:jpeg,png,jpg,gif'
-            
+
         ]);
 
         $datoshabitacion = $request->except('_token', '_method');
@@ -245,9 +245,9 @@ class HabitacionesController extends Controller
         }
 
         Habitacion::where('id', '=' ,$id)->update($datoshabitacion);
-        
+
         return redirect('habitacion');
-        
+
 
 
     }

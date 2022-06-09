@@ -10,10 +10,12 @@
             <thead class="thead-dark">
                 <th colspan="13">
                     <div class="barra-buscadora">
+                    <form class="searchForm" action="{{ url('/cliente') }}">
                         <div class="search-container">
                             <input type="text" placeholder="Search.." name="search">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </div>
+                        </form>
                     </div>
                     <hr>
                 </th>

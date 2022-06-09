@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        
+
 
         \App\Models\Empleado::create([
             'num_documento' =>'1003519243',
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             'cargo'=>'admin',
             'horario'=>'estado',
             'estado'=>'horario',
-            'contrato'=>'algo', 
+            'contrato'=>'algo',
             'foto'=> 'foto',
         ]);
 
@@ -73,6 +73,15 @@ class DatabaseSeeder extends Seeder
             'nombrePrivilegio' => 'visualizar habitaciones'
         ]);
 
+        //clientes
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'visualizar clientes'
+        ]);
+        Privilegios::create([
+            'nombrePrivilegio' => 'administrar clientes'
+        ]);
+
 
 
 
@@ -86,7 +95,14 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        
+        // asignar al rol 2
+        \App\Models\RolPrivilegio::create([
+            'rolId' => '2',
+            'privilegioId' => '5',
+        ]);
+
+
+
         \App\Models\User::create([
             'name'=>'Juan Alvarado',
             'email'=>'jaalvarado342@misena.edu.co',
@@ -118,16 +134,16 @@ class DatabaseSeeder extends Seeder
 
 
         // \App\Models\User::factory(10)->create();
-        
-        
+
+
         // Privilegios::factory(20)->create();
 
 
-        
-        
 
 
 
-        
+
+
+
     }
 }

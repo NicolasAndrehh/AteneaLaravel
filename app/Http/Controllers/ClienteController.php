@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF as PDF;
 
@@ -13,12 +14,48 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $datos['clientes'] = Cliente::paginate(10);
-        return view('clientes.index', $datos);
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $showcli = false;
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'visualizar clientes')){
+            $showcli = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+
+        if($showcli || $admincli){
+            if($request->has('search')){
+                $clientes = Cliente::where('nombres', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('apellidos', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('num_documento', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('procedencia', 'LIKE', '%'.$request->search.'%')
+                ->paginate(12);
+            }else{
+                $clientes = Cliente::paginate(12);
+            }
+            return view('clientes.index', compact('clientes', 'admincli', 'showcli', 'privilegios', 'rol'));
+
+
+        // $datos['clientes'] = Cliente::paginate(10);
+        // return view('clientes.index', $datos);
+    }else{
+        return redirect()->back();
     }
+}
 
     /**
      * Show the form for creating a new resource.
@@ -27,8 +64,28 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
-        return view('clientes.create',['submit' => 'Registrar cliente']);
+        $rol = auth()->User()->rolId;
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+        if($admincli){
+
+            return view('clientes.create',compact('admincli'),['submit' => 'Registrar cliente']);
+
+        }
+
+
+
+
     }
 
     /**
