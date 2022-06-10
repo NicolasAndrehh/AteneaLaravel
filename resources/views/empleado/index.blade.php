@@ -3,10 +3,12 @@
 
 <link rel="stylesheet" href="{{ asset('css/empleados.css') }}">
 <div class="barra-buscadora">
+<form class="searchForm" action="{{ url('/empleado') }}">
     <div class="search-container">
         <input type="text" placeholder="Search.." name="search">
         <button type="submit"><i class="fa fa-search"></i></button>
     </div>
+    </form>
 </div>
 
 <section class="section">
@@ -26,7 +28,7 @@
                         </svg>
                     </a>
                 </div>
-
+                @if($adminemple || $editemple)
                 <div class="tamaño-iconos">
                     <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="abrirModalModificar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -36,7 +38,8 @@
                         </svg>
                     </a>
                 </div>
-
+                @endif
+                @if($adminemple)
                 <div class="tamaño-iconos">
                     <form action="{{ url('/empleado/'.$empleado->id) }}" method="POST">
                         @csrf
@@ -51,6 +54,7 @@
                         </button>
                     </form>
                 </div>
+                @endif
             </div>
         </div>
         @endforeach
@@ -58,8 +62,10 @@
 
 
     <div class="contenedor-botones-main">
+        @if($adminemple || $editemple)
         <a class="boton " href="{{ url('/empleado/create') }}">Registrar empleado</a>
         <a class="boton" href="{{ url('/empleado/pdf') }}">Generar reporte</a>
+        @endif
     </div>
 </section>
 

@@ -82,6 +82,26 @@ class DatabaseSeeder extends Seeder
             'nombrePrivilegio' => 'administrar clientes'
         ]);
 
+        Privilegios::create([
+            'nombrePrivilegio' => 'editar clientes'
+        ]);
+
+
+        //empleados
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'visualizar empleados'
+        ]);
+        Privilegios::create([
+            'nombrePrivilegio' => 'administrar empleados'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'editar empleados'
+        ]);
+
+
+
 
 
 

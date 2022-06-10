@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use App\Models\User;
+use App\Models\Rol;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -97,6 +98,7 @@ class UsuarioController extends Controller
         ->get();
 
         $isUserAdmin = false;
+        $roles = Rol::All();
 
         if($privilegios->contains('nombrePrivilegio', 'Administrar usuarios')){
             $isUserAdmin = true;
@@ -104,7 +106,7 @@ class UsuarioController extends Controller
 
         if($isUserAdmin){
             // $roles = DB::select('SELECT * FROM rols;');
-            return view('usuario.create', ['submit' => 'Registrar usuario'] );
+            return view('usuario.create',compact('roles','isUserAdmin'), ['submit' => 'Registrar usuario'] );
         }else{
             return redirect()->back();
         }
@@ -129,7 +131,7 @@ class UsuarioController extends Controller
             'num_documento' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
             'password' => "required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/",
             'password2' => 'required|same:password',
-            'rol' => 'required|in:1,2',
+            'rol' => 'required',
             'foto' => 'required|mimes:jpeg,png,jpg,gif',
         ]);
 
@@ -246,11 +248,12 @@ class UsuarioController extends Controller
 
         $usuario = User::findOrFail($id);
         $empleado = Empleado::findOrFail($usuario->empleadoId);
+        $roles = Rol::all();
 
         if($isUserAdmin || $isMe){
             
             
-            return view('usuario.edit', compact('usuario','empleado',  'isUserAdmin', 'isMe', 'privilegios'),['submit' => 'Guardar cambios']);
+            return view('usuario.edit', compact('usuario','empleado','roles',  'isUserAdmin', 'isMe', 'privilegios'),['submit' => 'Guardar cambios']);
         }else{
             return redirect()->back();
         }
@@ -273,7 +276,7 @@ class UsuarioController extends Controller
             'name' => 'required|regex:/^[0-9a-zA-ZÀ-ÿ\s\_\-]{4,}$/',
             'email' => ['required','regex:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/'],
             'num_documento' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
-            'rol' => 'required|in:1,2',
+            'rol' => 'required',
             'foto' => 'required|mimes:jpeg,png,jpg,gif',
         ]);
 

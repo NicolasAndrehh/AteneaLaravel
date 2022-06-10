@@ -120,8 +120,34 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
-        return redirect('');
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $showcli = false;
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'visualizar clientes')){
+            $showcli = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+
+        if($showcli || $admincli){
+            return redirect('');
+        }else{
+            return redirect()->back();
+        }
+
+        
     }
 
     /**
@@ -132,9 +158,37 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $editcli = false;
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'editar clientes')){
+            $editcli = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+
+
         $cliente = Cliente::findOrFail($id);
-        return view('clientes.edit',compact('cliente'),['submit' => 'Guardar cambios']);
+
+        if($editcli || $admincli){
+            return view('clientes.edit',compact('cliente','admincli', 'editcli'),['submit' => 'Guardar cambios']);
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -170,11 +224,36 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $cliente = Cliente::findOrFail($id);
+        $rol = auth()->User()->rolId;
 
-        Cliente::destroy($id);
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $editcli = false;
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'editar clientes')){
+            $editcli = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+
+
+        $cliente = Cliente::findOrFail($id);
+        if($editcli || $admincli){
+            Cliente::destroy($id);
         return redirect('/cliente');
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     public function pdf()

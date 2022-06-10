@@ -48,7 +48,7 @@
                     <td>{{ $cliente->email }}</td>
                     <td>
                         <div class="acciones">
-
+                        @if($admincli || $showcli)
                             <a href="{{ url('/servicioCliente/'.$cliente->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="22" height="22" viewBox="0 0 24 24" stroke-width="3.2" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -56,6 +56,8 @@
                                     <line x1="21" y1="21" x2="15" y2="15" />
                                 </svg>
                             </a>
+                            @endif
+                            @if($admincli || $editcli)
                             <a href="{{ url('/cliente/'.$cliente->id.'/edit') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.7" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -63,6 +65,7 @@
                                     <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
                                 </svg>
                             </a>
+                            @endif
                             <a href="{{ url('servicioCliente/create') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-plus" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -71,6 +74,7 @@
                                     <line x1="12" y1="9" x2="12" y2="15" />
                                 </svg>
                             </a>
+                            @if($admincli || $editcli)
                             <form action="{{ url('/cliente/'.$cliente->id) }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
@@ -83,6 +87,7 @@
                                     </svg>
                                 </button>
                             </form>
+                            @endif
 
                         </td>
                     </div>
@@ -94,8 +99,16 @@
 
     </div>
     <div class="contenedor-botones-main">
+        @if (isset($_GET['search']))
+            <a href="{{ url('/cliente') }}" class="boton">Ver todos</a>
+            @else
+            <a href="{{ url('/cliente?search=') }}" class="boton">Ver todos</a>
+        @endif
+
+        @if($admincli)
         <a class="boton " href="{{ url('/cliente/create') }}">Registrar cliente</a>
         <a class="boton" href="{{ url('/cliente/pdf') }}">Generar reporte</a>
+        @endif
     </div>
 </section>
 
