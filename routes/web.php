@@ -10,6 +10,7 @@ use App\Http\Controllers\HospedajeController;
 use App\Http\Controllers\ServicioClienteController;
 
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 use App\Http\Controllers\MiperfilController;
@@ -27,10 +28,12 @@ use App\Http\Controllers\MiperfilController;
 
 Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
 
-// Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
-// Route::get('usuario/pdf', [App\Http\Controllers\UsuarioController::class, 'PDF'])->name('usuarios.pdf');
-// Route::get('cliente/pdf', [App\Http\Controllers\ClienteController::class, 'PDF'])->name('clientes.pdf');
-// Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
+Route::get('register', [RegisterController::class, ])->name('register');
+
+Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
+Route::get('usuario/pdf', [App\Http\Controllers\UsuarioController::class, 'PDF'])->name('usuarios.pdf');
+Route::get('cliente/pdf', [App\Http\Controllers\ClienteController::class, 'PDF'])->name('clientes.pdf');
+Route::get('empleado/pdf', [App\Http\Controllers\EmpleadoController::class, 'PDF'])->name('empleados.pdf');
 
 Route::resource('empleado', EmpleadoController::class);
 
@@ -55,7 +58,7 @@ Route::resource('servicio', ServicioController::class);
 Auth::routes();
 
 // Route::get('/register', function(){
-//     return view('auth.register');
+//     return view('usuario.create');
 // });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,13 +5,15 @@
 
 
 
-<div class="barra-buscadora">
-            <div class="search-container">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
-        <section class="section">
+                    <div class="barra-buscadora">
+                    <form class="searchForm" action="{{ url('/servicio') }}">
+                        <div class="search-container">
+                            <input type="text" placeholder="Search.." id="searchBar" name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                    </div>
+
             <div class="contenedor">
 
 
@@ -37,13 +39,16 @@
                             </a>
                         </div>
                     </div>
-                </div>
+
+            </div>
 
             @endforeach
 
 
+
+
             </div>
-        </section>
+
         <div class="contenedor-botones">
             <a class="boton" href="">Registrar Servicio</a>
             <a class="boton" href="">Generar reporte</a>

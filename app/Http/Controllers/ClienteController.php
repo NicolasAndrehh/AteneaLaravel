@@ -28,9 +28,13 @@ class ClienteController extends Controller
 
         $showcli = false;
         $admincli = false;
+        $editcli = false;
 
         if($privilegios->contains('nombrePrivilegio', 'visualizar clientes')){
             $showcli = true;
+        }
+        if($privilegios->contains('nombrePrivilegio', 'editar clientes')){
+            $editcli = true;
         }
 
         if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
@@ -47,7 +51,7 @@ class ClienteController extends Controller
             }else{
                 $clientes = Cliente::paginate(12);
             }
-            return view('clientes.index', compact('clientes', 'admincli', 'showcli', 'privilegios', 'rol'));
+            return view('clientes.index', compact('clientes','editcli', 'admincli', 'showcli', 'privilegios', 'rol'));
 
 
         // $datos['clientes'] = Cliente::paginate(10);
@@ -147,7 +151,7 @@ class ClienteController extends Controller
             return redirect()->back();
         }
 
-        
+
     }
 
     /**
@@ -158,7 +162,7 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        
+
         $rol = auth()->User()->rolId;
 
 
@@ -188,7 +192,7 @@ class ClienteController extends Controller
         }else{
             return redirect()->back();
         }
-        
+
     }
 
     /**
@@ -253,12 +257,24 @@ class ClienteController extends Controller
         }else{
             return redirect()->back();
         }
-        
+
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
-        $clientes = Cliente::all();
+
+
+
+        if($request->has('search')){
+            $clientes = Cliente::where('nombres', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('apellidos', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('num_documento', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('procedencia', 'LIKE', '%'.$request->search.'%')
+            ->paginate(12);
+        }else{
+            $clientes = Cliente::all();
+        }
+        // $clientes = Cliente::all();
         $clientes = compact('clientes');
 
         $pdf = PDF::loadView('clientes.pdf', $clientes);

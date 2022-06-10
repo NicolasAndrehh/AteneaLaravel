@@ -14,7 +14,7 @@ class EmpleadoController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('auth');
+         $this->middleware('auth');
     }
 
     /**
@@ -26,7 +26,7 @@ class EmpleadoController extends Controller
      */
     public function index(Request $request)
     {
-        
+
 
         $rol = auth()->User()->rolId;
 
@@ -64,16 +64,16 @@ class EmpleadoController extends Controller
             }else{
                 $empleados = Empleado::paginate(12);
             }
-            return view('empleado.index', compact('empleados', 'showemple', 'adminemple', 'privilegios', 'rol'));
+            return view('empleado.index', compact('empleados','editemple', 'showemple', 'adminemple', 'privilegios', 'rol'));
 
 
-        
+
     }else{
         return redirect()->back();
     }
 
 
-        
+
     }
 
     /**
@@ -105,8 +105,8 @@ class EmpleadoController extends Controller
         }
 
 
-        
-        
+
+
     }
 
     /**
@@ -178,11 +178,11 @@ class EmpleadoController extends Controller
         }else{
             return redirect()->back();
         }
-        
 
 
-        
-        
+
+
+
     }
 
     /**
@@ -204,7 +204,7 @@ class EmpleadoController extends Controller
 
         $adminemple = false;
         $editemple = false;
-        
+
         $empleado = Empleado::findOrFail($id);
 
         if($privilegios->contains('nombrePrivilegio', 'editar empleados')){
@@ -223,7 +223,7 @@ class EmpleadoController extends Controller
 
 
 
-        
+
     }
 
     /**
@@ -304,7 +304,7 @@ class EmpleadoController extends Controller
 
 
 
-        
+
     }
 
     public function pdf()
