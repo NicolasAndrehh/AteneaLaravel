@@ -6,6 +6,7 @@ use App\Models\privilegios;
 use App\Models\Rol;
 use App\Models\RolPrivilegio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class RolController extends Controller
@@ -29,9 +30,9 @@ class RolController extends Controller
      */
     public function create()
     {
-        //
+        $privilegios = privilegios::all();
         
-        return view('rol.create');
+        return view('rol.create',compact('privilegios'));
     }
 
     /**
@@ -95,7 +96,12 @@ class RolController extends Controller
     {
         //
         $rol = Rol::findOrFail($id);
-        return view('rol.edit', compact('rol'));
+
+        $privilegios = DB::select('SELECT * FROM privilegios INNER JOIN rol_privilegios ON privilegios.id = rol_privilegios.privilegioId WHERE rol_privilegios.rolId = ?', [$id]);
+        $privilegiosNoAsignados = DB::select('SELECT * FROM privilegios WHERE privilegios.id NOT IN (SELECT privilegioId FROM rol_privilegios WHERE rol_privilegios.rolId = ?)', [$id]);
+
+
+        return view('rol.edit', compact('rol','privilegios','privilegiosNoAsignados'));
     }
 
     /**

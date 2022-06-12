@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Privilegios;
+use App\Models\Rol;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,14 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        
-
-
-
-       
-
-        
 
 
 
@@ -39,12 +32,6 @@ class DatabaseSeeder extends Seeder
             'horario'=>'estado',
             'estado'=>'horario',
             'contrato'=>'algo',
-            
-
-
-
-
-            
             'foto'=> 'foto',
         ]);
 
@@ -53,7 +40,89 @@ class DatabaseSeeder extends Seeder
 
             'nombreRol'=>'administrador'
         ]);
-        
+
+        \App\Models\Rol::create([
+            'id'=>'2',
+
+            'nombreRol'=>'recepcionista'
+        ]);
+
+        // /////////////////////////////////////////////////////////
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Consultar usuarios'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Administrar usuarios'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Consultar roles'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Administrar roles'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'Administrar habitaciones'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'visualizar habitaciones'
+        ]);
+
+        //clientes
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'visualizar clientes'
+        ]);
+        Privilegios::create([
+            'nombrePrivilegio' => 'administrar clientes'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'editar clientes'
+        ]);
+
+
+        //empleados
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'visualizar empleados'
+        ]);
+        Privilegios::create([
+            'nombrePrivilegio' => 'administrar empleados'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'editar empleados'
+        ]);
+
+
+
+
+
+
+        //Asignar todos los privilegios al rol 1
+        $privilegios = Privilegios::all();
+        $rol = Rol::find(1);
+        foreach ($privilegios as $privilegio) {
+            \App\Models\RolPrivilegio::create([
+                'rolId' => $rol->id,
+                'privilegioId' => $privilegio->id,
+            ]);
+        }
+
+        // asignar al rol 2
+        \App\Models\RolPrivilegio::create([
+            'rolId' => '2',
+            'privilegioId' => '5',
+        ]);
+
+
+
         \App\Models\User::create([
             'name'=>'Juan Alvarado',
             'email'=>'jaalvarado342@misena.edu.co',
@@ -85,16 +154,16 @@ class DatabaseSeeder extends Seeder
 
 
         // \App\Models\User::factory(10)->create();
-        
-        
-        Privilegios::factory(20)->create();
 
 
-        
-        
+        // Privilegios::factory(20)->create();
 
 
 
-        
+
+
+
+
+
     }
 }

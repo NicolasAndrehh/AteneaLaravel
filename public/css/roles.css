@@ -32,7 +32,8 @@
 /* CONTENIDO PRINCIPAL */
 .contenedor {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    align-items: center;
+    grid-template-columns: repeat(4,1fr);
     border-radius: 2rem;
     padding: 2rem;
     background: rgba(0, 0, 0, 0.123);

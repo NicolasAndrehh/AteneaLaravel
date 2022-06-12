@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF as PDF;
 
@@ -13,12 +14,52 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $datos['clientes'] = Cliente::paginate(10);
-        return view('clientes.index', $datos);
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $showcli = false;
+        $admincli = false;
+        $editcli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'visualizar clientes')){
+            $showcli = true;
+        }
+        if($privilegios->contains('nombrePrivilegio', 'editar clientes')){
+            $editcli = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+
+        if($showcli || $admincli){
+            if($request->has('search')){
+                $clientes = Cliente::where('nombres', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('apellidos', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('num_documento', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('procedencia', 'LIKE', '%'.$request->search.'%')
+                ->paginate(12);
+            }else{
+                $clientes = Cliente::paginate(12);
+            }
+            return view('clientes.index', compact('clientes','editcli', 'admincli', 'showcli', 'privilegios', 'rol'));
+
+
+        // $datos['clientes'] = Cliente::paginate(10);
+        // return view('clientes.index', $datos);
+    }else{
+        return redirect()->back();
     }
+}
 
     /**
      * Show the form for creating a new resource.
@@ -27,8 +68,28 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
-        return view('clientes.create',['submit' => 'Registrar cliente']);
+        $rol = auth()->User()->rolId;
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+        if($admincli){
+
+            return view('clientes.create',compact('admincli'),['submit' => 'Registrar cliente']);
+
+        }
+
+
+
+
     }
 
     /**
@@ -63,8 +124,34 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
-        return redirect('');
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $showcli = false;
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'visualizar clientes')){
+            $showcli = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+
+        if($showcli || $admincli){
+            return redirect('');
+        }else{
+            return redirect()->back();
+        }
+
+
     }
 
     /**
@@ -75,9 +162,37 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $editcli = false;
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'editar clientes')){
+            $editcli = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+
+
         $cliente = Cliente::findOrFail($id);
-        return view('clientes.edit',compact('cliente'),['submit' => 'Guardar cambios']);
+
+        if($editcli || $admincli){
+            return view('clientes.edit',compact('cliente','admincli', 'editcli'),['submit' => 'Guardar cambios']);
+        }else{
+            return redirect()->back();
+        }
+
     }
 
     /**
@@ -113,16 +228,53 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $cliente = Cliente::findOrFail($id);
+        $rol = auth()->User()->rolId;
 
-        Cliente::destroy($id);
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $editcli = false;
+        $admincli = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'editar clientes')){
+            $editcli = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar clientes')){
+            $admincli = true;
+        }
+
+
+        $cliente = Cliente::findOrFail($id);
+        if($editcli || $admincli){
+            Cliente::destroy($id);
         return redirect('/cliente');
+        }else{
+            return redirect()->back();
+        }
+
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
-        $clientes = Cliente::all();
+
+
+
+        if($request->has('search')){
+            $clientes = Cliente::where('nombres', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('apellidos', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('num_documento', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('procedencia', 'LIKE', '%'.$request->search.'%')
+            ->paginate(12);
+        }else{
+            $clientes = Cliente::all();
+        }
+        // $clientes = Cliente::all();
         $clientes = compact('clientes');
 
         $pdf = PDF::loadView('clientes.pdf', $clientes);

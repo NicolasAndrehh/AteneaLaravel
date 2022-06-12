@@ -103,7 +103,14 @@ input{
     margin: 2rem;
     border-radius: 2rem;
     padding: 2rem 2rem 2rem 4rem;
-    margin-top: 10%;
+    
+}
+
+@media (min-width :1670px){
+    .principal-form{
+        margin-top: 10%;
+        
+    }
 }
 .titulo h2, h1 {
     color: black;
@@ -192,7 +199,7 @@ small {
     grid-template-columns: repeat(2,1fr);
     justify-items: end;
     float: right;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
 }
 .contenedor-botones-modal .boton{
     margin-top: 2rem;

@@ -14,7 +14,7 @@ class EmpleadoController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('auth');
+         $this->middleware('auth');
     }
 
     /**
@@ -24,11 +24,56 @@ class EmpleadoController extends Controller
      *
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $datos['empleados']=Empleado::paginate(10);
-        return view('empleado.index', $datos);
+
+
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $showemple = false;
+        $adminemple = false;
+        $editemple = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'visualizar empleados')){
+            $showemple = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar empleados')){
+            $adminemple = true;
+        }
+        if($privilegios->contains('nombrePrivilegio', 'editar empleados')){
+            $editemple = true;
+        }
+
+        if($showemple || $adminemple){
+            if($request->has('search')){
+                $empleados = Empleado::where('nombres', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('apellidos', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('num_documento', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('horario', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('cargo', 'LIKE', '%'.$request->search.'%')
+                ->paginate(12);
+            }else{
+                $empleados = Empleado::paginate(12);
+            }
+            return view('empleado.index', compact('empleados','editemple', 'showemple', 'adminemple', 'privilegios', 'rol'));
+
+
+
+    }else{
+        return redirect()->back();
+    }
+
+
+
     }
 
     /**
@@ -38,8 +83,30 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        //
-        return view('empleado.create', ['submit'=>'Registrar empleado']);
+        $rol = auth()->User()->rolId;
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $adminemple = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar empleados')){
+            $adminemple = true;
+        }
+
+        if($adminemple){
+            return view('empleado.create',compact('adminemple'), ['submit'=>'Registrar empleado']);
+
+        }else{
+            return redirect()->back();
+        }
+
+
+
+
     }
 
     /**
@@ -83,9 +150,39 @@ class EmpleadoController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
         $empleado = Empleado::findOrFail($id);
-        return view('empleado.show', compact('empleado'));
+        $showemple = false;
+        $adminemple = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'visualizar empleados')){
+            $showemple = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar empleados')){
+            $adminemple = true;
+        }
+
+        if($showemple || $adminemple){
+            return view('empleado.show', compact('empleado','showemple','adminemple'));
+
+        }else{
+            return redirect()->back();
+        }
+
+
+
+
+
     }
 
     /**
@@ -96,10 +193,37 @@ class EmpleadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $adminemple = false;
+        $editemple = false;
+
         $empleado = Empleado::findOrFail($id);
 
-        return view('empleado.edit', compact('empleado'), ['submit'=>'Guardar cambios']);
+        if($privilegios->contains('nombrePrivilegio', 'editar empleados')){
+            $editemple = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar empleados')){
+            $adminemple = true;
+        }
+
+        if($adminemple || $editemple){
+            return view('empleado.edit', compact('empleado','adminemple','editemple'), ['submit'=>'Guardar cambios']);
+        }else{
+            return redirect()->back();
+        }
+
+
+
+
     }
 
     /**
@@ -150,13 +274,37 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $empleado = Empleado::findOrFail($id);
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+        $adminemple = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'administrar empleados')){
+            $adminemple = true;
+        }
+
+        if($adminemple){
+            $empleado = Empleado::findOrFail($id);
         if(Storage::delete('public/'.$empleado->foto) && Storage::delete('public/'.$empleado->contrato)){
             Empleado::destroy($id);
         }
 
         return redirect('empleado');
+
+        }else{
+            return redirect()->back();
+
+        }
+
+
+
+
     }
 
     public function pdf()

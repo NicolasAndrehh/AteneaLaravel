@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Habitacion;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,31 +13,57 @@ class HabitacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $datos['habitaciones']=Habitacion::paginate(12);
-        return view('habitaciones.index', $datos);
 
-        // return view('habitaciones.index');
+    public function __construct()
+    {
+        $this->middleware('auth');
+
     }
-
-    public function libres()
+    public function index(Request $request)
     {
-        $datos['habitaciones']=Habitacion::paginate(12);
-        $habitaciones = Habitacion::all();
-        $libres = [];
 
-        foreach($habitaciones as $habitacion){
-            if($habitacion->estado == 'libre'){
-                array_push($libres, $habitacion);
-            }
+        $rol = auth()->User()->rolId;
+
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+
+
+        $habAdmin = false;
+        $habConsultar = false;
+        if($privilegios->contains('nombrePrivilegio', 'Administrar habitaciones')){
+            $habAdmin = true;
+        }
+
+        if($privilegios->contains('nombrePrivilegio', 'visualizar habitaciones')){
+            $habConsultar = true;
         }
 
 
-        return view('habitaciones.resumen_libre', $datos);
+        if($habAdmin || $habConsultar){
+            if($request->has('search')){
+                $habitaciones = Habitacion::where('num_habitacion', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('estado', 'LIKE', '%'.$request->search.'%')
+                ->paginate(12);
+            }else{
+                $habitaciones = Habitacion::All();
+            }
+            return view('habitaciones.index', compact('habitaciones', 'habAdmin', 'habConsultar', 'privilegios', 'rol'));
+
+
+
+        // $datos['habitaciones']=Habitacion::paginate(12);
+        // return view('habitaciones.index', $datos);
 
         // return view('habitaciones.index');
+    }else{
+        return redirect()->back();
     }
+}
+
 
 
 
@@ -50,8 +76,28 @@ class HabitacionesController extends Controller
      */
     public function create()
     {
-        return view('habitaciones.create', ['submit'=>'Crear habitacion']);
+
+
+        $rol = auth()->User()->rolId;
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+        $habAdmin = false;
+
+        if($privilegios->contains('nombrePrivilegio', 'Administrar habitaciones')){
+            $habAdmin = true;
+        }
+
+        if($habAdmin ){
+            return view('habitaciones.create', compact( 'habAdmin', 'privilegios', 'rol'), ['submit'=>'Crear habitacion']);
+        // return view('habitaciones.create', ['submit'=>'Crear habitacion']);
+    }else{
+        return redirect()->back();
     }
+}
 
     /**
      * Store a newly created resource in storage.
@@ -68,7 +114,7 @@ class HabitacionesController extends Controller
             'estado' => 'required',
             'inventario' => 'required|mimes:jpeg,png,jpg,gif',
             'foto' => 'required|mimes:jpeg,png,jpg,gif'
-            
+
         ]);
 
         $datoshabitacion = $request->except('_token');
@@ -93,16 +139,45 @@ class HabitacionesController extends Controller
      */
     public function show($id)
     {
-        $habitacion = Habitacion::findOrFail($id);
 
-        if($habitacion->estado == 'libre'){
-            return view('habitaciones.libre_show', compact('habitacion'));
 
-        }elseif($habitacion->estado== 'ocupado'){
-            return view('habitaciones.ocupada_show', compact('habitacion'));
+        $rol = auth()->User()->rolId;
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+        $habAdmin = false;
+
+        $habConsultar = false;
+
+
+        if($privilegios->contains('nombrePrivilegio', 'Administrar habitaciones')){
+            $habAdmin = true;
         }
 
-        
+        if($privilegios->contains('nombrePrivilegio', 'visualizar habitaciones')){
+            $habConsultar = true;
+        }
+
+
+        $habitacion = Habitacion::findOrFail($id);
+
+        if($habAdmin || $habConsultar){
+
+            if($habitacion->estado == 'libre'){
+                return view('habitaciones.libre_show', compact('habitacion','habConsultar', 'habAdmin', 'privilegios', 'rol'));
+
+            }elseif($habitacion->estado== 'ocupado'){
+                return view('habitaciones.ocupada_show', compact('habitacion'));
+            }
+
+    }else{
+        return redirect()->back();
+    }
+
+
 
         //  return view('habitaciones.ocupada_show');
     }
@@ -115,9 +190,26 @@ class HabitacionesController extends Controller
      */
     public function edit($id)
     {
+    $rol = auth()->User()->rolId;
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+        $habAdmin = false;
+        if($privilegios->contains('nombrePrivilegio', 'Administrar habitaciones')){
+            $habAdmin = true;
+        }
+
         $habitacion = Habitacion::findOrFail($id);
 
-        return view('habitaciones.edit', compact('habitacion'), ['submit'=>'Guardar cambios']);
+        if($habAdmin ){
+            return view('habitaciones.edit', compact('habitacion', 'habAdmin',  'privilegios', 'rol'), ['submit'=>'Actualizar habitacion']);
+
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -136,7 +228,7 @@ class HabitacionesController extends Controller
             'estado' => '',
             'inventario' => 'mimes:jpeg,png,jpg,gif',
             'foto' => 'mimes:jpeg,png,jpg,gif'
-            
+
         ]);
 
         $datoshabitacion = $request->except('_token', '_method');
@@ -153,9 +245,9 @@ class HabitacionesController extends Controller
         }
 
         Habitacion::where('id', '=' ,$id)->update($datoshabitacion);
-        
+
         return redirect('habitacion');
-        
+
 
 
     }
@@ -168,11 +260,31 @@ class HabitacionesController extends Controller
      */
     public function destroy($id)
     {
-        $habitacion = Habitacion::findOrFail($id);
-        if(Storage::delete('public/'.$habitacion->foto) && Storage::delete('public/'.$habitacion->inventario)){
-            Habitacion::destroy($id);
+
+
+        $rol = auth()->User()->rolId;
+
+        $privilegios = \DB::table('rol_privilegios')
+        ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
+        ->select('privilegios.nombrePrivilegio')
+        ->where('rol_privilegios.rolId', '=', $rol)
+        ->get();
+        $habAdmin = false;
+        if($privilegios->contains('nombrePrivilegio', 'Administrar habitaciones')){
+            $habAdmin = true;
         }
 
-        return redirect('habitacion');
+        $habitacion = Habitacion::findOrFail($id);
+
+        if($habAdmin ){
+            if(Storage::delete('public/'.$habitacion->foto) && Storage::delete('public/'.$habitacion->inventario)){
+                Habitacion::destroy($id);
+            }
+
+            return redirect('habitacion');
+    }else{
+        return redirect()->back();
+    }
     }
 }
+

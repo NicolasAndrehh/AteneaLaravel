@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/login/header2.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&display=swap" rel="stylesheet">
-    
+
 </head>
 <body>
     <div id="app">
@@ -52,7 +52,7 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
+                                    <a class="nav-link" href="{{ url('/usuario/create') }}">Registrarse</a>
                                 </li>
                             @endif
                         @else
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </nav>
-        
+
 
 
 
@@ -91,14 +91,14 @@
 
     <main>
     <div class="contenedor-total">
-        
 
-        
+
+
         <div class="principal">
             @yield('content')
-</div>       
+</div>
     </main>
-    </div> 
+    </div>
     <footer class="footer">
         <p>Atenea Software ©</p>
     </footer>
