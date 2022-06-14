@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Habitacion;
 use App\Models\Hospedaje;
 use DateTime;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class HospedajeController extends Controller
     public function create()
     {
         //
-        return view('servicios.hospedaje.create', ['submit' => 'Registrar hospedaje']);
+        $habitaciones = Habitacion::all();
+        return view('servicios.hospedaje.create', ['submit' => 'Registrar hospedaje'], compact('habitaciones'));
     }
 
     /**
@@ -63,7 +65,7 @@ class HospedajeController extends Controller
         array_push($datosHospedaje, $dias);
 
         //! AQUI SE DEBE TOMAR EL PRECIO DE LA HABITACION Y MULTIPLICAR POR LOS DIAS O ALGO ASI --------------- //
-        $valorTotal = 3000;
+        $valorTotal = 30000 * $dias;
         array_push($datosHospedaje, $valorTotal);
         
         //? Insercion de usuario en base de datos *------------------------*
@@ -145,7 +147,7 @@ class HospedajeController extends Controller
         array_push($datosHospedaje, $dias);
 
         //! AQUI SE DEBE TOMAR EL PRECIO DE LA HABITACION Y MULTIPLICAR POR LOS DIAS O ALGO ASI --------------- //
-        $valorTotal = 3000;
+        $valorTotal = 30000 * $dias;
         array_push($datosHospedaje, $valorTotal);
         
         //? Insercion de usuario en base de datos *------------------------*

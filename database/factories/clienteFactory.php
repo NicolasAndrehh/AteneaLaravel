@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\empleado>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\cliente>
  */
-class empleadoFactory extends Factory
+class ClienteFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,24 +20,20 @@ class empleadoFactory extends Factory
         return [
             
             'num_documento' =>Str::random(10),
-            'tipo_documento' => 'C.C',
+            
             'nombres' => $this->faker->name(),
             'apellidos' => $this->faker->name(),
-            'ciudad'=>'fusagasuga',
-            'direccion' =>'cualquiera',
+            'procedencia'=>'fusagasuga',
+            
             'telefono'=>'3000978888',
-            'correo'=>'jajk@gmail.com',
-            'cargo'=>'admin',
-            'horario'=>'estado',
-            'estado'=>'horario',
-            'contrato'=>'algo',
+            'email'=>'jajk@gmail.com',
+            
             
 
 
 
 
             
-            'foto'=> 'foto',
             
             
         ];

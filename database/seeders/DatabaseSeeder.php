@@ -166,8 +166,10 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\Habitacion::factory(15)->create();
+        \App\Models\Empleado::factory(15)->create();
+        \App\Models\Cliente::factory(20)->create();
 
-        // \App\Models\User::factory(10)->create();
+         \App\Models\User::factory(10)->create();
 
 
         // Privilegios::factory(20)->create();
