@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\empleado>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Habitacion>
  */
-class empleadoFactory extends Factory
+class HabitacionFactory extends Factory
 {
     /**
      * Define the model's default state.

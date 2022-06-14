@@ -132,6 +132,9 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('123456')
         ]);
 
+
+        // creando habitaciones
+
         \App\Models\Habitacion::create([
             'num_habitacion' =>'001',
             'descripcion'=>'la habitacion del bicho siuuu',
@@ -140,6 +143,17 @@ class DatabaseSeeder extends Seeder
             'num_personas'=>'4',
             'foto'=>'la foto'
         ]);
+
+
+        \App\Models\Habitacion::create([
+            'num_habitacion' =>'002',
+            'descripcion'=>'la habitacion del bicho siuuu',
+            'estado'=>'libre',
+            'inventario'=>'inventario',
+            'num_personas'=>'4',
+            'foto'=>'la foto'
+        ]);
+
 
 
         \App\Models\Servicio::create([
@@ -151,9 +165,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        \App\Models\Habitacion::factory(15)->create();
+        \App\Models\Empleado::factory(15)->create();
+        \App\Models\Cliente::factory(20)->create();
 
-
-        // \App\Models\User::factory(10)->create();
+         \App\Models\User::factory(10)->create();
 
 
         // Privilegios::factory(20)->create();

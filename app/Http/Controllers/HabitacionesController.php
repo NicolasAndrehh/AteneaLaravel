@@ -49,7 +49,7 @@ class HabitacionesController extends Controller
                 ->orWhere('estado', 'LIKE', '%'.$request->search.'%')
                 ->paginate(12);
             }else{
-                $habitaciones = Habitacion::All();
+                $habitaciones = Habitacion::paginate(12);
             }
             return view('habitaciones.index', compact('habitaciones', 'habAdmin', 'habConsultar', 'privilegios', 'rol'));
 

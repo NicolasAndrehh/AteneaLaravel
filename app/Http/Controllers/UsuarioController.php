@@ -66,7 +66,7 @@ class UsuarioController extends Controller
             ->orWhere('email', 'LIKE', '%'.$request->search.'%')
             ->paginate(12);
         }else{
-            $usuarios = User::All();
+            $usuarios = User::paginate(12);
         }
         return view('usuario.index', compact('usuarios', 'isUserAdmin', 'canViewUsers', 'isRolAdmin', 'canViewRoles'));
     }else{

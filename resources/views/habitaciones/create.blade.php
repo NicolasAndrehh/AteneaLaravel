@@ -92,6 +92,7 @@
                 </div>
                 <label for="foto" class="boton">Cambiar Foto</label>
                 <input type="file" name="foto" id="foto" >
+                
                 {{-- <a class="boton" href="">Cambiar foto</a> --}}
                 @error('foto')
                         <small>*{{ $message }}*</small>

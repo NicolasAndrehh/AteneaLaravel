@@ -43,7 +43,7 @@
                             @csrf
                             {{ method_field('DELETE') }}
                             
-                            <button type="submit" onclick="return confirm('¿Seguro que quieres borrar el rol {{ $rol->nombreRol }}?')" style="background: none; border: none; cursor: pointer;">
+                            <button type="submit" class="eliminar" onclick="return confirm('¿Seguro que quieres borrar el rol {{ $rol->nombreRol }}?')" style="background: none; border: none; cursor: pointer;">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-minus" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <circle cx="12" cy="12" r="9" />
@@ -56,6 +56,9 @@
             </div>
             @endforeach
         </div>
+        <div class="paginando">
+                {{ $roles->links("pagination::bootstrap-4") }}
+                </div>
     </section>
     
     <div class="contenedor-botones-main">

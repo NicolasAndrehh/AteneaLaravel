@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+
 <link rel="stylesheet" href="{{ asset('css/habitaciones/hab_inicio.css') }}">
 
 
@@ -14,23 +19,23 @@
                         </form>
                     </div>
                     <div class="contenedor-botones-estado">
-                        <div class="botones-estado libre">
-                            <a href="{{ url('/habitacion/libre') }}">aaaaa</a>
+                        <div class="popup  botones-estado libre" onmouseover="mypopup1()">
+                            <span class="popuptext" id="myPopup">Libres</span>
                         </div>
-                        <div class="botones-estado ocupado">
-                            <a href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/habitaciones/resumenes/ocupadas-resumen/contenido/marco/marco-ocupadas-resumen.html">aaaaa</a>
+                        <div class="popup  botones-estado ocupado" onmouseover="mypopup2()">
+                            <span class="popuptext" id="myPopup2">ocupado</span>
                         </div>
-                        <div class="botones-estado limpieza">
-                            <a href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/habitaciones/resumenes/limpieza-resumen/contenido/marco/marco-limpieza-resumen.html">aaaaa</a>
+                        <div class="popup  botones-estado limpieza" onmouseover="mypopup3()">
+                            <span class="popuptext" id="myPopup3">limpieza</span>
                         </div>
-                        <div class="botones-estado fuera">
-                            <a href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/habitaciones/resumenes/fuera-servicio-resumen/contenido/marco/marco-fuera-resumen.html">aaaaa</a>
+                        <div class="popup  botones-estado fuera" onmouseover="mypopup4()">
+                            <span class="popuptext" id="myPopup4">fuera de servicio</span>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="contenedor">
+                <div class="contenedor" id="container">
 
 
                         @foreach( $habitaciones as $habitacion )
@@ -74,7 +79,7 @@
                                             @csrf
                                             {{ method_field('DELETE') }}
 
-                                            <button type="submit" onclick="return confirm('¿Seguro que quieres borrar la habitacion {{ $habitacion->num_habitacion }}?')" style="background: none; border: none; cursor: pointer;">
+                                            <button type="submit" class="eliminar" onclick="return confirm('¿Seguro que quieres borrar la habitacion {{ $habitacion->num_habitacion }}?')" style="background: none; border: none; cursor: pointer;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-minus" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                                     <circle cx="12" cy="12" r="9" />
@@ -89,13 +94,23 @@
 
                         @endforeach
 
+                        
+
 
                 </div>
+                <div class="paginando">
+                {{ $habitaciones->links("pagination::bootstrap-4") }}
+                </div>
                 <div class="contenedor-botones-bajos">
-                    <a class="boton" href="/Atenea-Software/Interfaces terminadas/Interfaces terminadas/habitaciones/resumenes/resumen/contenido/marco/hab-resumen.html">Resumen</a>
+                   
                     <a class="boton" href="{{ url('/habitacion/create') }}">Crear Habitacion</a>
                     <a class="boton" href="../../Reporte habitaciones/html/marco-reporte-habitacion.html">Generar reporte</a>
                 </div>
+
+
+
+
+                <script src="{{ asset('js/habitaciones.js') }}"></script>
 
 
 
