@@ -13,7 +13,14 @@
 
         <div class="formulario-inputs">
             <label for="habitacion" id="habitacionLabel" class="label">Habitacion: </label>
-            <input type="number" id="habitacionInput" name="habitacion" value="{{ isset($hospedaje->habitacionId)?$hospedaje->habitacionId:old('habitacion') }}">
+            <select name="habitacion" id="habitacion">
+                <option>Seleccione habitacion</option>
+                @foreach ($habitaciones as $habitacion)
+                    @if ($habitacion->estado == 'libre')
+                        <option value="{{ $habitacion->id }}" {{ old('habitacion') ==  $habitacion->id  ? 'selected' : '' }} >{{ $habitacion->num_habitacion }}</option>                
+                    @endif
+                @endforeach
+            </select>
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="habitacionCheck" class="check">
         </div>
         @error('habitacion')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use App\Models\User;
+use App\Models\Rol;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,14 +20,14 @@ class UsuarioController extends Controller
      */
 
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-        
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+
+    // }
     public function index(Request $request)
     {
-        //
+        $this->middleware('auth');
         $rol = auth()->User()->rolId;
 
 
@@ -58,14 +59,14 @@ class UsuarioController extends Controller
     }
 
     // $datos['usuarios'] = User::paginate(12);
-    
+
     if($isUserAdmin || $canViewUsers){
         if($request->has('search')){
             $usuarios = User::where('name', 'LIKE', '%'.$request->search.'%')
             ->orWhere('email', 'LIKE', '%'.$request->search.'%')
             ->paginate(12);
         }else{
-            $usuarios = User::All();
+            $usuarios = User::paginate(12);
         }
         return view('usuario.index', compact('usuarios', 'isUserAdmin', 'canViewUsers', 'isRolAdmin', 'canViewRoles'));
     }else{
@@ -77,7 +78,7 @@ class UsuarioController extends Controller
 
 
 
-        
+
         // return view('usuario.index', $datos);
     }
 
@@ -88,7 +89,9 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $rol = auth()->User()->rolId;
+
+        if(auth()->user()){
+            $rol = auth()->User()->rolId;
 
         $privilegios = \DB::table('rol_privilegios')
         ->join('privilegios', 'rol_privilegios.privilegioId', '=', 'privilegios.id')
@@ -97,6 +100,7 @@ class UsuarioController extends Controller
         ->get();
 
         $isUserAdmin = false;
+        $roles = Rol::All();
 
         if($privilegios->contains('nombrePrivilegio', 'Administrar usuarios')){
             $isUserAdmin = true;
@@ -104,13 +108,19 @@ class UsuarioController extends Controller
 
         if($isUserAdmin){
             // $roles = DB::select('SELECT * FROM rols;');
-            return view('usuario.create', ['submit' => 'Registrar usuario'] );
+            return view('usuario.create',compact('roles','isUserAdmin'), ['submit' => 'Registrar usuario'] );
         }else{
             return redirect()->back();
         }
+        }else{
+
+            $roles = Rol::All();
+            return view('usuario.create',compact('roles'), ['submit' => 'Registrar usuario'] );
+        }
 
 
-        
+
+
         // return view('usuario.create', ['submit' => 'Registrar usuario']);
     }
 
@@ -122,14 +132,14 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->middleware('auth');
         $request->validate([
             'name' => 'required|regex:/^[0-9a-zA-ZÀ-ÿ\s\_\-]{4,}$/',
             'email' => ['required','regex:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/'],
             'num_documento' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
             'password' => "required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/",
             'password2' => 'required|same:password',
-            'rol' => 'required|in:1,2',
+            'rol' => 'required',
             'foto' => 'required|mimes:jpeg,png,jpg,gif',
         ]);
 
@@ -159,7 +169,12 @@ class UsuarioController extends Controller
 
 
         // return response()->json($datosUsuario);
-        return redirect('/usuario');
+        if(auth()->user()){
+            return redirect('/usuario');
+        }else{
+            return redirect('/');
+        }
+
     }
 
     /**
@@ -170,7 +185,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->middleware('auth');
         $usuario = User::findOrFail($id);
         $empleado = Empleado::findOrFail($usuario->empleadoId);
 
@@ -196,14 +211,14 @@ class UsuarioController extends Controller
         if($privilegios->contains('nombrePrivilegio', 'Administrar usuarios')){
             $isUserAdmin = true;
         }
-    
+
         if($privilegios->contains('nombrePrivilegio', 'Consultar usuarios')){
             $canViewUsers = true;
         }
 
         if($isUserAdmin || $canViewUsers || $isMe){
-            
-            
+
+
             return view('usuario.show', compact('usuario','empleado', 'isUserAdmin', 'canViewUsers','privilegios', 'isMe'));
         }else{
             return redirect()->back();
@@ -221,7 +236,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->middleware('auth');
         $userId = auth()->User()->id;
         $rol = auth()->User()->rolId;
 
@@ -246,16 +261,17 @@ class UsuarioController extends Controller
 
         $usuario = User::findOrFail($id);
         $empleado = Empleado::findOrFail($usuario->empleadoId);
+        $roles = Rol::all();
 
         if($isUserAdmin || $isMe){
-            
-            
-            return view('usuario.edit', compact('usuario','empleado',  'isUserAdmin', 'isMe', 'privilegios'),['submit' => 'Guardar cambios']);
+
+
+            return view('usuario.edit', compact('usuario','empleado','roles',  'isUserAdmin', 'isMe', 'privilegios'),['submit' => 'Guardar cambios']);
         }else{
             return redirect()->back();
         }
 
-        
+
         // return view('usuario.edit', compact('usuario', 'empleado'), ['submit' => 'Guardar cambios']);
     }
 
@@ -268,12 +284,12 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->middleware('auth');
         $request->validate([
             'name' => 'required|regex:/^[0-9a-zA-ZÀ-ÿ\s\_\-]{4,}$/',
             'email' => ['required','regex:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/'],
             'num_documento' => 'required|regex:/^[a-zA-ZÀ-ÿ0-9\s\#\.\/\_\-]{7,200}$/',
-            'rol' => 'required|in:1,2',
+            'rol' => 'required',
             'foto' => 'required|mimes:jpeg,png,jpg,gif',
         ]);
 
@@ -319,7 +335,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->middleware('auth');
 
 
         $rol = auth()->User()->rolId;
@@ -338,8 +354,8 @@ class UsuarioController extends Controller
         }
 
         if($isUserAdmin ){
-            
-            
+
+
             $usuario = User::findOrFail($id);
         if(Storage::delete('public/'.$usuario->foto) && Storage::delete('public/'.$usuario->foto)){
             User::destroy($id);
@@ -350,11 +366,12 @@ class UsuarioController extends Controller
             return redirect()->back();
         }
 
-        
+
     }
 
     public function pdf()
     {
+        $this->middleware('auth');
         $usuarios = User::all();
         $usuarios = compact('usuarios');
 

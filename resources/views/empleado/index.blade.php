@@ -3,10 +3,12 @@
 
 <link rel="stylesheet" href="{{ asset('css/empleados.css') }}">
 <div class="barra-buscadora">
+<form class="searchForm" action="{{ url('/empleado') }}">
     <div class="search-container">
         <input type="text" placeholder="Search.." name="search">
         <button type="submit"><i class="fa fa-search"></i></button>
     </div>
+    </form>
 </div>
 
 <section class="section">
@@ -26,7 +28,7 @@
                         </svg>
                     </a>
                 </div>
-
+                @if($adminemple || $editemple)
                 <div class="tamaño-iconos">
                     <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="abrirModalModificar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -36,13 +38,14 @@
                         </svg>
                     </a>
                 </div>
-
+                @endif
+                @if($adminemple)
                 <div class="tamaño-iconos">
                     <form action="{{ url('/empleado/'.$empleado->id) }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
 
-                        <button type="submit" onclick="return confirm('¿Seguro que quieres borrar al empleado {{ $empleado->nombres.' '.$empleado->apellidos }}?')" style="background: none; border: none; cursor: pointer;">
+                        <button type="submit" class="eliminar" onclick="return confirm('¿Seguro que quieres borrar al empleado {{ $empleado->nombres.' '.$empleado->apellidos }}?')" style="background: none; border: none; cursor: pointer;">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-minus" width="22" height="22" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                 <circle cx="12" cy="12" r="9" />
@@ -51,15 +54,21 @@
                         </button>
                     </form>
                 </div>
+                @endif
             </div>
         </div>
         @endforeach
     </div>
+    <div class="paginando">
+                {{ $empleados->links("pagination::bootstrap-4") }}
+                </div>
 
 
     <div class="contenedor-botones-main">
+        @if($adminemple || $editemple)
         <a class="boton " href="{{ url('/empleado/create') }}">Registrar empleado</a>
         <a class="boton" href="{{ url('/empleado/pdf') }}">Generar reporte</a>
+        @endif
     </div>
 </section>
 

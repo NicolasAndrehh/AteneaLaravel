@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        
+
 
         \App\Models\Empleado::create([
             'num_documento' =>'1003519243',
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             'cargo'=>'admin',
             'horario'=>'estado',
             'estado'=>'horario',
-            'contrato'=>'algo', 
+            'contrato'=>'algo',
             'foto'=> 'foto',
         ]);
 
@@ -73,6 +73,35 @@ class DatabaseSeeder extends Seeder
             'nombrePrivilegio' => 'visualizar habitaciones'
         ]);
 
+        //clientes
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'visualizar clientes'
+        ]);
+        Privilegios::create([
+            'nombrePrivilegio' => 'administrar clientes'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'editar clientes'
+        ]);
+
+
+        //empleados
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'visualizar empleados'
+        ]);
+        Privilegios::create([
+            'nombrePrivilegio' => 'administrar empleados'
+        ]);
+
+        Privilegios::create([
+            'nombrePrivilegio' => 'editar empleados'
+        ]);
+
+
+
 
 
 
@@ -86,7 +115,14 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        
+        // asignar al rol 2
+        \App\Models\RolPrivilegio::create([
+            'rolId' => '2',
+            'privilegioId' => '5',
+        ]);
+
+
+
         \App\Models\User::create([
             'name'=>'Juan Alvarado',
             'email'=>'jaalvarado342@misena.edu.co',
@@ -95,6 +131,9 @@ class DatabaseSeeder extends Seeder
             'foto'=>'foto',
             'password'=>bcrypt('123456')
         ]);
+
+
+        // creando habitaciones
 
         \App\Models\Habitacion::create([
             'num_habitacion' =>'001',
@@ -106,6 +145,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        \App\Models\Habitacion::create([
+            'num_habitacion' =>'002',
+            'descripcion'=>'la habitacion del bicho siuuu',
+            'estado'=>'libre',
+            'inventario'=>'inventario',
+            'num_personas'=>'4',
+            'foto'=>'la foto'
+        ]);
+
+
+
         \App\Models\Servicio::create([
             'name' =>'hospedaje',
             'horario' =>'archivo adjunto',
@@ -115,19 +165,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        \App\Models\Habitacion::factory(15)->create();
+        \App\Models\Empleado::factory(15)->create();
+        \App\Models\Cliente::factory(20)->create();
+
+         \App\Models\User::factory(10)->create();
 
 
-        // \App\Models\User::factory(10)->create();
-        
-        
         // Privilegios::factory(20)->create();
 
 
-        
-        
 
 
 
-        
+
+
+
     }
 }

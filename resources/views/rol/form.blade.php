@@ -7,18 +7,11 @@
             <h3>Privilegios</h3>
 
             <div class="contenedor-form">
-                <p><input type="checkbox" value="1" name="privilegios[]"> Visualizar empleados</p>
-                <p><input type="checkbox" value="2" name="privilegios[]"> Visualizar Clientes</p>
-                <p><input type="checkbox" value="3" name="privilegios[]"> Visualizar Habitaciones</p>
-                <p><input type="checkbox" value="4" name="privilegios[]"> Visualizar Servicios</p>
-                <p><input type="checkbox" value="5" name="privilegios[]"> Visualizar Usuarios</p>
-                <p><input type="checkbox" value="6" name="privilegios[]"> Visualizar Usuarios</p>
-                <p><input type="checkbox" value="7" name="privilegios[]"> Modificar Habitaciones</p>
-                <p><input type="checkbox" value="8" name="privilegios[]"> Modificar Clientes</p>
-                <p><input type="checkbox" value="9" name="privilegios[]"> Modificar Servicios</p>
-                <p><input type="checkbox" value="10" name="privilegios[]"> Modificar roles</p>
-                <p><input type="checkbox" value="11" name="privilegios[]"> Modificar Usuarios</p>
-                <p><input type="checkbox" value="12" name="privilegios[]"> Modificar Empleados</p>
+
+            @foreach($privilegios as $privilegio)
+                <p><input type="checkbox" value="{{ $privilegio->id }}" name="privilegios[]"> {{$privilegio->nombrePrivilegio}}</p>
+            @endforeach
+                <!-- <p><input type="checkbox" value="editar empleados" name="privilegios[]"> editar empleados</p>
                 <p><input type="checkbox" value="13" name="privilegios[]"> Eliminar Empleados</p>
                 <p><input type="checkbox" value="14" name="privilegios[]"> Eliminar Clientes</p>
                 <p><input type="checkbox" value="15" name="privilegios[]"> Eliminar Habitaciones</p>
@@ -31,7 +24,7 @@
                 <p><input type="checkbox" value="22" name="privilegios[]"> Crear Roles</p>
                 <p><input type="checkbox" value="23" name="privilegios[]"> Registrar Empleados</p>
                 <p><input type="checkbox" value="24" name="privilegios[]"> Reportes Servicios</p>
-                <p><input type="checkbox" value="25" name="privilegios[]"> Reportes Clientes</p> 
+                <p><input type="checkbox" value="25" name="privilegios[]"> Reportes Clientes</p>  -->
             </div>
             
         </section>
