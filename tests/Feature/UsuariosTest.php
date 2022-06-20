@@ -20,3 +20,4 @@ class UsuariosTest extends TestCase
         $response->assertStatus(200);
     }
 }
+

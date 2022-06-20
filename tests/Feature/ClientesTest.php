@@ -15,7 +15,7 @@ class ClientesTest extends TestCase
      */
     public function test_example()
     {
-        $response = $this->get('cliente');
+        $response = $this->get('');
 
         $response->assertStatus(200);
     }

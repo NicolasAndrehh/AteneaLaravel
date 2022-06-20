@@ -15,7 +15,7 @@ class EmpleadosTest extends TestCase
      */
     public function test_example()
     {
-        $response = $this->get('empleado');
+        $response = $this->get('');
 
         $response->assertStatus(200);
     }
