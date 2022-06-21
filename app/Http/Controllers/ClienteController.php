@@ -133,7 +133,6 @@ class ClienteController extends Controller
         ->where('rol_privilegios.rolId', '=', $rol)
         ->get();
 
-
         $showcli = false;
         $admincli = false;
 

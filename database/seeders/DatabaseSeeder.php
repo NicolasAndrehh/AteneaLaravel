@@ -157,11 +157,36 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\Servicio::create([
-            'name' =>'hospedaje',
+            'name' =>'Hospedaje',
             'horario' =>'archivo adjunto',
             'estado' => 'activo',
             'foto'=> ' una foto',
             'aforo'=>4,
+        ]);
+
+        \App\Models\Servicio::create([
+            'name' =>'Piscina',
+            'horario' =>'archivo adjunto',
+            'estado' => 'activo',
+            'foto'=> ' una foto',
+            'aforo'=>4,
+            'valor'=>14000,
+        ]);
+        \App\Models\Servicio::create([
+            'name' =>'Restaurante',
+            'horario' =>'archivo adjunto',
+            'estado' => 'activo',
+            'foto'=> ' una foto',
+            'aforo'=>4,
+            'valor'=>14000,
+        ]);
+        \App\Models\Servicio::create([
+            'name' =>'Salon de eventos',
+            'horario' =>'archivo adjunto',
+            'estado' => 'activo',
+            'foto'=> ' una foto',
+            'aforo'=>4,
+            'valor'=>140000,
         ]);
 
 

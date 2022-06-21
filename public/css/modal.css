@@ -98,6 +98,14 @@ input{
     /* background: var(--contenedor); */
     padding: 2rem 2rem 2rem 0rem;
 }
+.contenedor-form-servicio {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 3rem;
+    border-radius: 2rem;
+    /* background: var(--contenedor); */
+    padding: 2rem 2rem 2rem 0rem;
+}
 .principal-form {
     background: var(--blanco);
     margin: 2rem;
@@ -185,6 +193,10 @@ small {
     text-align: center;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
+    grid-column: 1/5;
+}
+.noColumn {
+    grid-column: unset;
 }
 
 /** BOTONES ----------------------------------------------- */

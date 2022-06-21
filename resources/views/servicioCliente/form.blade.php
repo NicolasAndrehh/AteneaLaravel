@@ -7,17 +7,17 @@
                 <p>Hospedaje</p>
             </div>
         </a>
-        <a href="{{ url('') }}" class="servicio">
+        <a href="{{ url('/servicio/create') }}" class="servicio">
             <div class="cuadros">
                 <p>Piscina</p>
             </div>
         </a>
-        <a href="{{ url('') }}" class="servicio">
+        <a href="{{ url('/servicio/create') }}" class="servicio">
             <div class="cuadros">
                 <p>Restaurante</p>
             </div>
         </a>
-        <a href="{{ url('') }}" class="servicio">
+        <a href="{{ url('/servicio/create') }}" class="servicio">
             <div class="cuadros">
                 <p>Salon de eventos</p>
             </div>

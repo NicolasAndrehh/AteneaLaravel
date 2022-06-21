@@ -111,7 +111,8 @@ class HospedajeController extends Controller
         //
         $hospedaje = Hospedaje::findOrFail($id);
         $cliente = Cliente::findOrFail($hospedaje->clienteId);
-        return view('servicios.hospedaje.edit', compact('hospedaje', 'cliente'), ['submit' => 'Guardar cambios']);
+        $habitaciones = Habitacion::all();
+        return view('servicios.hospedaje.edit', compact('hospedaje', 'cliente','habitaciones'), ['submit' => 'Guardar cambios']);
     }
 
     /**
