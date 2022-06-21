@@ -7,8 +7,8 @@
             <input type="text" id="nombresInput" name="name" value="{{ isset($usuario->name)?$usuario->name:old('name') }}">
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="nombresCheck" class="check">
         </div>
-        @error('nombreUsuario')
-                <small>*{{ $message }}*</small>
+        @error('name')
+                <small class="noColumn">*{{ $message }}*</small>
         @enderror
 
         <div class="formulario-inputs">
@@ -17,7 +17,7 @@
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="emailCheck" class="check">
         </div>
         @error('email')
-                <small>*{{ $message }}*</small>
+                <small class="noColumn">*{{ $message }}*</small>
         @enderror
 
         <div class="formulario-inputs">
@@ -26,7 +26,7 @@
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="documentoCheck" class="check">
         </div>
         @error('num_documento')
-                <small>*{{ $message }}*</small>
+                <small class="noColumn">*{{ $message }}*</small>
         @enderror
 
         @if (isset($usuario))
@@ -39,7 +39,7 @@
                 <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="passwordCheck" class="check">
             </div>
             @error('password')
-                    <small>*{{ $message }}*</small>
+                    <small class="noColumn">*{{ $message }}*</small>
             @enderror
 
             <div class="formulario-inputs">
@@ -48,7 +48,7 @@
                 <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="password2Check" class="check">
             </div>
             @error('password2')
-                    <small>*{{ $message }}*</small>
+                    <small class="noColumn">*{{ $message }}*</small>
             @enderror
 
         @endif
@@ -76,7 +76,7 @@
         <input type="file" name="foto" id="foto">
         {{-- <a class="boton" href="">Cambiar foto</a> --}}
         @error('foto')
-                <small>*{{ $message }}*</small>
+                <small class="noColumn">*{{ $message }}*</small>
         @enderror
     </div>
 </div>

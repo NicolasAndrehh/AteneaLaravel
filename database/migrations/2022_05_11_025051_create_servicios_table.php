@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('foto');
             $table->string('estado');
             $table->bigInteger('aforo')->nullable();
+            $table->integer('valor')->nullable();
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

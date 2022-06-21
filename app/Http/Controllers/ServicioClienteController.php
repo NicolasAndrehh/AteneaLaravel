@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Hospedaje;
+use App\Models\Servicio;
 use App\Models\servicioCliente;
 use Illuminate\Http\Request;
 
@@ -52,9 +53,10 @@ class ServicioClienteController extends Controller
         //
         $datos['cliente'] = Cliente::findOrFail($id);
         $hospedaje['hospedajes'] = Hospedaje::where('clienteId','=',$id)->get();
+        $servicio['servicios'] = servicioCliente::where('clienteId','=',$id)->get();
         
         // return response()->json($hospedaje);
-        return view('servicioCliente.show')->with($datos)->with($hospedaje);
+        return view('servicioCliente.show')->with($datos)->with($hospedaje)->with($servicio);
     }
 
     /**

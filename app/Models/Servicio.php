@@ -11,12 +11,12 @@ class Servicio extends Model
 
 
     protected $fillable = [
-    'name',
-    'horario',
-    'estado',
-    'foto',
-    'aforo'
-        
+        'name',
+        'horario',
+        'estado',
+        'foto',
+        'aforo',
+        'valor',    
     ];
     
 

@@ -8,7 +8,7 @@
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="nombresCheck" class="check">
         </div>
         @error('nombres')
-            <small>*{{ $message }}*</small>
+            <small class="noColumn">*{{ $message }}*</small>
         @enderror
 
         <div class="formulario-inputs">
@@ -17,7 +17,7 @@
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="apellidosCheck" class="check">
         </div>
         @error('apellidos')
-            <small>*{{ $message }}*</small>
+            <small class="noColumn">*{{ $message }}*</small>
         @enderror
 
         <div class="formulario-inputs">
@@ -26,7 +26,7 @@
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="documentoCheck" class="check">
         </div>
         @error('num_documento')
-            <small>*{{ $message }}*</small>
+            <small class="noColumn">*{{ $message }}*</small>
         @enderror
         
         <div class="formulario-inputs">
@@ -35,7 +35,7 @@
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="direccionCheck" class="check">
         </div>
         @error('direccion')
-            <small>*{{ $message }}*</small>
+            <small class="noColumn">*{{ $message }}*</small>
         @enderror
 
         <div class="formulario-inputs">
@@ -44,7 +44,7 @@
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="telefonoCheck" class="check">
         </div>
         @error('telefono')
-            <small>*{{ $message }}*</small>
+            <small class="noColumn">*{{ $message }}*</small>
         @enderror
 
         <div class="formulario-inputs">
@@ -53,7 +53,7 @@
             <img src="{{ asset('img/check-mark-svgrepo-com (1).svg') }}" id="cargoCheck" class="check">
         </div>
         @error('cargo')
-            <small>*{{ $message }}*</small>
+            <small class="noColumn">*{{ $message }}*</small>
         @enderror
 
         <div class="formulario-inputs">
@@ -61,7 +61,7 @@
             <input type="file" name="contrato" id="contrato">
         </div>
         @error('contrato')
-            <small>*{{ $message }}*</small>
+            <small class="noColumn">*{{ $message }}*</small>
         @enderror
     
     </div>
@@ -76,7 +76,7 @@
         <input type="file" name="foto" id="foto">
         {{-- <a class="boton" href="">Cambiar foto</a> --}}
         @error('foto')
-                <small>*{{ $message }}*</small>
+                <small class="noColumn">*{{ $message }}*</small class="noColumn">
         @enderror
     </div>
 </div>
